@@ -10,21 +10,21 @@ const TeamMembersData = [
   {
     name: 'Funbi',
     titleHeld: 'co-creator & data scientist',
-    imgSrc: '/Images/funbi.jpg',
+    imgSrc: '/images/funbi.jpg',
     linkedInLink: '#',
     githubLink: '#'
   },
   {
     name: 'bola',
     titleHeld: 'co-creator & Designer',
-    imgSrc: '/Images/bola.jpg',
+    imgSrc: '/images/bola.jpg',
     linkedInLink: '#',
     githubLink: '#'
   },
   {
     name: 'odunayo',
     titleHeld: 'web developer',
-    imgSrc: '/Images/ibrahim.jpg',
+    imgSrc: '/images/ibrahim.jpg',
     linkedInLink: '#',
     githubLink: '#'
   },
