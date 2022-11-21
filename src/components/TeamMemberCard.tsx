@@ -26,7 +26,7 @@ function TeamMemberCard({ memberDetails }: { memberDetails: memberDetails }) {
       </div>
 
       <div className='text-center'>
-        <p className='text-4xl md:text-[4.17vw] tracking-[0.205em] font-six-caps py-3'>{ name }</p>
+        <p className='text-4xl md:text-[4.17vw] tracking-[0.205em] font-six-caps py-3 leading-none'>{ name }</p>
         <p className='text-[#999999] text-base md:text-[1.25vw] uppercase pb-1'>{ titleHeld }</p>
         
         <div className='center py-[0.5vw]'>

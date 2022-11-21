@@ -18,8 +18,8 @@ function HomePage() {
           <SummarizerLogo/>
         </div>
 
-        <div className='md:hidden center'>
-          menu
+        <div className='md:hidden center text-xl'>
+          <p>menu<span className='text-coffee-bean-brown text-4xl'>.</span></p>
         </div>
       </header>
 

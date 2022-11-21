@@ -15,9 +15,9 @@ function SummarizerPage() {
           logo={ true } 
           page='summarizer'
         />
-
-        <div className='md:px-[5.523vw] md:pt-4 text-white grid-template2'>
-          <header className='bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
+        {/* md:px-[5.523vw] */}
+        <div className=' md:pt-4 text-white grid-template2'>
+          <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
               <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Text Translator</h2>
               
@@ -32,7 +32,7 @@ function SummarizerPage() {
             </div>
           </header>
 
-          <div className='mx-4 my-8 md:m-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
+          <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
@@ -67,8 +67,12 @@ function SummarizerPage() {
             </div>
           </div>
 
-          <div className='bg-black center py-3 md:py-0'>
-            <RightIndicator />
+          <div className='bg-black py-10  md:py-0 flex overflow-hidden pl-0 md:pl-[5.523vw]'>
+            <div className='hidden md:flex justify-between items-center w-full'>
+              {
+                [...Array(6)].map((index) => ( <RightIndicator key={index} /> ))
+              }
+            </div>
           </div>
         </div>
       </div>

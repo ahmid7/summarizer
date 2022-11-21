@@ -22,7 +22,7 @@ const TeamMembersData = [
     githubLink: '#'
   },
   {
-    name: 'ibrahim',
+    name: 'odunayo',
     titleHeld: 'web developer',
     imgSrc: '/Images/ibrahim.jpg',
     linkedInLink: '#',
@@ -51,6 +51,7 @@ function TeamPage() {
                 return(
                   <TeamMemberCard 
                     memberDetails= { memberDetails }
+                    key={ memberDetails.titleHeld }
                   />
                 )
               })

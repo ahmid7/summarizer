@@ -1,19 +1,21 @@
 import React from 'react'
 
 import { NavBar } from '../'
-import { LongRightArrow, LongLeftArrow,MarqueeIcon } from '../../assets/svgIcons'
+import { LongRightArrow, LongLeftArrow,MeantForMarquee } from '../../assets/svgIcons'
 
 function AboutPage() {
   return (
     <section className='md:h-screen'>
       <div className='layout-grid2 divide-x-2 divide-black'>
-        <NavBar
-          logo = { true }
-          page= 'about'
-        />
+        <div className='hidden md:block'>
+          <NavBar
+            logo = { true }
+            page= 'about'
+          />
+        </div>
 
-        <div className='layout-grid3  divide-y-2 md:divide-x-2 divide-black'>
-          <div className='divide-y-2 divide-black'>
+        <div className='layout-grid3  divide-y-2 md:divide-y-0 md:divide-x-2 divide-black'>
+          <div className='layout-grid4 divide-y-2 divide-black'>
             <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw]'>
 
               <h1 className='header-text'>
@@ -31,13 +33,16 @@ function AboutPage() {
 
             </div>
 
-            <div className='text-center hidden md:block'>
-              a marquee text will be added here later 
+            <div className='flex items-center overflow-x-hidden text-[4.208vw] capitalize whitespace-nowrap'>
+              <div className='marqueeAnimate'>
+                <span className=''>made for students &middot; writers &middot; teachers &middot;  journalists</span> <span> &middot; made for students	&middot; writers &middot; teachers &middot;  journalists
+                </span>
+              </div>
             </div>
           </div>
 
 
-          <div className='grid grid-rows-2  divide-y-2 divide-black'>
+          <div className='grid grid-rows-2 divide-y-2 divide-black'>
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw]'>
               <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw]'>How does it work though ?</h3>
 
