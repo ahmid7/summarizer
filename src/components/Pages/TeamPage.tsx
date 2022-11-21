@@ -10,7 +10,7 @@ const TeamMembersData = [
   {
     name: 'Funbi',
     titleHeld: 'co-creator & data scientist',
-    imgSrc: './summarizer-project/Images/funbi.jpg',
+    imgSrc: './summarizer/Images/funbi.jpg',
     linkedInLink: '#',
     githubLink: '#'
   },
