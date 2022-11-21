@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Merriweather Sans', sans-serif;
+        font-weight: 400;
+        color: #171313;
+        scroll-behavior: smooth;
+        @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
+    }
+
+    body {
+        scroll-behavior: smooth;
+    }
+}
+
+.center {
+    @apply grid place-content-center
+}
+
+.flex-center {
+    @apply flex items-center justify-center
+}
+
+.flex-between {
+    @apply flex items-center justify-between
+}
+
+.word-spacing {
+    word-spacing: 0.695vw;
+}
+
+.layout-grid {
+    display: grid;
+    /* need to fix this part */
+    grid-template-rows: 2fr 1fr;
+}
+
+.grid-layout5 {
+    display: grid;
+    @apply grid-cols-2
+}
+
+.grid-layout6 {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+@media screen and ( min-width: 768px ) {
+    .layout-grid {
+        grid-template-columns: 11.25vw 1fr 29.97vw;
+    }
+
+    .layout-grid2 {
+        display: grid;
+        grid-template-columns: 11.25vw 88.75vw;
+    }
+
+    .grid-template2 {
+        display: grid;
+        row-gap: 25px;
+        grid-template-rows:6.07vw 1fr 10.5vw
+    }
+
+    .layout-grid3 {
+        display: grid;
+        grid-template-columns: 1fr 35.91vw;   
+    }
+
+    .grid-template {
+        display: grid;
+        grid-template-rows: auto 19vw
+    }
+
+    .grid-layout5 {
+        display: grid;
+        @apply grid-cols-1
+    }
+
+    .grid-layout6 {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.grid-template4 {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.active-link {
+    @apply text-coffee-bean-brown
+}
+
+.nav-ul {
+    @apply uppercase  flex flex-col  text-coffee-bean-lightbrown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw] 
+}
+
+.nav-ul li {
+    @apply cursor-pointer
+}
+
+.border-line {
+    outline: 2px solid blue;
+}
+
+.header-text {
+   @apply font-six-caps text-7xl  md:text-[8vw] tracking-wider leading-tight md:leading-tight lg:leading-[7.7vw]
+}
+
+.mid-text {
+    @apply text-xl md:text-[1.25vw] py-4 word-spacing tracking-widest text-coffee-bean-deep leading-relaxed
+}
+
+.button-style {
+    @apply mb-[0.556vw] flex items-center gap-2 md:gap-[0.694vw] fill-current
+}
+
+.button-outline1{
+    @apply bg-coffee-bean-brown text-white px-4 py-3 md:p-[1.111vw]
+}
+
+.button-outline2 {
+    @apply text-coffee-bean-brown 
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
