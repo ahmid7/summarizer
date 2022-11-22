@@ -10,9 +10,24 @@ import {
 } from '../../assets/svgIcons'
 
 function HomePage() {
+
+  const [scrollY, setScrollY] = React.useState(0)
+ 
+  React.useEffect( () => {
+    const handleScroll = (e) => {
+      setScrollY( window.scrollY )
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <section className='w-screen divide-y-4 divide-coffee-text'>
-      <header className='grid-layout6 divide-x-4 divide-coffee-text'>
+      <header className={`grid-layout6 divide-x-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full border-y-4 border-black bg-white z-50' }`}>
 
         <div className='center py-2'>
           <SummarizerLogo/>
