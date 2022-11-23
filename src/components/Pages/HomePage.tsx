@@ -16,7 +16,7 @@ function HomePage() {
   const [scrollY, setScrollY] = React.useState(0)
  
   React.useEffect( () => {
-    const handleScroll = (e) => {
+    const handleScroll = (e: Event) => {
       setScrollY( window.scrollY )
     }
 
