@@ -33,7 +33,7 @@ function HomePage() {
 
   return (
     <section className='w-screen divide-y-4 divide-coffee-text'>
-      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full outline outline-4 outline-coffee-text bg-white z-50' }`}>
+      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0  w-full outline outline-4 outline-coffee-text bg-white z-50'} ${ isMenuOpened ? 'h-screen overflow-hidden': '' }`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
           <div className='center py-2'>
@@ -48,11 +48,11 @@ function HomePage() {
         {
           isMenuOpened && 
           <div className='md:hidden '>
-             <ul className='h-[86vh] w-full grid grid-rows-4 text-center scroll-smooth text-black [&_li]:grid [&_li]:place-content-center text-lg capitalize'>
+             <ul className='h-[86vh] w-full grid grid-rows-4 text-center scroll-smooth text-black [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center text-xl capitalize'>
               <li><a href='#home'>home</a></li>
               <li><a href='#summarizer'>summarizer</a></li>
-              <li><a href=''>about</a></li>
-              <li><a href=''>team</a></li>
+              <li><a href='#about'>about</a></li>
+              <li><a href='#team'>team</a></li>
             </ul>
           </div>
         }
