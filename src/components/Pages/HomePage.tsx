@@ -2,6 +2,8 @@ import React from 'react'
 
 import { NavBar } from '../'
 
+import { Links } from '../NavBar'
+
 import { 
   SummarizerLogo, 
   Logo, 
@@ -25,17 +27,37 @@ function HomePage() {
     }
   }, [])
 
+  const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
+
+  function updateMenuOpen() {
+    setIsMenuOpened(!isMenuOpened)
+  }
+
   return (
     <section className='w-screen divide-y-4 divide-coffee-text'>
-      <header className={`grid-layout6 divide-x-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full border-y-4 border-black bg-white z-50' }`}>
+      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full border-y-4 border-black bg-white z-50' }`}>
 
-        <div className='center py-2'>
-          <SummarizerLogo/>
-        </div>
+        <div className='grid-layout6 divide-x-4 divide-coffee-text'>
+          <div className='center py-2'>
+            <SummarizerLogo/>
+          </div>
 
-        <div className='md:hidden center text-xl'>
-          <p>menu<span className='text-coffee-bean-brown text-4xl'>.</span></p>
+          <div className='md:hidden center text-xl' onClick={ updateMenuOpen }>
+            <p>menu<span className='text-coffee-bean-brown text-4xl'>.</span></p>
+          </div>
         </div>
+                                                                                
+        {
+          isMenuOpened && 
+          <div className='md:hidden '>
+             <ul className='h-[84vh] w-full grid grid-rows-4 text-center scroll-smooth text-black [&_li]:grid [&_li]:place-content-center text-lg capitalize'>
+              <li><a href='#home'>home</a></li>
+              <li><a href='#summarizer'>summarizer</a></li>
+              <li><a href=''>about</a></li>
+              <li><a href=''>team</a></li>
+            </ul>
+          </div>
+        }
       </header>
 
       <div className='min-h-[87vh] md:h-[73vh] md:divide-x-4 divide-coffee-text layout-grid'>
