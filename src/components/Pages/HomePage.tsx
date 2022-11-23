@@ -35,7 +35,7 @@ function HomePage() {
 
   return (
     <section className='w-screen divide-y-4 divide-coffee-text'>
-      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full border-y-4 border-black bg-white z-50' }`}>
+      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0 w-full outline outline-4 outline-coffee-text bg-white z-50' }`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
           <div className='center py-2'>
