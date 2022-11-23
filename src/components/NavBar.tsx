@@ -5,17 +5,6 @@ type NavBar = {
   page: string;
 }
 
-export const Links = ({ page }: NavBar) => {
-  return (
-    <ul className='nav-ul h-[73vh] scroll-smooth'>
-      <li><a href='' className={ page === 'home' ? 'active-link' : '' }>home</a></li>
-      <li><a href='' className={ page === 'summarizer' ? 'active-link' : '' }>summarizer</a></li>
-      <li><a href='' className={ page === 'about' ? 'active-link' : '' }>about</a></li>
-      <li><a href='' className={ page === 'team' ? 'active-link' : '' }>team</a></li>
-    </ul>
-  )
-}
-
 function NavBar({ logo, page }: NavBar) {
   return (
     <nav className='divide-y-4 divide-black hidden md:block'>
@@ -26,14 +15,12 @@ function NavBar({ logo, page }: NavBar) {
         </header>
       }
 
-      {/* <ul className='nav-ul h-[73vh] scroll-smooth'>
+      <ul className='nav-ul h-[73vh] scroll-smooth'>
         <li><a href='' className={ page === 'home' ? 'active-link' : '' }>home</a></li>
         <li><a href='' className={ page === 'summarizer' ? 'active-link' : '' }>summarizer</a></li>
         <li><a href='' className={ page === 'about' ? 'active-link' : '' }>about</a></li>
         <li><a href='' className={ page === 'team' ? 'active-link' : '' }>team</a></li>
-      </ul> */}
-
-      <Links page={ page } />
+      </ul>
     </nav>
   )
 }

@@ -2,8 +2,6 @@ import React from 'react'
 
 import { NavBar } from '../'
 
-import { Links } from '../NavBar'
-
 import { 
   SummarizerLogo, 
   Logo, 
@@ -50,7 +48,7 @@ function HomePage() {
         {
           isMenuOpened && 
           <div className='md:hidden '>
-             <ul className='h-[84vh] w-full grid grid-rows-4 text-center scroll-smooth text-black [&_li]:grid [&_li]:place-content-center text-lg capitalize'>
+             <ul className='h-[86vh] w-full grid grid-rows-4 text-center scroll-smooth text-black [&_li]:grid [&_li]:place-content-center text-lg capitalize'>
               <li><a href='#home'>home</a></li>
               <li><a href='#summarizer'>summarizer</a></li>
               <li><a href=''>about</a></li>
