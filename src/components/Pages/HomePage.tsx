@@ -33,7 +33,7 @@ function HomePage() {
 
   return (
     <section className='w-screen divide-y-4 divide-coffee-text'>
-      <header className={` divide-y-4 divide-coffee-text ${ scrollY <= 0 ? '' : 'fixed top-0  w-full outline outline-4 outline-coffee-text bg-white z-50'} ${ isMenuOpened ? 'h-screen overflow-hidden': '' }`}>
+      <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
           <div className='center py-2'>
@@ -58,7 +58,7 @@ function HomePage() {
         }
       </header>
 
-      <div className='min-h-[87vh] md:h-[73vh] md:divide-x-4 divide-coffee-text layout-grid'>
+      <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
         <div className='hidden md:block'>
           <NavBar
             page='home'
