@@ -28,7 +28,7 @@ function HomePage() {
   React.useEffect(() => {
     if( isMenuOpened ) {
       gsap.fromTo(element(".li"), {
-          xPercent: 50,
+          xPercent: 100,
         },
         { 
           xPercent: 0,
