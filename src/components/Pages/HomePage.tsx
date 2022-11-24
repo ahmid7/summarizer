@@ -1,6 +1,8 @@
 import React from 'react'
+import { gsap } from "gsap"
 
 import { NavBar } from '../'
+
 
 import { 
   SummarizerLogo, 
@@ -11,32 +13,40 @@ import {
 
 function HomePage() {
 
-  const [scrollY, setScrollY] = React.useState(0)
- 
-  React.useEffect( () => {
-    const handleScroll = (e: Event) => {
-      setScrollY( window.scrollY )
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
+
+
+
+  let container = React.useRef(null)
+
+  let element = gsap.utils.selector(container)
 
   function updateMenuOpen() {
     setIsMenuOpened(!isMenuOpened)
   }
+
+  React.useEffect(() => {
+    if( isMenuOpened ) {
+      gsap.fromTo(element(".li"), {
+          xPercent: 50,
+        },
+        { 
+          xPercent: 0,
+          duration: 0.4,
+          stagger: 0.1,
+          yoyo: true,
+          ease: "bounce.Out"
+        }
+      )
+    }
+  }, [isMenuOpened])
 
   return (
     <section className='w-screen md:divide-y-4 divide-coffee-text'>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
-          <div className='center py-2'>
+          <div className=' center py-2'>
             <SummarizerLogo/>
           </div>
 
@@ -47,12 +57,12 @@ function HomePage() {
                                                                                 
         {
           isMenuOpened && 
-          <div className='md:hidden '>
-             <ul className='h-[84.5vh] w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center text-xl capitalize'>
-              <li><a href='#home'>home</a></li>
-              <li><a href='#summarizer'>summarizer</a></li>
-              <li><a href='#about'>about</a></li>
-              <li><a href='#team'>team</a></li>
+          <div ref={ container  } className='md:hidden '>
+             <ul className='h-[85vh] bg-black w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center text-xl capitalize'>
+              <li className='li'><a href='#home'>home</a></li>
+              <li className='li'><a href='#summarizer'>summarizer</a></li>
+              <li className='li'><a href='#about'>about</a></li>
+              <li className='li'><a href='#team'>team</a></li>
             </ul>
           </div>
         }
