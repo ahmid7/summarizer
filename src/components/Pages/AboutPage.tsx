@@ -5,7 +5,7 @@ import { LongRightArrow, LongLeftArrow,MeantForMarquee } from '../../assets/svgI
 
 function AboutPage() {
   return (
-    <section className='md:h-screen'>
+    <section className='md:h-screen overflow-y-hidden'>
       <div className='layout-grid2 divide-x-2 divide-black'>
         <div className='hidden md:block'>
           <NavBar
@@ -16,7 +16,7 @@ function AboutPage() {
 
         <div className='layout-grid3  divide-y-2 md:divide-y-0 md:divide-x-2 divide-black'>
           <div className='layout-grid4 divide-y-2 divide-black'>
-            <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw]'>
+            <div data-aos="fade-up" data-aos-duration= "2000"  className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw]'>
 
               <h1 className='header-text'>
                 It really is not rocket science how it works 
@@ -43,7 +43,7 @@ function AboutPage() {
 
 
           <div className='grid grid-rows-2 divide-y-2 divide-black'>
-            <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw]'>
+            <div data-aos="fade-up" data-aos-duration= "2000" className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
               <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw]'>How does it work though ?</h3>
 
               <p className='tracking-wider  py-3 text-justify leading-normal [&_span]:text-coffee-bean-brown'>

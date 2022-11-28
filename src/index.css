@@ -13,7 +13,16 @@
 
     body {
         scroll-behavior: smooth;
+        @apply overflow-x-hidden
     }
+}
+
+.section {
+    width: 100vw;
+    height: 100vh;
+    border:2px solid red;
+    background-color: black;
+    flex-shrink: 0;
 }
 
 .center {

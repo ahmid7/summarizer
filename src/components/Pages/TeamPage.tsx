@@ -49,7 +49,7 @@ function TeamPage() {
             {
               TeamMembersData.map( memberDetails => {
                 return(
-                  <TeamMemberCard 
+                  <TeamMemberCard
                     memberDetails= { memberDetails }
                     key={ memberDetails.titleHeld }
                   />

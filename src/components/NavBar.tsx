@@ -26,9 +26,3 @@ function NavBar({ logo, page }: NavBar) {
 }
 
 export default NavBar
-
-// border-b-2 border-r-2 border-coffee-text
-
-// what i am trying to do
-// on click make the color of the text go from 100 to 0%
-// then make the active nav go from 100 to 0%

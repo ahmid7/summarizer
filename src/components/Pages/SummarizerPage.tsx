@@ -8,14 +8,19 @@ import {
 } from '../../assets/svgIcons'
 
 function SummarizerPage() {
+
+  const navRef = React.useRef(null)
+
   return (
-    <section className='min-h-screen md:h-screen mt-5 md:mt-0'>
-      <div className='layout-grid2 md:divide-x-2 md:divide-coffee-text'>
-        <NavBar 
-          logo={ true } 
-          page='summarizer'
-        />
-        {/* md:px-[5.523vw] */}
+    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ navRef }>
+      <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text' id='scrollStart'>
+        <div className='fuckthis'>
+          <NavBar 
+            logo={ true } 
+            page='summarizer'
+          />
+        </div>
+
         <div className=' md:pt-4 text-white grid-template2'>
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>

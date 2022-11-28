@@ -1,3 +1,7 @@
+import React from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+
 import { 
   HomePage, 
   SummarizerPage,
@@ -6,10 +10,32 @@ import {
   TeamReachOutPage
 } from "./components" 
 
+gsap.registerPlugin(ScrollTrigger)
+
 function App() {
 
+  const wrapper = React.useRef(null)
+
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(wrapper.current,  {
+        x: "-390vw",
+        duration: 20,
+        scrollTrigger: {
+          trigger: wrapper.current,
+          start: "top top",
+          pin: true,
+          scrub: true,
+        }
+      })
+    }, wrapper)
+
+    return () => ctx.revert()
+  },[])
+
+
   return (
-    <div className="w-screen md:h-screen divide-y-2 divide-coffee-text md:overflow-x-scroll scroll-smooth md:divide-x-4 md:divide-black relative  flex flex-col md:flex-row md:overflow-y-hidden">
+    <div ref={ wrapper } className="md:max-h-screen w-screen flex flex-nowrap divide-x-4 divide-coffee-text">
       <section id='home'>
         <HomePage />
       </section>
@@ -19,7 +45,7 @@ function App() {
       </section>  
 
       <section id="about">
-        <AboutPage />
+        <AboutPage /> 
       </section>
 
       <section id="team">

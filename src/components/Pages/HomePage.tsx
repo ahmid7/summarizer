@@ -15,8 +15,6 @@ function HomePage() {
 
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
-
-
   let container = React.useRef(null)
 
   let element = gsap.utils.selector(container)
@@ -32,17 +30,18 @@ function HomePage() {
         },
         { 
           xPercent: 0,
-          duration: 0.4,
+          duration: 0.6,
           stagger: 0.1,
           yoyo: true,
-          ease: "bounce.Out"
+          ease: "bounce"
+          // ease:"bounce({ strength: 0.9, endAtStart: true  })"
         }
       )
     }
   }, [isMenuOpened])
 
   return (
-    <section className='w-screen md:divide-y-4 divide-coffee-text'>
+    <section className='w-screen h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
