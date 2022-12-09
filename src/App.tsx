@@ -7,53 +7,67 @@ import {
   SummarizerPage,
   AboutPage,
   TeamPage,
-  TeamReachOutPage
+  TeamReachOutPage,
 } from "./components" 
 
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
 
-  const wrapper = React.useRef(null)
+  const sectionContainer = React.useRef(null);
 
+  const team = React.useRef(null)
+
+  
   React.useLayoutEffect(() => {
+    let sections  = gsap.utils.toArray(".section")
+
+    // * well this fucking works
+    
     const ctx = gsap.context(() => {
-      gsap.to(wrapper.current,  {
-        x: "-390vw",
-        duration: 20,
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: "none",
         scrollTrigger: {
-          trigger: wrapper.current,
-          start: "top top",
+          trigger: sectionContainer.current,
           pin: true,
-          scrub: true,
+          scrub: 1,
+          snap: 1 / (sections.length - 1),
+          end: () => "+=" + document.querySelector("article")?.offsetWidth
         }
       })
-    }, wrapper)
+
+      gsap.to(".testing", {
+        
+      })
+    }, sectionContainer)
 
     return () => ctx.revert()
+
   },[])
 
+  // ! create another scroll trigger which will trigger the team reachout page
 
   return (
-    <div ref={ wrapper } className="md:max-h-screen w-screen flex flex-nowrap divide-x-4 divide-coffee-text">
-      <section id='home'>
+    <div ref={ sectionContainer } className="article md:h-screen w-[500%] overflow-y-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
+      <section className='section' id='home'>
         <HomePage />
       </section>
 
-      <section id="summarizer">
+      <section className='section' id="summarizer">
         <SummarizerPage/>
       </section>  
 
-      <section id="about">
+      <section className='section' id="about">
         <AboutPage /> 
-      </section>
+      </section>  
 
-      <section id="team">
+      <section className='section testing' ref={ team } id="team">
         <TeamPage/>
       </section>
 
-      <section>
-        <TeamReachOutPage/>
+      <section className='well'>
+        <TeamReachOutPage />
       </section>
     </div>
   )

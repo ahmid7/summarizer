@@ -1,16 +1,10 @@
-import React from 'react'
-
-import {  
-    NavBar,
-} from '../'
-
 import { LongLeftArrow } from '../../assets/svgIcons' 
 
 function TeamReachOutPage() {
   return (
     <section className='md:h-screen md:w-[90vw] md:overflow-hidden'>
       <div className='grid-template h-full'>
-        <div className=' grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
+        <div className='grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
           <div className='py-2 px-5 md:px-[1.75vw]'>
             <h2 className='header-text pt-[2.08vw]'>It’s ok to reach out</h2>
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 
 import { NavBar } from '..'
 import { 
@@ -7,14 +9,20 @@ import {
   RightIndicator 
 } from '../../assets/svgIcons'
 
-function SummarizerPage() {
+gsap.registerPlugin(ScrollTrigger)
 
-  const navRef = React.useRef(null)
+function SummarizerPage() {
+  const [textInput, setTextInput] = React.useState('')
+
+  function onChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setTextInput(e.target.value)
+  } 
+
 
   return (
-    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ navRef }>
-      <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text' id='scrollStart'>
-        <div className='fuckthis'>
+    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0'>
+      <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
+        <div className='gsap-navigate'>
           <NavBar 
             logo={ true } 
             page='summarizer'
@@ -41,12 +49,12 @@ function SummarizerPage() {
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
-                <textarea className='resize-none w-full text-black border-none outline-none' placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'>
+                <textarea className='resize-none w-full text-black border-none outline-none' value={textInput} onChange={ onChangeText } placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'>
                   
                 </textarea>
               </div>
 
-              <div className='absolute px-5 md:px-[20px] cursor-pointer py-4 md:py-5 text-xs md:text-[0.9vw] bg-[#CFCFCF] text-black left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'>
+              <div className={`absolute px-5 md:px-[20px] cursor-pointer py-4 md:py-5 text-xs md:text-[0.9vw] bg-[#CFCFCF] text-black left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 ${textInput.length < 1 ? 'block' : 'hidden'}`}>
                 <div className='center pb-2'>
                   <PasteIcon/>
                 </div>
@@ -58,7 +66,7 @@ function SummarizerPage() {
             </div>
 
             <div className='outline outline-2 outline-coffee-text text-xs md:text-[0.9vw] relative'>
-              <div className='absolute bottom-5 w-full text-black'>
+              <div className='absolute bottom-2 w-full text-black'>
 
                 <div className='flex-between px-4'>
                   <p>0 sentences &#183; 0 words</p>
@@ -86,3 +94,8 @@ function SummarizerPage() {
 }
 
 export default SummarizerPage
+
+
+// * 
+
+ // 

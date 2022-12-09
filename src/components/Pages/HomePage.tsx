@@ -1,5 +1,6 @@
 import React from 'react'
 import { gsap } from "gsap"
+import { ScrollTrigger } from 'gsap/all'
 
 import { NavBar } from '../'
 
@@ -15,6 +16,8 @@ function HomePage() {
 
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
+  let wrapper = React.useRef(null)
+
   let container = React.useRef(null)
 
   let element = gsap.utils.selector(container)
@@ -23,7 +26,7 @@ function HomePage() {
     setIsMenuOpened(!isMenuOpened)
   }
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if( isMenuOpened ) {
       gsap.fromTo(element(".li"), {
           xPercent: 100,
@@ -34,6 +37,7 @@ function HomePage() {
           stagger: 0.1,
           yoyo: true,
           ease: "bounce"
+          //* decide between bounce and back!
           // ease:"bounce({ strength: 0.9, endAtStart: true  })"
         }
       )
@@ -41,7 +45,7 @@ function HomePage() {
   }, [isMenuOpened])
 
   return (
-    <section className='w-screen h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
+    <section ref={ wrapper } className='value w-screen  md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
