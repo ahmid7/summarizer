@@ -41,25 +41,46 @@ const TeamMembersData = [
 function TeamPage() {
   const teamPageRef = React.useRef(null)
 
-  React.useLayoutEffect(() => {
-    // const ctx = gsap.context(() => {
-    //   gsap.to(".teamReach", {
-    //     border: "2px solid red",
-    //     duration: 3,
-    //     scrollTrigger: {
-    //       trigger: teamPageRef.current,
-    //       pin:true,
-    //       scrub: 1,
-    //     }
-    //   })
-    // }, teamPageRef)
+  // React.useLayoutEffect(() => {
+  // //  const ctx = gsap.context(() => {
+  // //     gsap.to(".shit", {
+  // //       background:'black',
+  // //       scrollTrigger: {
+  // //         trigger: ".contain",
+  // //         markers: true,
+  // //         horizontal: true,
+  // //         start: "bottom right",
+  // //         end: "top left",
+  // //         // pin: true
+          
+  // //       }
 
-    // return () => ctx.revert()
-  },[])
+  // //     })
+  // //  }, teamPageRef)
+
+  // //  return () => ctx.revert()
+
+  //   gsap.to('.shit', {
+  //     background: "white",
+  //     ease: 'none',
+  //     scrollTrigger: {
+  //       trigger: '#contain',
+  //       // markers: true,
+  //       horizontal: true,
+  //       start: 'top left',
+  //       end: "bottom right",
+  //       pin: true,
+  //       markers: {
+  //         startColor: "green",
+  //         endColor: "yellow",
+  //       }
+  //     } 
+  //   })
+  // },[])
 
   return (
-    <article ref={ teamPageRef } className='md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden'>
-      <section>
+    <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden' id='contain'>
+      <section className='shit'>
         <div className='layout-grid2 md:divide-x-2 divide-black'>
           <NavBar
             page='team'

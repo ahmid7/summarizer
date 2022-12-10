@@ -16,13 +16,9 @@ function App() {
 
   const sectionContainer = React.useRef(null);
 
-  const team = React.useRef(null)
-
   
   React.useLayoutEffect(() => {
     let sections  = gsap.utils.toArray(".section")
-
-    // * well this fucking works
     
     const ctx = gsap.context(() => {
       gsap.to(sections, {
@@ -33,12 +29,9 @@ function App() {
           pin: true,
           scrub: 1,
           snap: 1 / (sections.length - 1),
-          end: () => "+=" + document.querySelector("article")?.offsetWidth
+          end: () => "+=" + document.querySelector("article")?.offsetWidth,
+          // pinSpacing: "margin",
         }
-      })
-
-      gsap.to(".testing", {
-        
       })
     }, sectionContainer)
 
@@ -46,10 +39,11 @@ function App() {
 
   },[])
 
+
   // ! create another scroll trigger which will trigger the team reachout page
 
   return (
-    <div ref={ sectionContainer } className="article md:h-screen w-[500%] overflow-y-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
+    <div ref={ sectionContainer } className="article md:h-screen  overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
       <section className='section' id='home'>
         <HomePage />
       </section>
@@ -62,12 +56,14 @@ function App() {
         <AboutPage /> 
       </section>  
 
-      <section className='section testing' ref={ team } id="team">
-        <TeamPage/>
-      </section>
+      <section className='section' id="team">
+        {/* <div className=' '> */}
+          <TeamPage/>
+        {/* </div>    */}
 
-      <section className='well'>
-        <TeamReachOutPage />
+        {/* <div className='-translate-x-full relative secTeamSec'>
+          <TeamReachOutPage/>
+        </div> */}
       </section>
     </div>
   )
