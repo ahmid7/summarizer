@@ -30,7 +30,6 @@ function App() {
           scrub: 1,
           snap: 1 / (sections.length - 1),
           end: () => "+=" + document.querySelector("article")?.offsetWidth,
-          // pinSpacing: "margin",
         }
       })
     }, sectionContainer)
@@ -38,9 +37,6 @@ function App() {
     return () => ctx.revert()
 
   },[])
-
-
-  // ! create another scroll trigger which will trigger the team reachout page
 
   return (
     <div ref={ sectionContainer } className="article md:h-screen  overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">

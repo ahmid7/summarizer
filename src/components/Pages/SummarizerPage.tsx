@@ -18,9 +18,43 @@ function SummarizerPage() {
     setTextInput(e.target.value)
   } 
 
+  const pointersArrowsContainer = React.useRef(null)
+
+  const summarizerContainer = React.useRef(null)
+
+  const pointerArrow = gsap.utils.selector(pointersArrowsContainer)
+
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(pointerArrow(".arrows"), 
+        {
+          xPercent: 0,
+          autoAlpha: 0
+        },
+        {
+          autoAlpha: 1,
+          xPercent: 20,
+          stagger: 0.05,
+          duration: 1.5,
+          yoyo: true,
+          // ease: 'bounce',
+          repeat: -1,
+          // ! dont think i need a scrolltrigger here but just incase fix the error of your scrolltrigger isssh
+          // scrollTrigger: {
+          //   trigger: summarizerContainer.current,
+          //   markers: true,
+          // }
+        }
+      )
+    }, summarizerContainer)
+    
+    return () => ctx.revert()
+  },[])
+
+
 
   return (
-    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0'>
+    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
         <div className='gsap-navigate'>
           <NavBar 
@@ -39,10 +73,12 @@ function SummarizerPage() {
               <p className='md:text-[1vw] hidden md:block'> Premium level tool at your disposal</p>
             </div>
 
-            <div className='font-inter bg-white px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm flex items-center gap-x-2'>
-              <GithubIcon/>
-              <p>View on Github</p>
-            </div>
+            <button className='font-inter bg-white relative px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitbuttonAnimate'>
+              <a className='flex items-center gap-x-2' href="#">
+                <GithubIcon/>
+                <p className=''>View on Github</p>
+              </a>
+            </button>
           </header>
 
           <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
@@ -80,10 +116,15 @@ function SummarizerPage() {
             </div>
           </div>
 
-          <div className='bg-black py-10  md:py-0 flex overflow-hidden pl-0 md:pl-[5.523vw]'>
-            <div className='hidden md:flex justify-between items-center w-full'>
+          <div className='bg-black py-10  md:py-20 flex overflow-hidden pl-0 md:pl-[5.523vw]'>
+            <div className='hidden md:flex justify-between items-center w-full' ref={ pointersArrowsContainer }>
               {
-                [...Array(6)].map((index) => ( <RightIndicator key={index} /> ))
+                [...Array(6)].map((index) => ( 
+                    <div className=' arrows'>
+                      <RightIndicator key={index} /> 
+                    </div>
+                  )
+                )
               }
             </div>
           </div>

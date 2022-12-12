@@ -1,9 +1,9 @@
 import React from 'react'
 import { gsap } from "gsap"
 import { ScrollTrigger } from 'gsap/all'
+import SplitType from "split-type"
 
 import { NavBar } from '../'
-
 
 import { 
   SummarizerLogo, 
@@ -12,23 +12,37 @@ import {
   LongRightArrow 
 } from '../../assets/svgIcons'
 
+
+gsap.registerPlugin(ScrollTrigger)
+
+
+
 function HomePage() {
 
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
   let wrapper = React.useRef(null)
 
-  let container = React.useRef(null)
+  let Linkscontainer = React.useRef(null)
 
-  let element = gsap.utils.selector(container)
+  let links = gsap.utils.selector(Linkscontainer)
+
+  let arrowsContainer = React.useRef(null)
+
+  let arrows = gsap.utils.selector(arrowsContainer)
+
+
 
   function updateMenuOpen() {
     setIsMenuOpened(!isMenuOpened)
   }
 
   React.useLayoutEffect(() => {
+  }, []) 
+
+  React.useLayoutEffect(() => {
     if( isMenuOpened ) {
-      gsap.fromTo(element(".li"), {
+      gsap.fromTo(links(".li"), {
           xPercent: 100,
         },
         { 
@@ -43,6 +57,62 @@ function HomePage() {
       )
     }
   }, [isMenuOpened])
+
+  React.useLayoutEffect(() => {
+    const mySplitText = new SplitType('#textAnimation', { types: "words" }) 
+
+    let tl = gsap.timeline()
+
+    tl.fromTo(".word", 
+      {
+        yPercent: 100,
+      },
+      {
+        // border: "2px solid red",
+        yPercent: 0,
+        stagger: 0.05,
+        delay: 0.1,
+        ease: "back.out",
+        duration: 1
+      }
+    )
+
+    tl.fromTo("#fadeInAnimate", 
+      {
+        // autoAlpha: 0,
+        opacity: 0,
+        yPercent: 25,
+      },
+      {
+        // autoAlpha: 1,
+        opacity: 1,
+        yPercent: 0,
+        duration: 2,
+        ease: 'back.out',
+      }
+    )
+
+    tl.fromTo(arrows(".arrow"),
+      {
+        opacity: 0,
+        xPercent: 0,
+        display: "inline-block",
+      },
+      {
+        opacity: 1,
+        xPercent: 10,
+        duration: 1.2,
+        // duration should either 1.2 or 1
+        stagger: 0.2,
+        // stagger should be either 0.2 or 0.5
+        yoyo: true,
+        repeat: -1,
+        ease: "power2.out"
+      }
+    )
+
+  
+  },[])
 
   return (
     <section ref={ wrapper } className='value w-screen  md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
@@ -60,7 +130,7 @@ function HomePage() {
                                                                                 
         {
           isMenuOpened && 
-          <div ref={ container  } className='md:hidden '>
+          <div ref={ Linkscontainer  } className='md:hidden '>
              <ul className='h-[85vh] bg-black w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center text-xl capitalize'>
               <li className='li'><a href='#home'>home</a></li>
               <li className='li'><a href='#summarizer'>summarizer</a></li>
@@ -79,25 +149,41 @@ function HomePage() {
         </div>
 
         <div className='px-[4.444vw] py-5'>
-          <h2 className='header-text text-center md:text-left'> Pro level Sumarization <br/> at your fingertips.</h2>
+          <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Sumarization <br/> at your fingertips.</h2>
 
-          <p className='mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>Lorem ipsum dolor sit amet, consectetur  adipiscing elit. Etiam eu turpis molestie,  dictum est a, mattis tellus. Sed  dignissim, metus nec fringilla  accumsan, risus sem.</p>
+          <div id='fadeInAnimate'>
+            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>Lorem ipsum dolor sit amet, consectetur  adipiscing elit. Etiam eu turpis molestie,  dictum est a, mattis tellus. Sed  dignissim, metus nec fringilla  accumsan, risus sem.</p>
 
-          <button className='button-style button-outline1 mx-auto md:mx-0'>
-            summarize now
-            <LongRightArrow />
-          </button>
+            <button className='button-style button-outline1 mx-auto md:mx-0 group'>
+              summarize now
+              <div className='group-hover:animate-bounceRight'>
+                <LongRightArrow />
+              </div>
+            </button>
+          </div>
+
         </div>
 
         <div className='grid grid-layout5  divide-y-2 divide-coffee-text'>
           <div className='bg-coffee-bean-deep flex-center'>
-            <Logo />
+            <p className='' id='logoAnimate'><Logo /></p>
           </div>
 
-          <div className='flex-center py-2'>
-            <span className='rotate-90 md:rotate-0'>
+          <div className='flex items-center justify-center py-2 relative' ref={ arrowsContainer }>
+
+            <div className='rotate-90 md:rotate-0 arrow opacity-0'>
               <RightArrow />
-            </span>
+            </div>
+
+            {/* you could also add arrow as a class here to aniamte all the entire hero all at once. */}
+            <div className='rotate-90 md:rotate-0 opacity-100'>
+              <RightArrow />
+            </div>
+
+            <div className='rotate-90 md:rotate-0 arrow opacity-0'>
+              <RightArrow />
+            </div>
+
           </div>
         </div>
       </div>
@@ -106,5 +192,3 @@ function HomePage() {
 }
 
 export default HomePage
-
-// grid-cols-2 md:grid-cols-1 md:grid-rows-2

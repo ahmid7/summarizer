@@ -11,9 +11,13 @@
         @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
     }
 
+    *{
+        @apply scroll-smooth
+    }
+
     body {
         scroll-behavior: smooth;
-        @apply overflow-x-hidden
+        @apply overflow-x-hidden scroll-smooth
     }
 }
 
@@ -38,6 +42,7 @@
 .word-spacing {
     word-spacing: 0.695vw;
 }
+
 
 .layout-grid {
     display: grid;
@@ -89,19 +94,23 @@
 }
 
 .button-outline1{
-    @apply bg-coffee-bean-brown text-white px-4 py-3 md:p-[1.111vw]
+    @apply bg-coffee-bean-brown text-white px-4 py-3 md:p-[1.111vw] transition duration-200
+}
+
+.button-outline1:hover {
+    @apply bg-[#BD6049]
 }
 
 .button-outline2 {
-    @apply text-coffee-bean-brown 
+    @apply text-coffee-bean-brown transition-all duration-200
+}
+
+.button-outline2:hover {
+    @apply text-[#BD6049]
 }
 
 ::-webkit-scrollbar {
     display: none;
-}
-
-.marqueeAnimate {
-    animation: madeForMaquee 20s linear infinite;
 }
 
 @media screen and ( min-width: 768px ) {
@@ -122,7 +131,7 @@
 
     .layout-grid3 {
         display: grid;
-        grid-template-columns: 1fr 35.91vw;   
+        grid-template-columns: 1fr 35.91vw;  
     }
 
     .layout-grid4 {
@@ -144,15 +153,4 @@
         display: grid;
         grid-template-columns: 1fr;
     }
-}
-
-@keyframes madeForMaquee {
-    0% {
-        transform: translateX(0)
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-
 }

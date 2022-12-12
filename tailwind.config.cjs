@@ -17,6 +17,37 @@ module.exports = {
         'merriweather': [ 'Merriweather', 'serif' ],
         'poppins': [ 'Poppins', 'sans-serif' ],
         'six-caps': [ 'Six Caps', 'sans-serif' ]
+      },
+      keyframes: {
+        arrowBounceLeft: {
+          '0%, 100%': {
+            transform: 'translate(0px)'
+          },
+          '50%': {
+            transform: 'translate(5px)'
+          }
+        },
+        arrowBounceRight: {
+          '0%, 100%': {
+            transform: 'translate(0px)'
+          },
+          '50%': {
+            transform: 'translate(-5px)'
+          }
+        },
+        marqueeText: {
+          '0%': {
+            transform:'translateX(0)'
+          },
+          '100%': {
+            transform: 'translateX(-50%)'
+          }
+        }
+      },
+      animation: {
+        'bounceLeft': 'arrowBounceLeft 1.1s infinite ease-in-out',
+        'bounceRight': 'arrowBounceRight 1.1s infinite ease-in-out',
+        'textMarque': 'marqueeText 20s linear infinite'
       }
     },
   },

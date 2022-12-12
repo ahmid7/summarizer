@@ -16,10 +16,10 @@ function NavBar({ logo, page }: NavBar) {
       }
 
       <ul className='nav-ul h-[73vh] scroll-smooth'>
-        <li><a href='' className={ page === 'home' ? 'active-link' : '' }>home</a></li>
-        <li><a href='' className={ page === 'summarizer' ? 'active-link' : '' }>summarizer</a></li>
-        <li><a href='' className={ page === 'about' ? 'active-link' : '' }>about</a></li>
-        <li><a href='' className={ page === 'team' ? 'active-link' : '' }>team</a></li>
+        <li><a href='#home' className={ page === 'home' ? 'active-link' : '' }>home</a></li>
+        <li><a href='#summarizer' className={ page === 'summarizer' ? 'active-link' : '' }>summarizer</a></li>
+        <li><a href='#about' className={ page === 'about' ? 'active-link' : '' }>about</a></li>
+        <li><a href='#team' className={ page === 'team' ? 'active-link' : '' }>team</a></li>
       </ul>
     </nav>
   )
