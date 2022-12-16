@@ -17,14 +17,8 @@
 
     body {
         scroll-behavior: smooth;
-        @apply overflow-x-hidden scroll-smooth
+        @apply scroll-smooth
     }
-}
-
-.section {
-    width: 100vw;
-    height: 100vh;
-    flex-shrink: 0;
 }
 
 .center {

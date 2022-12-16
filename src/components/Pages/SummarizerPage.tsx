@@ -39,11 +39,6 @@ function SummarizerPage() {
           yoyo: true,
           // ease: 'bounce',
           repeat: -1,
-          // ! dont think i need a scrolltrigger here but just incase fix the error of your scrolltrigger isssh
-          // scrollTrigger: {
-          //   trigger: summarizerContainer.current,
-          //   markers: true,
-          // }
         }
       )
     }, summarizerContainer)
@@ -73,7 +68,7 @@ function SummarizerPage() {
               <p className='md:text-[1vw] hidden md:block'> Premium level tool at your disposal</p>
             </div>
 
-            <button className='font-inter bg-white relative px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitbuttonAnimate'>
+            <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitbuttonAnimate'>
               <a className='flex items-center gap-x-2' href="#">
                 <GithubIcon/>
                 <p className=''>View on Github</p>
@@ -119,7 +114,7 @@ function SummarizerPage() {
           <div className='bg-black py-10  md:py-20 flex overflow-hidden pl-0 md:pl-[5.523vw]'>
             <div className='hidden md:flex justify-between items-center w-full' ref={ pointersArrowsContainer }>
               {
-                [...Array(6)].map((index) => ( 
+                [...Array(10)].map((index) => ( 
                     <div className=' arrows'>
                       <RightIndicator key={index} /> 
                     </div>

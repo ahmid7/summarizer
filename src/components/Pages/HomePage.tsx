@@ -1,6 +1,7 @@
 import React from 'react'
 import { gsap } from "gsap"
-import { ScrollTrigger } from 'gsap/all'
+import { useLocomotiveScroll } from 'react-locomotive-scroll'
+
 import SplitType from "split-type"
 
 import { NavBar } from '../'
@@ -11,10 +12,6 @@ import {
   RightArrow,
   LongRightArrow 
 } from '../../assets/svgIcons'
-
-
-gsap.registerPlugin(ScrollTrigger)
-
 
 
 function HomePage() {
@@ -31,14 +28,14 @@ function HomePage() {
 
   let arrows = gsap.utils.selector(arrowsContainer)
 
+  const { scroll } = useLocomotiveScroll()
+
+
 
 
   function updateMenuOpen() {
     setIsMenuOpened(!isMenuOpened)
-  }
-
-  React.useLayoutEffect(() => {
-  }, []) 
+  } 
 
   React.useLayoutEffect(() => {
     if( isMenuOpened ) {
@@ -61,61 +58,107 @@ function HomePage() {
   React.useLayoutEffect(() => {
     const mySplitText = new SplitType('#textAnimation', { types: "words" }) 
 
-    let tl = gsap.timeline()
+    const ctx = gsap.context(() => {
+      
+      let mm = gsap.matchMedia();
 
-    tl.fromTo(".word", 
-      {
-        yPercent: 100,
-      },
-      {
-        // border: "2px solid red",
-        yPercent: 0,
-        stagger: 0.05,
-        delay: 0.1,
-        ease: "back.out",
-        duration: 1
-      }
-    )
+      let tl = gsap.timeline()
 
-    tl.fromTo("#fadeInAnimate", 
-      {
-        // autoAlpha: 0,
-        opacity: 0,
-        yPercent: 25,
-      },
-      {
-        // autoAlpha: 1,
-        opacity: 1,
-        yPercent: 0,
-        duration: 2,
-        ease: 'back.out',
-      }
-    )
+      tl.fromTo(mySplitText.words, {
+          yPercent: 100,
+        },
+        {
+          // border: "2px solid red",
+          yPercent: 0,
+          stagger: 0.05,
+          delay: 0.1,
+          ease: "back.out",
+          duration: 1
+        }
+      )
 
-    tl.fromTo(arrows(".arrow"),
-      {
-        opacity: 0,
-        xPercent: 0,
-        display: "inline-block",
-      },
-      {
-        opacity: 1,
-        xPercent: 10,
-        duration: 1.2,
-        // duration should either 1.2 or 1
-        stagger: 0.2,
-        // stagger should be either 0.2 or 0.5
-        yoyo: true,
-        repeat: -1,
-        ease: "power2.out"
-      }
-    )
+      mm.add("(min-width: 768px)", () => {
 
+        tl.fromTo("#fadeInAnimate", 
+          {
+            opacity: 0,
+            yPercent: 25,
+          },
+          {
+            opacity: 1,
+            yPercent: 0,
+            duration: 2,
+            ease: 'back.out',
+          }
+        )
   
+        gsap.fromTo(arrows(".arrow"),
+          {
+            opacity: 0,
+            xPercent: 0,
+          },
+          {
+            opacity: 1,
+            xPercent: 10,
+            duration: 1.2,
+            // duration should either 1.2 or 1
+            stagger: 0.2,
+            // stagger should be either 0.2 or 0.5
+            yoyo: true,
+            repeat: -1,
+            ease: "power2.out",
+            delay:0.5,
+            
+          }
+        )
+      })
+
+      mm.add("(max-width: 768px)", () => {
+        tl.fromTo("#fadeInAnimate", 
+          {
+            opacity: 0,
+            yPercent: 25,
+            zIndex: -1,
+          },
+          {
+            opacity: 1,
+            yPercent: 0,
+            zIndex: 1,
+            duration: 1.5,
+            ease: 'back.out',
+          }
+        )
+
+        gsap.fromTo(arrows(".arrow"),
+          {
+            opacity: 0,
+            yPercent: 10,
+          },
+          {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1,
+            // duration should either 1.2 or 1
+            stagger: 0.4,
+            // stagger should be either 0.2 or 0.5
+            yoyo: true,
+            repeat: -1,
+            ease: "power2.out",
+            delay:0.5,
+          }
+        )
+
+      })
+      
+    }, wrapper)
+
+
+    return () => ctx.revert()
+
   },[])
 
   return (
-    <section ref={ wrapper } className='value w-screen  md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
+    <section ref={ wrapper } className='value w-screen md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
@@ -142,7 +185,7 @@ function HomePage() {
       </header>
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
-        <div className='hidden md:block'>
+        <div className='hidden md:block' >
           <NavBar
             page='home'
           />
@@ -164,23 +207,22 @@ function HomePage() {
 
         </div>
 
-        <div className='grid grid-layout5  divide-y-2 divide-coffee-text'>
+        <div className='grid grid-layout5 divide-y-2 divide-coffee-text'>
           <div className='bg-coffee-bean-deep flex-center'>
             <p className='' id='logoAnimate'><Logo /></p>
           </div>
 
           <div className='flex items-center justify-center py-2 relative' ref={ arrowsContainer }>
 
-            <div className='rotate-90 md:rotate-0 arrow opacity-0'>
+            <div className='rotate-90 md:rotate-0 arrow '>
               <RightArrow />
             </div>
 
-            {/* you could also add arrow as a class here to aniamte all the entire hero all at once. */}
-            <div className='rotate-90 md:rotate-0 opacity-100'>
+            <div className='rotate-90 md:rotate-0 arrow hidden md:block'>
               <RightArrow />
             </div>
 
-            <div className='rotate-90 md:rotate-0 arrow opacity-0'>
+            <div className='rotate-90 md:rotate-0 arrow hidden md:block'>
               <RightArrow />
             </div>
 
