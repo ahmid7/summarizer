@@ -22,34 +22,6 @@ function App() {
   //   smooth: true
   // }
 
-  
-  // React.useLayoutEffect(() => {
-  //   let sections  = gsap.utils.toArray(".section")
-    
-  //   const ctx = gsap.context(() => {
-  //     gsap.to(sections, {
-  //       xPercent: -100 * (sections.length - 1),
-  //       ease: "none",
-  //       scrollTrigger: {
-  //         trigger: sectionContainerRef.current,
-  //         pin: true,
-  //         scrub: 1,
-  //         snap: 1 / (sections.length - 1),
-          
-  //         onUpdate: ({ progress }) => { console.log(progress)}
-  //         // base vertical scrolling on how wide the container is so it feels more natural.
-  //         // horizontal: true,
-  //         // end: () => "+=" + document.querySelector("article")?.offsetWidth,
-  //         // markers: true,
-  //       }
-  //     })
-  //   }, sectionContainerRef)
-
-  //   return () => ctx.revert()
-
-  // },[])
-
-  // 
 
   return (
     // <LocomotiveScrollProvider
@@ -81,6 +53,10 @@ function App() {
           </div> */}
         </section>
 
+        <section>
+          <TeamReachOutPage/>
+        </section>
+
 
       </main>
     // </LocomotiveScrollProvider>
@@ -88,3 +64,33 @@ function App() {
 }
 
 export default App
+
+
+
+ // React.useLayoutEffect(() => {
+  //   let sections  = gsap.utils.toArray(".section")
+    
+  //   const ctx = gsap.context(() => {
+  //     gsap.to(sections, {
+  //       xPercent: -100 * (sections.length - 1),
+  //       ease: "none",
+  //       scrollTrigger: {
+  //         trigger: sectionContainerRef.current,
+  //         pin: true,
+  //         scrub: 1,
+  //         snap: 1 / (sections.length - 1),
+          
+  //         onUpdate: ({ progress }) => { console.log(progress)}
+  //         // base vertical scrolling on how wide the container is so it feels more natural.
+  //         // horizontal: true,
+  //         // end: () => "+=" + document.querySelector("article")?.offsetWidth,
+  //         // markers: true,
+  //       }
+  //     })
+  //   }, sectionContainerRef)
+
+  //   return () => ctx.revert()
+
+  // },[])
+
+  // 

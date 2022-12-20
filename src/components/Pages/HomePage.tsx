@@ -1,8 +1,9 @@
 import React from 'react'
 import { gsap } from "gsap"
-import { useLocomotiveScroll } from 'react-locomotive-scroll'
-
+import { Observer } from 'gsap/all'
 import SplitType from "split-type"
+import { RiMenuFoldFill } from "react-icons/ri"
+
 
 import { NavBar } from '../'
 
@@ -12,6 +13,8 @@ import {
   RightArrow,
   LongRightArrow 
 } from '../../assets/svgIcons'
+
+gsap.registerPlugin(Observer)
 
 
 function HomePage() {
@@ -28,18 +31,20 @@ function HomePage() {
 
   let arrows = gsap.utils.selector(arrowsContainer)
 
-  const { scroll } = useLocomotiveScroll()
-
-
-
 
   function updateMenuOpen() {
-    setIsMenuOpened(!isMenuOpened)
+    // setIsMenuOpened(!isMenuOpened)
+    if(isMenuOpened) {
+      setTimeout(() => {setIsMenuOpened(false)}, 800)
+    } else {
+      setIsMenuOpened(true)
+    }
   } 
 
   React.useLayoutEffect(() => {
     if( isMenuOpened ) {
-      gsap.fromTo(links(".li"), {
+      let hamburgerTl = gsap.timeline()
+      hamburgerTl.fromTo(links(".li"), {
           xPercent: 100,
         },
         { 
@@ -52,7 +57,26 @@ function HomePage() {
           // ease:"bounce({ strength: 0.9, endAtStart: true  })"
         }
       )
+
+      function handleLinksClicks(){
+        hamburgerTl.reverse()
+        setTimeout(() => {setIsMenuOpened(false)}, 800) 
+      }
+
+      // * there should be an easier way for targetting multiple target in observer instead of creating new observer each time
+      Observer.create({
+        target: "#navLink",
+        type: "touch, pointer",
+        onClick: handleLinksClicks
+      })
+
+      Observer.create({
+        target: "#hamburger",
+        type: "touch, pointer",
+        onClick: () => hamburgerTl.reverse()
+      })
     }
+
   }, [isMenuOpened])
 
   React.useLayoutEffect(() => {
@@ -77,7 +101,7 @@ function HomePage() {
         }
       )
 
-      mm.add("(min-width: 768px)", () => {
+      mm.add("(min-width: 769px)", () => {
 
         tl.fromTo("#fadeInAnimate", 
           {
@@ -129,6 +153,15 @@ function HomePage() {
           }
         )
 
+        tl.fromTo('.iconsContainer', {
+            opacity: 0,
+          }, 
+          {
+            opacity: 1,
+            duration: 1,
+          }
+        )
+
         gsap.fromTo(arrows(".arrow"),
           {
             opacity: 0,
@@ -166,16 +199,16 @@ function HomePage() {
             <SummarizerLogo/>
           </div>
 
-          <div className='md:hidden center text-xl' onClick={ updateMenuOpen }>
-            <p>menu<span className='text-coffee-bean-brown text-4xl'>.</span></p>
+          <div id='hamburger' className='md:hidden flex items-center justify-center text-4xl' onClick={ updateMenuOpen }>
+            <RiMenuFoldFill/>
           </div>
         </div>
                                                                                 
         {
           isMenuOpened && 
           <div ref={ Linkscontainer  } className='md:hidden '>
-             <ul className='h-[85vh] bg-black w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center text-xl capitalize'>
-              <li className='li'><a href='#home'>home</a></li>
+             <ul id='navLink' className='h-[85vh] bg-black w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center [&_li]:relative [&_li]:z-10 text-xl capitalize'>
+              <li id='homeLink' className='li'><a href='#home'>home</a></li>
               <li className='li'><a href='#summarizer'>summarizer</a></li>
               <li className='li'><a href='#about'>about</a></li>
               <li className='li'><a href='#team'>team</a></li>
@@ -207,7 +240,7 @@ function HomePage() {
 
         </div>
 
-        <div className='grid grid-layout5 divide-y-2 divide-coffee-text'>
+        <div className='grid grid-layout5 divide-y-2 divide-coffee-text iconsContainer'>
           <div className='bg-coffee-bean-deep flex-center'>
             <p className='' id='logoAnimate'><Logo /></p>
           </div>

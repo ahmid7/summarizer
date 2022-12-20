@@ -68,7 +68,11 @@ function SummarizerPage() {
               <p className='md:text-[1vw] hidden md:block'> Premium level tool at your disposal</p>
             </div>
 
-            <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitbuttonAnimate'>
+            <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitButtonAnimate'>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
               <a className='flex items-center gap-x-2' href="#">
                 <GithubIcon/>
                 <p className=''>View on Github</p>
@@ -80,7 +84,11 @@ function SummarizerPage() {
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
-                <textarea className='resize-none w-full text-black border-none outline-none' value={textInput} onChange={ onChangeText } placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'>
+                <textarea className='resize-none w-full text-black border-none outline-none' 
+                  value={textInput} 
+                  onChange={ onChangeText } 
+                  placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
+                >
                   
                 </textarea>
               </div>
@@ -101,7 +109,7 @@ function SummarizerPage() {
 
                 <div className='flex-between px-4'>
                   <p>0 sentences &#183; 0 words</p>
-
+                  
                   <p className='flex items-center gap-x-2'>
                     <span className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
                     <span className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer'>share </span>

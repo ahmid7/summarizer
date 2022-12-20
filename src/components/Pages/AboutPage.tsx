@@ -17,12 +17,32 @@ function AboutPage() {
 
   React.useLayoutEffect(() => {
     const myText = new SplitType('#textAnimate', { types: 'words' })
+    const headerText2 = new SplitType('#headerText2', { types: 'words' })
     const detailsText = new SplitType('#details', { types: 'words, lines' })
+    const detailsText2 = new SplitType('#detailsText2', { types: 'words, lines' })
+    // ! right here, find a way to create the animation as a component and use it here instead of rewriting it everytime
 
-    let mm = gsap.matchMedia()
+    const ctx = gsap.context(() => {
 
-    mm.add("(max-width:768px)", () => {
-      gsap.fromTo(myText.words, {
+      let mm = gsap.matchMedia()
+  
+      mm.add("(max-width:768px)", () => {
+        gsap.fromTo(myText.words, {
+            yPercent: 100,
+          }, 
+          {
+            yPercent: 0,
+            stagger: 0.05,
+            delay: 0.1,
+            ease: "back.out",
+            duration: 1,
+            scrollTrigger: {
+              trigger: '#textAnimate',
+            }
+          }
+        )
+  
+        gsap.fromTo(headerText2.words, {
           yPercent: 100,
         }, 
         {
@@ -32,40 +52,71 @@ function AboutPage() {
           ease: "back.out",
           duration: 1,
           scrollTrigger: {
-            trigger: '#textAnimate',
-            markers: true,
+            trigger: '#headerText2',
           }
         }
       )
-
-      gsap.set(detailsText.lines, {
-        overflow: 'hidden',
-      })
-
-
-      gsap.fromTo(detailsText.words,{
-          // opacity: 0,
-          yPercent: 50,
+  
+        gsap.set(detailsText.lines, {
+          overflow: 'hidden',
+        })
+  
+        gsap.set(detailsText2.lines, {
+          overflow: 'hidden',
+        })
+  
+  
+        gsap.fromTo(detailsText.words,{
+            yPercent: 100,
+          }, 
+          {
+            yPercent: 0,
+            stagger: 0.02,
+            duration: 0.8,
+            yoyo: true,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: '#midText',
+            }
+          }
+        )
+  
+        gsap.fromTo(detailsText2.words,{
+          yPercent: 100,
         }, 
         {
           yPercent: 0,
-          // overflow: 'hidden',
-          stagger: 0.03,
-          // delay: 0.1,
-          // opacity: 1,
-          duration: 1,
+          stagger: 0.02,
+          duration: 0.8,
           yoyo: true,
-          ease: "none",
-
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: '#midText',
-            markers: true,
+            trigger: '#detailsTextContainer',
           }
         }
       )
+  
+        gsap.fromTo("#marquee-mobile", {
+            xPercent: 0
+          }, 
+          { 
+            xPercent: -100, 
+            duration: 50, 
+            ease: "none", 
+            scrollTrigger: { 
+              trigger: "#button", 
+              start: "top 50%", 
+              end: "+=2000px", 
+              scrub: 1 
+            }
+          }
+        )
+      })
 
-      gsap.fromTo("#marquee-mobile", {xPercent: 0}, {xPercent: -100, duration: 50, ease: "none", scrollTrigger: { trigger: "#button", markers: true, start: "top 50%", end: "+=2000px", scrub: 1 }})
-    })
+    }, aboutContainer)
+
+
+    return () => ctx.revert()
     
   },[])
   
@@ -113,16 +164,18 @@ function AboutPage() {
 
           <div className='grid grid-rows-2 !divide-y-[0.2778vw] divide-black'>
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
-              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw]'>How does it work though ?</h3>
+              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw]' id='headerText2'>How does it work though ?</h3>
 
-              <p className='tracking-wider  py-3 text-justify leading-normal [&_span]:text-coffee-bean-brown'>
-                All you really have to do is put in your desired
-                long text and click the <span> “ Summarize ”  </span> button. That is really all you have to do.
-                <br/>
-                <br/>
-                If you are just here to check the site out and
-                you do not have any text to test it with, just
-                go right ahead and <span>“ Use our sample text ”</span>
+              <p className='tracking-wider  py-3 text-justify leading-normal [&_span]:text-coffee-bean-brown' id='detailsTextContainer'>
+                <p id='detailsText2'>
+                  All you really have to do is put in your desired
+                  long text and click the <span> “ Summarize ”  </span> button. That is really all you have to do.
+                  <br/>
+                  <br/>
+                  If you are just here to check the site out and
+                  you do not have any text to test it with, just
+                  go right ahead and <span>“ Use our sample text ”</span>
+                </p>
               </p>
 
               <button className='mt-2 py-[1.111vw] button-style button-outline2 group'>
