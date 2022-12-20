@@ -15,12 +15,18 @@ gsap.registerPlugin(ScrollTrigger)
 function AboutPage() {
   const aboutContainer = React.useRef(null)
 
-  React.useLayoutEffect(() => {
-    const myText = new SplitType('#textAnimate', { types: 'words' })
+  const howItWorksHeader = React.useRef(null)
+  
+  
+  React.useEffect(() => {
+    const myText = new SplitType('#textAnimate', { types: 'words' })  
     const headerText2 = new SplitType('#headerText2', { types: 'words' })
     const detailsText = new SplitType('#details', { types: 'words, lines' })
     const detailsText2 = new SplitType('#detailsText2', { types: 'words, lines' })
+    
     // ! right here, find a way to create the animation as a component and use it here instead of rewriting it everytime
+
+    // ! might be the useRef affecting your component check it 
 
     const ctx = gsap.context(() => {
 
@@ -164,7 +170,7 @@ function AboutPage() {
 
           <div className='grid grid-rows-2 !divide-y-[0.2778vw] divide-black'>
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
-              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw]' id='headerText2'>How does it work though ?</h3>
+              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] ' id='headerText2'>How does it work though ?</h3>
 
               <p className='tracking-wider  py-3 text-justify leading-normal [&_span]:text-coffee-bean-brown' id='detailsTextContainer'>
                 <p id='detailsText2'>

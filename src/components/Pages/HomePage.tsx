@@ -153,12 +153,13 @@ function HomePage() {
           }
         )
 
-        tl.fromTo('.iconsContainer', {
+        gsap.fromTo('.iconsContainer', {
             opacity: 0,
           }, 
           {
             opacity: 1,
             duration: 1,
+            delay: 0.5
           }
         )
 

@@ -21,6 +21,10 @@
     }
 }
 
+#headerText2 {
+    font-kerning: none;
+}
+
 .center {
     @apply grid place-content-center
 }
