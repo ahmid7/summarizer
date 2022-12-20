@@ -73,7 +73,7 @@ function AboutPage() {
   
   
         gsap.fromTo(detailsText.words,{
-            yPercent: 100,
+            yPercent: 110,
           }, 
           {
             yPercent: 0,
@@ -142,7 +142,7 @@ function AboutPage() {
               </h1>
 
               <p className='mid-text' id='midText'>
-                <p  id='details'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.<br/> <br/>It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
+                <p id='details'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.<br/> <br/>It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
               </p>
 
               <button className='button-style button-outline1 group' id="button">
