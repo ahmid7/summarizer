@@ -97,7 +97,7 @@ function HomePage() {
           stagger: 0.05,
           delay: 0.1,
           ease: "back.out",
-          duration: 1
+          duration: 1.3
         }
       )
 

@@ -39,7 +39,7 @@ function TeamReachOutPage() {
       <div className='grid-template md:h-full'>
         <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
           <div className='py-2 px-5 md:px-[1.75vw]'>
-            <h2 className='header-text pt-[2.08vw]'>It’s ok to reach out</h2>
+            <h2 className='header-text pt-[2.08vw]' id="reachOutHeader">It’s ok to reach out</h2>
 
             <p className='mid-text'>This was a project executed purely out of passion and pursuit of knowlegde, any and all questions are welcome. <br/> <br/> Please reach out to any of the  Team members that you think can answer your questions.</p>
 

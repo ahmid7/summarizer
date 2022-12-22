@@ -12,17 +12,15 @@
     }
 
     *{
-        @apply scroll-smooth
+        @apply scroll-smooth;
+        /* font-kerning: none; */
+        
     }
 
     body {
         scroll-behavior: smooth;
         @apply scroll-smooth
     }
-}
-
-#headerText2 {
-    font-kerning: none;
 }
 
 .center {
@@ -86,6 +84,7 @@
 .mid-text {
     @apply text-xl md:text-[1.25vw] py-4 word-spacing tracking-widest text-coffee-bean-deep leading-relaxed
 }
+
 
 .button-style {
     @apply mb-[0.556vw] flex items-center gap-2 md:gap-[0.694vw] fill-current
