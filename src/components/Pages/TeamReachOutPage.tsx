@@ -56,6 +56,7 @@ function TeamReachOutPage() {
           <p>stay in touch </p>
         </div>
       </div>
+
     </section>
   )
 }

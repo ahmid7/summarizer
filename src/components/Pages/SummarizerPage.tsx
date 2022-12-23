@@ -18,11 +18,37 @@ function SummarizerPage() {
     setTextInput(e.target.value)
   } 
 
+  function handlePaste(e) {
+    setTextInput(e.clipboardData.getData('text'))
+  }
+
+  function onChange(e) {
+    setTextInput(e.target.value)
+  }
+
+  console.log(textInput)
+
+
   const pointersArrowsContainer = React.useRef(null)
 
   const summarizerContainer = React.useRef(null)
 
   const pointerArrow = gsap.utils.selector(pointersArrowsContainer)
+
+  const summarizeText = async () => {
+    const response = await fetch("https://hf.space/embed/Funbi/Summarize/+/api/predict/", {
+      method: "POST",
+      body: JSON.stringify({ textInput }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // mode: "no-cors"
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+  }
 
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -84,9 +110,10 @@ function SummarizerPage() {
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
-                <textarea className='resize-none w-full text-black border-none outline-none' 
+                <textarea className='w-full text-black outline-none border-none overflow-x-scroll resize-none min-h-[330px]' 
                   value={textInput} 
-                  onChange={ onChangeText } 
+                  onChange={ onChange } 
+                  onPaste={ handlePaste }
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
                 >
                   
@@ -101,7 +128,10 @@ function SummarizerPage() {
                 <p>Paste Text</p>
               </div>
 
-              <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'><span className='text-coffee-bean-brown mr-4'>try our sample text</span> <span className='bg-[#CFCFCF] text-[#999999] px-4 py-3'>summarize</span></p>
+              <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
+                <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
+                <span onClick={ summarizeText } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
+              </p>
             </div>
 
             <div className='outline outline-2 outline-coffee-text text-xs md:text-[0.9vw] relative'>
@@ -112,7 +142,7 @@ function SummarizerPage() {
                   
                   <p className='flex items-center gap-x-2'>
                     <span className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
-                    <span className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer'>share </span>
+                    <span className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer'>share</span>
                   </p>
                 </div>
               </div>

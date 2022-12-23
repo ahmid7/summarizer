@@ -33,7 +33,6 @@ function HomePage() {
 
 
   function updateMenuOpen() {
-    // setIsMenuOpened(!isMenuOpened)
     if(isMenuOpened) {
       setTimeout(() => {setIsMenuOpened(false)}, 800)
     } else {
@@ -101,7 +100,7 @@ function HomePage() {
         }
       )
 
-      mm.add("(min-width: 769px)", () => {
+      mm.add("(min-width: 768px)", () => {
 
         tl.fromTo("#fadeInAnimate", 
           {
@@ -137,7 +136,7 @@ function HomePage() {
         )
       })
 
-      mm.add("(max-width: 768px)", () => {
+      mm.add("(max-width: 767px)", () => {
         tl.fromTo("#fadeInAnimate", 
           {
             opacity: 0,
@@ -248,7 +247,7 @@ function HomePage() {
 
           <div className='flex items-center justify-center py-2 relative' ref={ arrowsContainer }>
 
-            <div className='rotate-90 md:rotate-0 arrow '>
+            <div className='rotate-90 md:rotate-0 arrow md:block'>
               <RightArrow />
             </div>
 
