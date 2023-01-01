@@ -7,21 +7,26 @@
         font-family: 'Merriweather Sans', sans-serif;
         font-weight: 400;
         color: #171313;
-        scroll-behavior: smooth;
+        /* scroll-behavior: smooth; */
         @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
     }
 
     *{
-        @apply scroll-smooth;
+        /* @apply scroll-smooth; */
         /* font-kerning: none; */
         
     }
 
-    body {
+    /* body {
         scroll-behavior: smooth;
         @apply scroll-smooth
-    }
+    } */
 }
+/* ! take note for mobile */
+/* .pageWrapper {
+    width: 300%;
+    height: 100vh;
+} */
 
 input {
     overflow: hidden;

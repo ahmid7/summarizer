@@ -1,15 +1,11 @@
 import React from 'react'
 import { gsap } from "gsap"
-import { ScrollTrigger } from 'gsap/all'
 
 import {  
-  NavBar,
+  // NavBar,
   TeamMemberCard,
-  TeamReachOutPage
+  // TeamReachOutPage
 } from '../'
-
-
-gsap.registerPlugin(ScrollTrigger)
 
 
 const TeamMembersData = [
@@ -82,9 +78,8 @@ function TeamPage() {
     <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden' id='contain'>
       <section className='shit'>
         <div className='layout-grid2 md:divide-x-2 divide-black'>
-
           <div>
-
+      
           </div>
 
           <div className='px-5 py-12 md:pl-[5.65vw] md:pr-[2.36vw] md:pt-[0.5vw]'>

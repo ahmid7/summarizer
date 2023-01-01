@@ -1,6 +1,5 @@
 import React from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/all'
 
 import { NavBar } from '..'
 import { 
@@ -9,9 +8,12 @@ import {
   RightIndicator 
 } from '../../assets/svgIcons'
 
-gsap.registerPlugin(ScrollTrigger)
+import { Context } from '../../App'
 
-function SummarizerPage() {
+
+function SummarizerPage({ horizontalScroll }: { horizontalScroll: any }) {
+  const scrollProgress = React.useContext(Context)
+
   const [textInput, setTextInput] = React.useState('')
 
   function onChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -25,9 +27,6 @@ function SummarizerPage() {
   function onChange(e) {
     setTextInput(e.target.value)
   }
-
-  console.log(textInput)
-
 
   const pointersArrowsContainer = React.useRef(null)
 
@@ -49,24 +48,29 @@ function SummarizerPage() {
 
     console.log(data)
   }
-
+  // ! so what i think is that i need to add a new effect and let the dependency be the scrollProgress and use matchmMedia
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(pointerArrow(".arrows"), 
-        {
-          xPercent: 0,
-          autoAlpha: 0
-        },
-        {
-          autoAlpha: 1,
-          xPercent: 20,
-          stagger: 0.05,
-          duration: 1.5,
-          yoyo: true,
-          // ease: 'bounce',
-          repeat: -1,
+
+    gsap.fromTo(pointerArrow(".arrows"), 
+      {
+        xPercent: 0,
+        autoAlpha: 0
+      },
+      {
+        autoAlpha: 1,
+        xPercent: 20,
+        stagger: 0.05,
+        duration: 1.5,
+        yoyo: true,
+        // ease: 'bounce',
+        repeat: -1,
+        scrollTrigger: {
+          trigger: summarizerContainer.current,
+          containerAnimation: horizontalScroll
         }
-      )
+      }
+    )
     }, summarizerContainer)
     
     return () => ctx.revert()

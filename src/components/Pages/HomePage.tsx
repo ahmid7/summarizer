@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { gsap } from "gsap"
-import { Observer } from 'gsap/all'
 import SplitType from "split-type"
 import { RiMenuFoldFill } from "react-icons/ri"
 
@@ -14,11 +13,8 @@ import {
   LongRightArrow 
 } from '../../assets/svgIcons'
 
-gsap.registerPlugin(Observer)
-
-
-function HomePage() {
-
+function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
+ 
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
   let wrapper = React.useRef(null)
@@ -30,8 +26,6 @@ function HomePage() {
   let arrowsContainer = React.useRef(null)
 
   let arrows = gsap.utils.selector(arrowsContainer)
-
-
   function updateMenuOpen() {
     if(isMenuOpened) {
       setTimeout(() => {setIsMenuOpened(false)}, 800)
@@ -100,9 +94,11 @@ function HomePage() {
         }
       )
 
+      // console.log("tl", tl)
+
       mm.add("(min-width: 768px)", () => {
 
-        tl.fromTo("#fadeInAnimate", 
+        gsap.fromTo("#fadeInAnimate", 
           {
             opacity: 0,
             yPercent: 25,
@@ -112,6 +108,15 @@ function HomePage() {
             yPercent: 0,
             duration: 2,
             ease: 'back.out',
+            scrollTrigger: {
+              trigger: wrapper.current,
+              // containerAnimation: horizontalScroll,
+              markers: true,
+              // start: 'center center',
+              // horizontal: true,
+              // start: 200
+            }
+
           }
         )
   
@@ -190,6 +195,8 @@ function HomePage() {
 
   },[])
 
+  // console.log(horizontalScroll)
+
   return (
     <section ref={ wrapper } className='value w-screen md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
@@ -219,9 +226,9 @@ function HomePage() {
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
         <div className='hidden md:block' >
-          <NavBar
+          {/* <NavBar
             page='home'
-          />
+          /> */}
         </div>
 
         <div className='px-[4.444vw] py-5'>
@@ -267,3 +274,6 @@ function HomePage() {
 }
 
 export default HomePage
+
+
+// ! since you figured out the error you should try it out later

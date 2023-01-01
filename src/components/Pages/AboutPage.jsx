@@ -1,16 +1,20 @@
 import React from 'react'
 import SplitType from 'split-type'
 import { gsap } from "gsap"
-import { ScrollTrigger } from 'gsap/all'
 
 import { LongLeftArrow } from '../../assets/svgIcons'
+import { Context } from '../../App'
 
-
-gsap.registerPlugin(ScrollTrigger)
 
 function AboutPage() {
   const aboutContainer = React.useRef(null)
-  
+  const buttonRef = React.useRef(null)
+
+  const [animationState, setAnimationState] = React.useState(false)
+
+  const scrollProgress = React.useContext(Context)
+
+
   React.useLayoutEffect(() => {
     
     const ctx = gsap.context(() => {
@@ -18,24 +22,9 @@ function AboutPage() {
       const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
       const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
       const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
-
       let mm = gsap.matchMedia()
-      // let ace = gsap.timeline()
-  
+      
       mm.add("(max-width:767px)", () => {
-
-        gsap.set(headerText2.lines, {
-          overflow: "hidden",
-        })
-
-        gsap.set(detailsText1.lines, {
-          overflow: "hidden",
-        })
-
-        gsap.set(detailsText2.lines, {
-          overflow: "hidden"
-        })
-
 
         gsap.fromTo(headerText1.words, {
             yPercent: 100,
@@ -48,10 +37,6 @@ function AboutPage() {
             fontKerning: "none",
             ease: "back.out",
             duration: 1,
-            scrollTrigger: {
-              trigger: '.headerText1Gsap',
-              markers: true,
-            }
           }
         )
 
@@ -67,7 +52,6 @@ function AboutPage() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: detailsText1.words,
-              // markers: true,
             }
           }
         )
@@ -81,7 +65,6 @@ function AboutPage() {
             ease: "none", 
             scrollTrigger: { 
               trigger: ".marqueeContainer", 
-              markers: true,
               start: "center 50%", 
               end: "+=2000px", 
               scrub: 1 
@@ -100,7 +83,6 @@ function AboutPage() {
             duration: 1.3,
             scrollTrigger: {
               trigger: '.headerText2Gsap',
-              markers: true,
             }
           }
        )
@@ -121,17 +103,56 @@ function AboutPage() {
             }
           }
         )
-  
-        
-      })
 
+      })
     }, aboutContainer)
 
 
     return () => ctx.revert()
     
   },[])
-  
+
+  React.useLayoutEffect(() => {
+
+    window.addEventListener(scrollX, () => {
+      console.log(scrollX)
+    })
+
+    const context = gsap.context(() => {
+      let matchMedia = gsap.matchMedia()
+
+      matchMedia.add("(min-width:768px)", () => {
+        // if(scrollProgress >= 0.41 && !animationState) {
+          gsap.to(buttonRef.current, {
+            duration: 1,
+            opacity: 0,
+            scrollTrigger: {
+              target: buttonRef.current,
+              markers:true,
+              // scrub: true,
+              start: '+=200vw'
+            }
+          })
+
+          setTimeout(() => {
+            setAnimationState(true)
+          }, 2000);
+        // }
+
+        if(animationState) {
+          gsap.set(buttonRef.current, {
+            duration: 1,
+            opacity: 0,
+          })
+        }
+      })
+    }, aboutContainer)
+    // console.log(scrollProgress)
+
+    return () => context.revert()
+  }, [scrollProgress])
+
+
   return (
     <section className='md:h-screen overflow-y-hidden' ref={ aboutContainer }>
       <div className='layout-grid2 md:divide-x-4 divide-black'>
@@ -141,7 +162,7 @@ function AboutPage() {
 
         <div className='layout-grid3  md:h-screen divide-y-[0.2778vw] md:divide-y-0 divide-x-[0.2778vw] divide-black'>
           <div className='layout-grid4 divide-y-[0.2778vw] divide-black'>
-            <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw] textContainer overflow-hidden'>
+            <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw] textContainer overflow-hidden' id='cont'>
 
               <h1 className='header-text overflow-hidden headerText1Gsap'>
                 It  really  is  not  rocket  scienc  how  it  works
@@ -155,7 +176,7 @@ function AboutPage() {
               </p>
 
               <div className='buttonContainer'>
-                <button className='button-style button-outline1 group' id="button">
+                <button className='button-style button-outline1 group' id="button" ref={buttonRef}>
                   <div className='group-hover:animate-bounceLeft'>
                     <LongLeftArrow/>
                   </div>
