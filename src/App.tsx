@@ -16,7 +16,7 @@ import {
 gsap.registerPlugin(ScrollTrigger, Observer)
 
 
-export const Context = React.createContext<null | gsap.core.Tween>(null)
+export const Context = React.createContext<null | number>(null)
 
 function App() {
 
@@ -24,11 +24,42 @@ function App() {
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
 
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      let mm = gsap.matchMedia()
+
+      mm.add("(min-width:768px)", () => {
+        const sections = gsap.utils.toArray(".section")
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionContainerRef.current,
+            preventOverlaps: true,
+            pin: true,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            scrub: 1.23,
+            end: () => "+=" + document.querySelector("main")?.offsetWidth,
+            onUpdate: (self) => {
+              setScrollProgress(self.progress)
+            }
+          }
+        })
+
+      })
+      
+
+    }, sectionContainerRef)
+
+    return () => ctx.revert()
+
+  }, [])
+
 
   return (
-    // <Context.Provider value={ scrollProgress}>
+    <Context.Provider value={ scrollProgress}>
       <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
-        {/* ! first here you didnot pass the ref into the home page instead you passed in into the section container idiolt */}
         <section className='section' id='home' >
           <HomePage /> 
         </section>
@@ -50,41 +81,8 @@ function App() {
         </section>
 
       </main>
-    // </Context.Provider>
+    </Context.Provider>
   )
 }
 
 export default App
-
-
-  // React.useLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     let mm = gsap.matchMedia()
-
-  //     mm.add("(min-width:768px)", () => {
-  //       const sections = gsap.utils.toArray(".section")
-  //       gsap.to(sections, {
-  //         xPercent: -100 * (sections.length - 1),
-  //         ease: "none",
-  //         scrollTrigger: {
-  //           trigger: sectionContainerRef.current,
-  //           preventOverlaps: true,
-  //           pin: true,
-  //           invalidateOnRefresh: true,
-  //           anticipatePin: 1,
-  //           scrub: 1.23,
-  //           end: () => "+=" + document.querySelector("main")?.offsetWidth,
-  //           onUpdate: (self) => {
-  //             setScrollProgress(self.progress)
-  //           }
-  //         }
-  //       })
-
-  //     })
-      
-
-  //   }, sectionContainerRef)
-
-  //   return () => ctx.revert()
-
-  // }, [])

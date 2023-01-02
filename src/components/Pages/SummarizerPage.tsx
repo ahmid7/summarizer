@@ -11,7 +11,7 @@ import {
 import { Context } from '../../App'
 
 
-function SummarizerPage({ horizontalScroll }: { horizontalScroll: any }) {
+function SummarizerPage() {
   const scrollProgress = React.useContext(Context)
 
   const [textInput, setTextInput] = React.useState('')
@@ -67,7 +67,6 @@ function SummarizerPage({ horizontalScroll }: { horizontalScroll: any }) {
         repeat: -1,
         scrollTrigger: {
           trigger: summarizerContainer.current,
-          containerAnimation: horizontalScroll
         }
       }
     )

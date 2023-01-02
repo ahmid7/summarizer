@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { gsap } from "gsap"
 import SplitType from "split-type"
 import { RiMenuFoldFill } from "react-icons/ri"
@@ -12,8 +12,11 @@ import {
   RightArrow,
   LongRightArrow 
 } from '../../assets/svgIcons'
+import { Context } from '../../App'
 
-function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
+function HomePage() {
+
+  const progress = React.useContext(Context)
  
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
@@ -26,6 +29,7 @@ function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
   let arrowsContainer = React.useRef(null)
 
   let arrows = gsap.utils.selector(arrowsContainer)
+
   function updateMenuOpen() {
     if(isMenuOpened) {
       setTimeout(() => {setIsMenuOpened(false)}, 800)
@@ -85,7 +89,6 @@ function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
           yPercent: 100,
         },
         {
-          // border: "2px solid red",
           yPercent: 0,
           stagger: 0.05,
           delay: 0.1,
@@ -94,11 +97,9 @@ function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
         }
       )
 
-      // console.log("tl", tl)
-
       mm.add("(min-width: 768px)", () => {
 
-        gsap.fromTo("#fadeInAnimate", 
+        tl.fromTo("#fadeInAnimate", 
           {
             opacity: 0,
             yPercent: 25,
@@ -109,14 +110,8 @@ function HomePage({ horizontalScroll }: { horizontalScroll: any }) {
             duration: 2,
             ease: 'back.out',
             scrollTrigger: {
-              trigger: wrapper.current,
-              // containerAnimation: horizontalScroll,
-              markers: true,
-              // start: 'center center',
-              // horizontal: true,
-              // start: 200
+              trigger: "#fadeInAnimate",
             }
-
           }
         )
   

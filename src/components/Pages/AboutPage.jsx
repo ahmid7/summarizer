@@ -10,7 +10,12 @@ function AboutPage() {
   const aboutContainer = React.useRef(null)
   const buttonRef = React.useRef(null)
 
-  const [animationState, setAnimationState] = React.useState(false)
+  const [animationState, setAnimationState] = React.useState({
+    headerText1: false,
+    headerText2: false,
+    detailsText1: false,
+    detailsText2: false,
+  })
 
   const scrollProgress = React.useContext(Context)
 
@@ -18,13 +23,13 @@ function AboutPage() {
   React.useLayoutEffect(() => {
     
     const ctx = gsap.context(() => {
-      const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
-      const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
-      const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
-      const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
       let mm = gsap.matchMedia()
       
       mm.add("(max-width:767px)", () => {
+        const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
+        const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
+        const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
+        const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
 
         gsap.fromTo(headerText1.words, {
             yPercent: 100,
@@ -112,45 +117,67 @@ function AboutPage() {
     
   },[])
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
 
-    window.addEventListener(scrollX, () => {
-      console.log(scrollX)
-    })
+    if(scrollProgress >= 0.41 && animationState.headerText1 === false) {
+      setAnimationState({ ...animationState, headerText1: true })
+    }
 
-    const context = gsap.context(() => {
-      let matchMedia = gsap.matchMedia()
+    if(scrollProgress >= 0.45 && animationState.detailsText2 === false) {
+      setAnimationState({ ...animationState, detailsText2: true })
+    }
 
-      matchMedia.add("(min-width:768px)", () => {
-        // if(scrollProgress >= 0.41 && !animationState) {
-          gsap.to(buttonRef.current, {
-            duration: 1,
-            opacity: 0,
-            scrollTrigger: {
-              target: buttonRef.current,
-              markers:true,
-              // scrub: true,
-              start: '+=200vw'
-            }
-          })
-
-          setTimeout(() => {
-            setAnimationState(true)
-          }, 2000);
-        // }
-
-        if(animationState) {
-          gsap.set(buttonRef.current, {
-            duration: 1,
-            opacity: 0,
-          })
-        }
-      })
-    }, aboutContainer)
-    // console.log(scrollProgress)
-
-    return () => context.revert()
   }, [scrollProgress])
+
+  React.useLayoutEffect(() => {
+   const ctx  = gsap.context(() => {
+    let matchMedia = gsap.matchMedia()
+
+    matchMedia.add("(min-width:768px)", () => {
+      const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
+      const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
+      const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words, lines' })
+      const detailsText2 = new SplitType('#detailsText2', { types: 'words'})
+
+      const tl = gsap.timeline()
+
+      gsap.set(detailsText1.lines, { overflow: "hidden" })
+
+      if(animationState.headerText1 === true) {
+        tl.fromTo(headerText1.words, {
+          yPercent: 100,
+          immediateRender: false,
+        },
+        {
+          yPercent: 0,
+          stagger: 0.05,
+          delay: 0.1,
+          fontKerning: "none",
+          ease: "back.out",
+          duration: 1,
+        }) 
+
+        gsap.fromTo(detailsText1.words,{
+            yPercent: 100,
+            immediateRender: false
+          }, 
+          {
+            yPercent: 0,
+            stagger: 0.02,
+            duration: 1,
+            delay: 1,
+            yoyo: true,
+            ease: "power2.out",
+          }
+        )
+      }
+
+
+    })
+   }, aboutContainer)
+
+   return () => ctx.revert()
+  }, [animationState])
 
 
   return (
@@ -165,13 +192,13 @@ function AboutPage() {
             <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw] textContainer overflow-hidden' id='cont'>
 
               <h1 className='header-text overflow-hidden headerText1Gsap'>
-                It  really  is  not  rocket  scienc  how  it  works
+                It  really  is  not  rocket  science  how  it  works
               </h1>
 
               <p className='mid-text overflow-hidden' id='midText'>
                 <p className='detailText1Gsap'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.
-                <br className='hidden md:inline-block'/>
-                <br className='hidden md:inline-block'/>
+                <br className='hidden md:block w-full'/>
+                <br className='hidden md:block w-full'/>
                 It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
               </p>
 
