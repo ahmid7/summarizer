@@ -123,8 +123,8 @@ function AboutPage() {
       setAnimationState({ ...animationState, headerText1: true })
     }
 
-    if(scrollProgress >= 0.45 && animationState.detailsText2 === false) {
-      setAnimationState({ ...animationState, detailsText2: true })
+    if(scrollProgress >= 0.45 && animationState.headerText2 === false) {
+      setAnimationState({ ...animationState, headerText2: true })
     }
 
   }, [scrollProgress])
@@ -136,12 +136,13 @@ function AboutPage() {
     matchMedia.add("(min-width:768px)", () => {
       const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
       const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
-      const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words, lines' })
+      const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
       const detailsText2 = new SplitType('#detailsText2', { types: 'words'})
 
       const tl = gsap.timeline()
 
-      gsap.set(detailsText1.lines, { overflow: "hidden" })
+      // gsap.set(detailsText1.lines, { overflow: "hidden" })
+      // gsap.set(detailsText2.lines, { overflow: "hidden" })
 
       if(animationState.headerText1 === true) {
         tl.fromTo(headerText1.words, {
@@ -172,12 +173,37 @@ function AboutPage() {
         )
       }
 
+      if(animationState.headerText2 === true) {
+        tl.fromTo(headerText2.words, {
+          yPercent: 100,
+          immediateRender: false,
+        }, 
+        {
+          yPercent: 0,
+          stagger: 0.05,
+          ease: "back.out",
+          duration: 1.3,
+        })
+        .fromTo(detailsText2.words,{
+          yPercent: 100,
+          immediateRender: false,
+        }, 
+        {
+          yPercent: 0,
+          stagger: 0.02,
+          delay: 0.01,
+          duration: 1,
+          yoyo: true,
+          ease: "power2.out",
+        })
+      }
+
 
     })
    }, aboutContainer)
 
    return () => ctx.revert()
-  }, [animationState])
+  }, [animationState.headerText1])
 
 
   return (
