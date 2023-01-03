@@ -16,8 +16,8 @@ type memberDetails = {
 function TeamMemberCard({ memberDetails }: { memberDetails: memberDetails }) {
   const { imgSrc, name, titleHeld, githubLink, linkedInLink } = memberDetails
   return (
-    <div className=''>
-      <div>
+    <div>
+      <div className=''>
         <img 
           src={ imgSrc }
           alt={ name }

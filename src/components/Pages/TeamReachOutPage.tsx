@@ -2,12 +2,17 @@ import React from "react"
 import { gsap } from "gsap/all"
 import SplitType from "split-type"
 
+import { Context } from "../../App"
 import { LongLeftArrow } from '../../assets/svgIcons' 
-
 
 function TeamReachOutPage() {
 
+  const scrollProgress:any = React.useContext(Context)
+
   const stayInTouchRef = React.useRef(null)
+  const reachOutPage = React.useRef(null)
+
+  const [animationState, setAnimationState] = React.useState(false)
 
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -21,23 +26,52 @@ function TeamReachOutPage() {
             scrollTrigger: {
               trigger: stayInTouchRef.current,
               scrub: true,
-
             },
             marginTop: "10rem",
           }
         )
-
-
       })
     })
 
     return () => ctx.revert()
   }, [])
 
+  React.useEffect(() => {
+    if(scrollProgress >= 0.8 && !animationState ) {
+      setAnimationState(true)
+    }
+  }, [scrollProgress])
+
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      let mm = gsap.matchMedia()
+
+      mm.add("(min-width: 768px)", () => {
+        const headerText = new SplitType('#reachOutHeader', { types: "words" })
+        if(animationState) {
+          gsap.fromTo(headerText.words, {
+              yPercent: 100,
+            },
+            {
+              yPercent: 0,
+              stagger: 0.05,
+              delay: 0.1,
+              ease: "back.out",
+              duration: 1.3
+            }
+          )
+        }
+      })
+    }, reachOutPage)
+
+    return () => ctx.revert()
+  }, [animationState])
+  
+
 
   return (
-    <section className='md:h-screen md:w-screen md:overflow-hidden'>
-      <div className="layout-grid2 md:divide-x-4 md:divide-coffee-text">
+    <section className='md:h-screen md:w-screen md:overflow-hidden' ref={ reachOutPage }>
+      <div className="layout-grid2 md:divide-x-4 h-screen md:divide-coffee-text">
         <div>
 
         </div>
@@ -45,12 +79,14 @@ function TeamReachOutPage() {
         <div className='grid-template md:h-full'>
           <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
             <div className='py-2 px-5 md:px-[1.75vw]'>
-              <h2 className='header-text pt-[2.08vw]' id="reachOutHeader">It’s ok to reach out</h2>
+              <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader">It’s ok to reach out</h2>
 
               <p className='mid-text'>This was a project executed purely out of passion and pursuit of knowlegde, any and all questions are welcome. <br/> <br/> Please reach out to any of the  Team members that you think can answer your questions.</p>
 
-              <button className='button-style button-outline2 mt-2'>
-                <LongLeftArrow/>
+              <button className='button-style button-outline2 group mt-2'>
+                <div className="group-hover:animate-bounceLeft">
+                  <LongLeftArrow/>
+                </div>
                 Reach out now
               </button>
             </div>

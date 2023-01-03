@@ -10,14 +10,11 @@ import {
   SummarizerLogo, 
   Logo, 
   RightArrow,
-  LongRightArrow 
+  LongRightArrow,
 } from '../../assets/svgIcons'
 import { Context } from '../../App'
 
 function HomePage() {
-
-  const progress = React.useContext(Context)
- 
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
   let wrapper = React.useRef(null)
@@ -190,7 +187,6 @@ function HomePage() {
 
   },[])
 
-  // console.log(horizontalScroll)
 
   return (
     <section ref={ wrapper } className='value w-screen md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
@@ -226,7 +222,7 @@ function HomePage() {
           /> */}
         </div>
 
-        <div className='px-[4.444vw] py-5'>
+        <div className='px-[4.444vw] py-5 md:h-[74vh]'>
           <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Sumarization <br/> at your fingertips.</h2>
 
           <div id='fadeInAnimate'>

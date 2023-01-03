@@ -8,10 +8,8 @@ import { Context } from '../../App'
 
 function AboutPage() {
   const aboutContainer = React.useRef(null)
-  const buttonRef = React.useRef(null)
-
   const detailsText1Ref = React.useRef(null)
-  const detailsText2 = React.useRef(null)
+  const detailsText2Ref = React.useRef(null)
 
   const [animationState, setAnimationState] = React.useState({
     headerText1: false,
@@ -19,6 +17,7 @@ function AboutPage() {
   })
 
   let detailsText = gsap.utils.selector(detailsText1Ref)
+  let detailsText2 = gsap.utils.selector(detailsText2Ref)
 
   const scrollProgress = React.useContext(Context)
 
@@ -158,13 +157,12 @@ function AboutPage() {
         }) 
 
         gsap.to(detailsText(".span"),{
-          yPercent: -100,
+          y: "0%",
           stagger: 0.2,
-          delay: 0.5,
-          duration: 0.7,
-          ease: "slowMo.easeOut",
-        }
-      )
+          duration: 0.5,
+          delay: 1,
+          ease: "power2.easeOut",
+        })
       }
 
     })
@@ -196,6 +194,14 @@ function AboutPage() {
             ease: "back.out",
             duration: 1.3,
           })
+
+          gsap.to(detailsText2(".span"),{
+            y: "0%",
+            stagger: 0.2,
+            duration: 0.5,
+            delay: 1,
+            ease: "power2.easeOut",
+          })
         }
       })
     }, aboutContainer)
@@ -226,7 +232,7 @@ function AboutPage() {
                 It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
               </div>
 
-              <div className='hidden md:block [&_div]:overflow-hidden [&_span]:inline-block [&_span]:translate-y-full mid-text' ref={ detailsText1Ref }>
+              <div className='hidden md:block [&_div]:overflow-hidden [&_span]:inline-block mid-text [&_span]:translate-y-full' ref={ detailsText1Ref }>
                 <div>
                   <span className='span'>Trained by machine learning, text summarizer uses the</span>
                 </div>
@@ -262,7 +268,7 @@ function AboutPage() {
               
 
               <div className='buttonContainer'>
-                <button className='button-style button-outline1 group' id="button" ref={buttonRef}>
+                <button className='button-style button-outline1 group' id="button">
                   <div className='group-hover:animate-bounceLeft'>
                     <LongLeftArrow/>
                   </div>
@@ -291,7 +297,7 @@ function AboutPage() {
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
               <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] headerText2Gsap'>How does it work though ?</h3>
 
-              <p className='tracking-wider  py-3 text-justify leading-normal [&_span]:text-coffee-bean-brown details2TextContainer'>
+              <p className='tracking-wider py-3 text-justify leading-normal md:hidden [&_span]:text-coffee-bean-brown details2TextContainer'>
                 <p id='detailsText2'>
                   All you really have to do is put in your desired
                   long text and click the <span> “ Summarize ” </span> button. That is really all you have to do.
@@ -302,6 +308,34 @@ function AboutPage() {
                   go right ahead and <span>“ Use our sample text ”</span>
                 </p>
               </p>
+
+              <div className='tracking-wider leading-normal py-3 text-justify hidden md:block [&_em]:text-coffee-bean-brown [&_span]:inline-block [&_span]:translate-y-full [&_div]:overflow-hidden' ref={ detailsText2Ref }>
+                <div>
+                  <span className='span'>All you really have to do is put in your desired long text</span>
+                </div>
+
+                <div>
+                  <span className='span'>and click the <em className='text-coffee-bean-brown'>“ Summarize ”</em> button. That is really all </span>
+                </div>
+
+                <div>
+                  <span className='span'>you have to do.</span>
+                </div>
+
+                <br/>
+
+                <div>
+                  <span className='span'>If you are just here to check the site out and you do not </span>
+                </div>
+
+                <div>
+                  <span className='span'>have any text to test it with, just go right ahead and</span>
+                </div>
+
+                <div>
+                  <span className='span'><em className='text-coffee-brown'>“ Use our sample text ”</em></span>
+                </div>
+              </div>
 
               <button className='mt-2 py-[1.111vw] button-style button-outline2 group'>
                 <div className='group-hover:animate-bounceLeft'>

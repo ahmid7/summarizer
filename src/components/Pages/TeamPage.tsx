@@ -1,11 +1,7 @@
 import React from 'react'
 import { gsap } from "gsap"
 
-import {  
-  // NavBar,
-  TeamMemberCard,
-  // TeamReachOutPage
-} from '../'
+import { TeamMemberCard } from '../'
 
 
 const TeamMembersData = [
@@ -47,10 +43,9 @@ function TeamPage() {
     
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
+      
 
       mm.add("(max-width: 768px)", () => {
-        // ! you should check the gsap forwaard ref to animate this
-
         gsap.fromTo(teamMembers(".teamMemberCard"), {
             yPercent: 40
           }, 
@@ -65,8 +60,19 @@ function TeamPage() {
             ease: "back.out"
           }
         )
-      })
 
+        Observer.create({
+          target: teamMemberContainer.current,
+          type: "pointer",
+          onHover: (e) => {
+            gsap.to(e.target, {
+              scale: 1.05,
+              duration: 0.2,
+              ease: "power2.inOut"
+            })
+          }
+        })
+      })
     }, teamPageRef)
 
 
@@ -88,6 +94,8 @@ function TeamPage() {
               the team 
             </h1>
 
+
+
             <div className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' ref={ teamMemberContainer }>
               {
                 TeamMembersData.map( memberDetails => {
@@ -105,10 +113,6 @@ function TeamPage() {
           </div>
         </div>
       </section>
-
-      {/* <section className='teamReach'>
-        <TeamReachOutPage/>
-      </section> */}
     </article>
   )
 }
