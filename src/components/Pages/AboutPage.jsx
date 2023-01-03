@@ -10,12 +10,15 @@ function AboutPage() {
   const aboutContainer = React.useRef(null)
   const buttonRef = React.useRef(null)
 
+  const detailsText1Ref = React.useRef(null)
+  const detailsText2 = React.useRef(null)
+
   const [animationState, setAnimationState] = React.useState({
     headerText1: false,
     headerText2: false,
-    detailsText1: false,
-    detailsText2: false,
   })
+
+  let detailsText = gsap.utils.selector(detailsText1Ref)
 
   const scrollProgress = React.useContext(Context)
 
@@ -154,19 +157,14 @@ function AboutPage() {
           duration: 1,
         }) 
 
-        gsap.fromTo(detailsText1.words,{
-            yPercent: 100,
-            immediateRender: false
-          }, 
-          {
-            yPercent: 0,
-            stagger: 0.02,
-            duration: 1,
-            delay: 1,
-            yoyo: true,
-            ease: "power2.out",
-          }
-        )
+        gsap.to(detailsText(".span"),{
+          yPercent: -100,
+          stagger: 0.2,
+          delay: 0.5,
+          duration: 0.7,
+          ease: "slowMo.easeOut",
+        }
+      )
       }
 
     })
@@ -178,15 +176,12 @@ function AboutPage() {
   // !! you should try to avoid using so many useEffects, it's not a good practice
   // !! using multiple useEffects because the animationState will cause an already rendered animation to rerender
 
-
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let matchMedia = gsap.matchMedia()
 
       matchMedia.add("(min-width: 768px)", () => {
         const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
-        const detailsText2 = new SplitType('#detailsText2', { types: 'words'})
-        
 
         const tl = gsap.timeline()
 
@@ -200,18 +195,6 @@ function AboutPage() {
             stagger: 0.05,
             ease: "back.out",
             duration: 1.3,
-          })
-          .fromTo(detailsText2.words,{
-            yPercent: 100,
-            immediateRender: false,
-          }, 
-          {
-            yPercent: 0,
-            stagger: 0.02,
-            delay: 0.01,
-            duration: 1,
-            yoyo: true,
-            ease: "power2.out",
           })
         }
       })
@@ -236,12 +219,47 @@ function AboutPage() {
                 It  really  is  not  rocket  science  how  it  works
               </h1>
 
-              <p className='mid-text overflow-hidden' id='midText'>
+              <div className='mid-text md:hidden overflow-hidden' id='midText'>
                 <p className='detailText1Gsap'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.
                 <br className='hidden md:block w-full'/>
                 <br className='hidden md:block w-full'/>
                 It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
-              </p>
+              </div>
+
+              <div className='hidden md:block [&_div]:overflow-hidden [&_span]:inline-block [&_span]:translate-y-full mid-text' ref={ detailsText1Ref }>
+                <div>
+                  <span className='span'>Trained by machine learning, text summarizer uses the</span>
+                </div>
+
+                <div>
+                  <span className='span'>concept of abstractive summarization to summarize a</span>
+                </div>
+                <div>
+                  <span className='span'>book, an article, or a research paper.</span>
+                </div>
+
+                <br/>
+                <div>
+                  <span className='span'>It uses NLP to create acute sentences and generates a</span>
+                </div>
+
+                <div>
+                  <span className='span'>summary in which the main idea remains intact. It is a</span>
+                </div>
+
+                <div>
+                  <span className='span'>premuim level tool that uses AI to work. Therefore, the</span>
+                </div>
+
+                <div>
+                  <span className='span'>summary produced by this tool has been checked to be</span>
+                </div>
+
+                <div>
+                  <span className='span'>accurate.</span>
+                </div>
+              </div>
+              
 
               <div className='buttonContainer'>
                 <button className='button-style button-outline1 group' id="button" ref={buttonRef}>

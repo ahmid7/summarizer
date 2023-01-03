@@ -12,21 +12,16 @@
     }
 
     *{
-        /* @apply scroll-smooth; */
+        @apply scroll-smooth;
         /* font-kerning: none; */
         
     }
 
-    /* body {
+    body {
         scroll-behavior: smooth;
         @apply scroll-smooth
-    } */
+    }
 }
-/* ! take note for mobile */
-/* .pageWrapper {
-    width: 300%;
-    height: 100vh;
-} */
 
 input {
     overflow: hidden;
