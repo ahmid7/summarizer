@@ -2,7 +2,8 @@ import React from 'react'
 import { gsap } from 'gsap'
 import { 
   ScrollTrigger, 
-  Observer 
+  CSSRulePlugin,
+  Observer
 } from 'gsap/all'
 
 import { 
@@ -13,7 +14,7 @@ import {
   TeamReachOutPage,
 } from "./components" 
 
-gsap.registerPlugin(ScrollTrigger, Observer)
+gsap.registerPlugin(ScrollTrigger, Observer, CSSRulePlugin)
 
 
 export const Context = React.createContext<null | number>(null)

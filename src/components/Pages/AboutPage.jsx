@@ -285,7 +285,7 @@ function AboutPage() {
                 
                 {
                   [...Array(5)].map((_, i) => (
-                    <span className=''>made for students &middot; writers &middot; teachers &middot;  journalists &middot;</span>
+                    <span key={i}>made for students &middot; writers &middot; teachers &middot;  journalists &middot;</span>
                   ))
                 }
               </div>
@@ -297,7 +297,7 @@ function AboutPage() {
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
               <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] headerText2Gsap'>How does it work though ?</h3>
 
-              <p className='tracking-wider py-3 text-justify leading-normal md:hidden [&_span]:text-coffee-bean-brown details2TextContainer'>
+              <div className='tracking-wider py-3 text-justify leading-normal md:hidden [&_span]:text-coffee-bean-brown details2TextContainer'>
                 <p id='detailsText2'>
                   All you really have to do is put in your desired
                   long text and click the <span> “ Summarize ” </span> button. That is really all you have to do.
@@ -307,7 +307,7 @@ function AboutPage() {
                   you do not have any text to test it with, just
                   go right ahead and <span>“ Use our sample text ”</span>
                 </p>
-              </p>
+              </div>
 
               <div className='tracking-wider leading-normal py-3 text-justify hidden md:block [&_em]:text-coffee-bean-brown [&_span]:inline-block [&_span]:translate-y-full [&_div]:overflow-hidden' ref={ detailsText2Ref }>
                 <div>

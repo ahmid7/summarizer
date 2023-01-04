@@ -35,17 +35,19 @@ function TeamPage() {
   const teamMemberContainer = React.useRef(null)
   const teamMembers = gsap.utils.selector(teamMemberContainer) 
 
+  const [text, setText] = React.useState('The Team')
 
-  // animationg team memeber card
+  function updateText(value: string) {
+    setText(value)
+  }
+
   React.useLayoutEffect(() => {
-    // const teamMemberCard = gsap.utils.toArray('.teamMemberCard')
-
-    
+     
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
       
 
-      mm.add("(max-width: 768px)", () => {
+      mm.add("(max-width: 767px)", () => {
         gsap.fromTo(teamMembers(".teamMemberCard"), {
             yPercent: 40
           }, 
@@ -60,18 +62,6 @@ function TeamPage() {
             ease: "back.out"
           }
         )
-
-        Observer.create({
-          target: teamMemberContainer.current,
-          type: "pointer",
-          onHover: (e) => {
-            gsap.to(e.target, {
-              scale: 1.05,
-              duration: 0.2,
-              ease: "power2.inOut"
-            })
-          }
-        })
       })
     }, teamPageRef)
 
@@ -80,9 +70,26 @@ function TeamPage() {
     
   },[])
 
+  React.useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      let matchMedia = gsap.matchMedia()
+
+      matchMedia.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline()
+
+        if(text !== "The Team") {
+          tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
+        } else {
+          tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
+        }
+      })
+    }, teamPageRef)
+    return () => ctx.revert()
+  },[text])
+
   return (
-    <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden' id='contain'>
-      <section className='shit'>
+    <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden'>
+      <section>
         <div className='layout-grid2 md:divide-x-2 divide-black'>
           <div>
       
@@ -90,8 +97,14 @@ function TeamPage() {
 
           <div className='px-5 py-12 md:pl-[5.65vw] md:pr-[2.36vw] md:pt-[0.5vw]'>
 
-            <h1 className='uppercase text-center md:text-justify tracking-[5vw]  font-six-caps text-[80px] md:text-[20.83vw] opacity-[0.12] leading-none'>
-              the team 
+            <h1 className={`uppercase tracking-[5vw]  font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none overflow-hidden `} id='displayText'>
+              <div className='textMove'>
+                <span className='h-inherit w-full inline-block text-justify'>
+                  <span>The Team</span>
+                </span>
+
+                <span className='flex items-center justify-center'>{ text }</span>
+              </div>
             </h1>
 
 
@@ -100,10 +113,15 @@ function TeamPage() {
               {
                 TeamMembersData.map( memberDetails => {
                   return(
-                    <div className='teamMemberCard'>
+                    <div 
+                      className='teamMemberCard'
+                      onMouseEnter={ () => updateText(memberDetails.name) }
+                      onMouseLeave={ () => updateText('The Team') }
+                      key={ memberDetails.titleHeld }
+                    >
                       <TeamMemberCard
                         memberDetails= { memberDetails }
-                        key={ memberDetails.titleHeld }
+                        updateText={ updateText }
                       />
                     </div>
                   )

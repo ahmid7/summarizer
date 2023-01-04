@@ -18,7 +18,7 @@ function TeamReachOutPage() {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
 
-      mm.add("(max-width:768px)", () => {
+      mm.add("(max-width:767px)", () => {
         gsap.fromTo(stayInTouchRef.current, {
             marginTop: '-10rem'
           }, 

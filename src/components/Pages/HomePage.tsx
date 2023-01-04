@@ -189,7 +189,7 @@ function HomePage() {
 
 
   return (
-    <section ref={ wrapper } className='value w-screen md:h-screen overflow-y-hidden md:divide-y-4 divide-coffee-text '>
+    <section ref={ wrapper } className='w-screen md:h-screen overflow-y-hidden divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>
@@ -226,7 +226,7 @@ function HomePage() {
           <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Sumarization <br/> at your fingertips.</h2>
 
           <div id='fadeInAnimate'>
-            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>Lorem ipsum dolor sit amet, consectetur  adipiscing elit. Etiam eu turpis molestie,  dictum est a, mattis tellus. Sed  dignissim, metus nec fringilla  accumsan, risus sem.</p>
+            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, sumarize for the available</p>
 
             <button className='button-style button-outline1 mx-auto md:mx-0 group'>
               summarize now

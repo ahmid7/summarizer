@@ -13,8 +13,21 @@ type memberDetails = {
   titleHeld: string;
 }
 
-function TeamMemberCard({ memberDetails }: { memberDetails: memberDetails }) {
-  const { imgSrc, name, titleHeld, githubLink, linkedInLink } = memberDetails
+type TeamMemberDetails = {
+  memberDetails: memberDetails;
+  updateText: (value: string) => void;
+}
+
+function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
+  const { 
+    imgSrc, 
+    name, 
+    titleHeld, 
+    githubLink, 
+    linkedInLink 
+  } = memberDetails
+  
+  // onMouseEnter={ () => updateText(name) } onMouseLeave={ () => updateText('The Team') }
   return (
     <div>
       <div className=''>

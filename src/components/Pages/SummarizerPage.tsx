@@ -155,9 +155,12 @@ function SummarizerPage() {
           <div className='bg-black py-10  md:py-20 flex overflow-hidden pl-0 md:pl-[5.523vw]'>
             <div className='hidden md:flex justify-between items-center w-full' ref={ pointersArrowsContainer }>
               {
-                [...Array(10)].map((index) => ( 
-                    <div className=' arrows'>
-                      <RightIndicator key={index} /> 
+                [...Array(10)].map((_,index) => ( 
+                    <div 
+                      className='arrows'
+                      key={ index }
+                    >
+                      <RightIndicator/> 
                     </div>
                   )
                 )
