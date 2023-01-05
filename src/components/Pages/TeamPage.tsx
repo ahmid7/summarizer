@@ -3,7 +3,6 @@ import { gsap } from "gsap"
 
 import { TeamMemberCard } from '../'
 
-
 const TeamMembersData = [
   {
     name: 'Funbi',
@@ -62,6 +61,15 @@ function TeamPage() {
             ease: "back.out"
           }
         )
+
+        gsap.to(".textMove", {
+          scrollTrigger: {
+            trigger: "#displayText",
+            scrub: 1,
+            start: "top 40%",
+          },
+          yPercent: 40,
+        })
       })
     }, teamPageRef)
 
@@ -96,7 +104,7 @@ function TeamPage() {
 
           <div className='px-5 py-12 md:pl-[5.65vw] md:pr-[2.36vw] md:pt-[0.5vw]'>
 
-            <h1 className={`uppercase tracking-[5vw]  font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none overflow-hidden `} id='displayText'>
+            <h1 className={`uppercase tracking-[5vw] font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none md:overflow-hidden `} id='displayText'>
               <div className='textMove'>
                 <span className='h-inherit w-full inline-block text-center'>
                   <span>The Team</span>

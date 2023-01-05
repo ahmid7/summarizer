@@ -221,7 +221,7 @@ function HomePage() {
         </div>
 
         <div className='px-[4.444vw] py-5 md:h-[74vh]'>
-          <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
+          <h2 className='header-text text-center md:text-left overflow-hidden border-2' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
 
           <div id='fadeInAnimate'>
             <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>

@@ -62,7 +62,7 @@ function TeamReachOutPage() {
               trigger: stayInTouchRef.current,
               scrub: true,
             },
-            marginTop: "10rem",
+            marginTop: "5rem",
           }
         )
       })
