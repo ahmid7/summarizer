@@ -31,6 +31,7 @@ function App() {
 
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")
+        
         gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",

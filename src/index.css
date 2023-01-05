@@ -88,16 +88,20 @@ input {
 }
 
 .mid-text {
-    @apply text-xl md:text-[1.25vw] py-4 word-spacing tracking-widest text-coffee-bean-deep leading-relaxed
+    @apply text-xl md:text-[1.25vw] py-4 word-spacing tracking-widest text-coffee-bean-deep leading-[1.8]
 }
 
 
 .button-style {
-    @apply mb-[0.556vw] flex items-center gap-2 md:gap-[0.694vw] fill-current
+    @apply mb-[0.556vw] text-[3.8vw] md:text-[1.111vw] tracking-wide fill-current
+}
+
+.button-style a {
+    @apply flex items-center md:gap-[0.694vw] fill-current
 }
 
 .button-outline1{
-    @apply bg-coffee-bean-brown text-white px-4 py-3 md:p-[1.111vw] transition duration-200
+    @apply bg-coffee-bean-brown text-white px-7 py-3 md:px-4 md:py-3 md:p-[1.111vw] transition duration-200
 }
 
 .button-outline1:hover {

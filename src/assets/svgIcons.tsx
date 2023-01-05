@@ -134,7 +134,7 @@ export const GithubIconLarge = () => {
 
 export const RightIndicator = () => {
     return (
-        <svg className="md:w-[156px] md:h-[90px] rotate-90 md:rotate-0" viewBox="0 0 173 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="md:w-[11.83vw] md:h-[6.25vw] rotate-90 md:rotate-0" viewBox="0 0 173 148" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 64C4.47715 64 -4.82823e-07 68.4772 0 74C4.82823e-07 79.5228 4.47715 84 10 84L10 64ZM169.179 81.0711C173.084 77.1658 173.084 70.8342 169.179 66.9289L105.539 3.28931C101.634 -0.615929 95.3026 -0.615928 91.3973 3.28931C87.4921 7.19456 87.4921 13.5262 91.3973 17.4315L147.966 74L91.3973 130.569C87.4921 134.474 87.4921 140.805 91.3973 144.711C95.3026 148.616 101.634 148.616 105.539 144.711L169.179 81.0711ZM10 84L162.108 84L162.108 64L10 64L10 84Z" fill="#F4E0CB"/>
         </svg>
     )

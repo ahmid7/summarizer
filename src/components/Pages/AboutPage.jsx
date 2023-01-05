@@ -136,10 +136,7 @@ function AboutPage() {
     let matchMedia = gsap.matchMedia()
 
     matchMedia.add("(min-width:768px)", () => {
-      // figure out how to get the text line without it affecting the animation
       const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
-      const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
-
       const tl = gsap.timeline()
 
       if(animationState.headerText1 === true) {
@@ -170,9 +167,7 @@ function AboutPage() {
 
    return () => ctx.revert()
   }, [animationState.headerText1])
-
-  // !! you should try to avoid using so many useEffects, it's not a good practice
-  // !! using multiple useEffects because the animationState will cause an already rendered animation to rerender
+  
 
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -219,7 +214,7 @@ function AboutPage() {
 
         <div className='layout-grid3  md:h-screen divide-y-[0.2778vw] md:divide-y-0 divide-x-[0.2778vw] divide-black'>
           <div className='layout-grid4 divide-y-[0.2778vw] divide-black'>
-            <div className='px-5  py-10 md:px-[3vw]  md:py-[2.08vw] textContainer overflow-hidden' id='cont'>
+            <div className='px-5  py-10 md:px-[3vw]  md:py-[1vw] textContainer overflow-hidden' id='cont'>
 
               <h1 className='header-text overflow-hidden headerText1Gsap'>
                 It  really  is  not  rocket  science  how  it  works
@@ -267,13 +262,15 @@ function AboutPage() {
               </div>
               
 
-              <div className='buttonContainer'>
-                <button className='button-style button-outline1 group' id="button">
-                  <div className='group-hover:animate-bounceLeft'>
-                    <LongLeftArrow/>
-                  </div>
+              <div className='mt-4 md:mt-0'>
+                <button className='button-style button-outline1 group'>
+                  <a href='#summarizer'>
+                    <span className='hidden md:block group-hover:animate-bounceLeft'>
+                      <LongLeftArrow/>
+                    </span>
 
-                  Check it out 
+                    Check it out 
+                  </a>
                 </button>
               </div>
 
@@ -294,7 +291,7 @@ function AboutPage() {
 
 
           <div className='grid grid-rows-2 !divide-y-[0.2778vw] divide-black'>
-            <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[3.08vw] '>
+            <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[2.08vw] '>
               <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] headerText2Gsap'>How does it work though ?</h3>
 
               <div className='tracking-wider py-3 text-justify leading-normal md:hidden [&_span]:text-coffee-bean-brown details2TextContainer'>
@@ -309,7 +306,7 @@ function AboutPage() {
                 </p>
               </div>
 
-              <div className='tracking-wider leading-normal py-3 text-justify hidden md:block [&_em]:text-coffee-bean-brown [&_span]:inline-block [&_span]:translate-y-full [&_div]:overflow-hidden' ref={ detailsText2Ref }>
+              <div className='tracking-wider leading-normal py-3 text-justify hidden md:block [&_em]:text-coffee-bean-brown [&_span]:inline-block [&_span]:translate-y-full [&_div]:overflow-hidden md:leading-relaxed' ref={ detailsText2Ref }>
                 <div>
                   <span className='span'>All you really have to do is put in your desired long text</span>
                 </div>
@@ -338,11 +335,14 @@ function AboutPage() {
               </div>
 
               <button className='mt-2 py-[1.111vw] button-style button-outline2 group'>
-                <div className='group-hover:animate-bounceLeft'>
-                  <LongLeftArrow />
-                </div>
+                <a href='#summarizer'>
+                  <span className='hidden md:block group-hover:animate-bounceLeft'>
+                    <LongLeftArrow />
+                  </span>
 
-                Go try it out now
+                  Go try it out now
+                </a>
+
               </button>
             </div>
 

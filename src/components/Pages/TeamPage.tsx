@@ -14,7 +14,7 @@ const TeamMembersData = [
   },
 
   {
-    name: 'bola',
+    name: 'Bola',
     titleHeld: 'co-creator & Designer',
     imgSrc: '/images/bola.jpg',
     linkedInLink: '#',
@@ -22,7 +22,7 @@ const TeamMembersData = [
   },
 
   {
-    name: 'odunayo',
+    name: 'Odunayo',
     titleHeld: 'web developer',
     imgSrc: '/images/ibrahim.jpg',
     linkedInLink: '#',
@@ -35,7 +35,7 @@ function TeamPage() {
   const teamMemberContainer = React.useRef(null)
   const teamMembers = gsap.utils.selector(teamMemberContainer) 
 
-  const [text, setText] = React.useState('The Team')
+  const [text, setText] = React.useState('')
 
   function updateText(value: string) {
     setText(value)
@@ -65,7 +65,6 @@ function TeamPage() {
       })
     }, teamPageRef)
 
-
     return () => ctx.revert()
     
   },[])
@@ -77,11 +76,11 @@ function TeamPage() {
       matchMedia.add("(min-width: 768px)", () => {
         const tl = gsap.timeline()
 
-        if(text !== "The Team") {
-          tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
-        } else {
-          tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
-        }
+        // if(text !== "The Team") {
+        //   tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
+        // } else {
+        //   tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
+        // }
       })
     }, teamPageRef)
     return () => ctx.revert()
@@ -99,24 +98,24 @@ function TeamPage() {
 
             <h1 className={`uppercase tracking-[5vw]  font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none overflow-hidden `} id='displayText'>
               <div className='textMove'>
-                <span className='h-inherit w-full inline-block text-justify'>
+                <span className='h-inherit w-full inline-block text-center'>
                   <span>The Team</span>
                 </span>
 
-                <span className='flex items-center justify-center'>{ text }</span>
+                <span className='hidden md:flex items-center justify-center'>{ text }</span>
               </div>
             </h1>
 
 
 
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' ref={ teamMemberContainer }>
+            <div className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden relative' ref={ teamMemberContainer }>
               {
                 TeamMembersData.map( memberDetails => {
                   return(
                     <div 
                       className='teamMemberCard'
                       onMouseEnter={ () => updateText(memberDetails.name) }
-                      onMouseLeave={ () => updateText('The Team') }
+                      // onMouseLeave={ () => updateText('The Team') }
                       key={ memberDetails.titleHeld }
                     >
                       <TeamMemberCard
@@ -127,6 +126,8 @@ function TeamPage() {
                   )
                 })
               }
+
+              <p className={`hidden md:block absolute font-six-caps md:text-[20.38vw] width-full tracking-[5vw] opacity-[0.6] overflow-hidden ${ text === 'Funbi' ? "left-0" : text === 'Bola' ? 'left-1/2 -translate-x-1/2' : 'right-0'}`}><span>{ text }</span></p>
             </div>
           </div>
         </div>

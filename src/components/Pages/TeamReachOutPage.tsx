@@ -11,6 +11,7 @@ function TeamReachOutPage() {
 
   const stayInTouchRef = React.useRef(null)
   const reachOutPage = React.useRef(null)
+  const teamReachOutTextRef = React.useRef(null)
 
   const [animationState, setAnimationState] = React.useState(false)
 
@@ -19,6 +20,42 @@ function TeamReachOutPage() {
       let mm = gsap.matchMedia()
 
       mm.add("(max-width:767px)", () => {
+        const headerSplitword = new SplitType("#reachOutHeader", { types: 'words' })
+        const teamReachOutText = gsap.utils.selector(teamReachOutTextRef)
+
+        gsap.fromTo(teamReachOutText(".span"), {
+            yPercent: 50,
+            opacity: 0
+          }, 
+          {
+            scrollTrigger: {
+              trigger: teamReachOutTextRef.current,
+            },
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.3,
+          }
+        )
+
+        gsap.fromTo(headerSplitword.words, 
+          {
+            yPercent: 50
+          }, 
+          {
+            scrollTrigger: {
+              trigger: "#reachOutHeader",
+            },
+            yPercent: 0,
+            duration: 1.3,
+            stagger: 0.05,
+            delay: 0.1,
+            ease: "back.out"
+          }
+        )
+        
+        
+
         gsap.fromTo(stayInTouchRef.current, {
             marginTop: '-10rem'
           }, 
@@ -37,7 +74,7 @@ function TeamReachOutPage() {
   }, [])
 
   React.useEffect(() => {
-    if(scrollProgress >= 0.8 && !animationState ) {
+    if(scrollProgress >= 0.85 && !animationState ) {
       setAnimationState(true)
     }
   }, [scrollProgress])
@@ -71,8 +108,8 @@ function TeamReachOutPage() {
 
   return (
     <section className='md:h-screen md:w-screen md:overflow-hidden' ref={ reachOutPage }>
-      <div className="layout-grid2 md:divide-x-4 h-screen md:divide-coffee-text">
-        <div>
+      <div className="layout-grid2 md:divide-x-4 md:h-screen md:divide-coffee-text">
+        <div className="hidden md:block">
 
         </div>
 
@@ -81,13 +118,29 @@ function TeamReachOutPage() {
             <div className='py-2 px-5 md:px-[1.75vw]'>
               <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader">It’s ok to reach out</h2>
 
-              <p className='mid-text'>This was a project executed purely out of passion and pursuit of knowlegde, any and all questions are welcome. <br/> <br/> Please reach out to any of the  Team members that you think can answer your questions.</p>
+              <p className='mid-text md:block hidden' id='detailSplit'>This was a project executed purely out of passion and pursuit of knowlegde, any and all questions are welcome. <br/> <br/> Please reach out to any of the  Team members that you think can answer your questions.</p>
+
+              <div className="mid-text block md:hidden [&_span]:inline-block" ref={ teamReachOutTextRef }>
+                <span className="span">This was a project executed purely</span>
+                <span className="span">out of passion and pursuit of</span>
+                <span className="span">knowlegde, any and all questions</span>
+                <span className="span">are welcome.</span>
+
+                <br/>
+                <br/>
+
+                <span className="span">Please reach out to any of the </span>
+                <span className="span">Team members that you think can</span>
+                <span className="span">can answer your questions.</span>
+              </div>
 
               <button className='button-style button-outline2 group mt-2'>
-                <div className="group-hover:animate-bounceLeft">
-                  <LongLeftArrow/>
-                </div>
-                Reach out now
+                <a href="#team">
+                  <span className="hidden md:block group-hover:animate-bounceLeft">
+                    <LongLeftArrow/>
+                  </span>
+                  Reach out now
+                </a>
               </button>
             </div>
               

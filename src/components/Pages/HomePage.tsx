@@ -1,5 +1,5 @@
 import React from 'react'
-import { gsap } from "gsap"
+import { gsap,Observer } from "gsap/all"
 import SplitType from "split-type"
 import { RiMenuFoldFill } from "react-icons/ri"
 
@@ -12,7 +12,8 @@ import {
   RightArrow,
   LongRightArrow,
 } from '../../assets/svgIcons'
-import { Context } from '../../App'
+
+gsap.registerPlugin(Observer)
 
 function HomePage() {
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
@@ -228,11 +229,13 @@ function HomePage() {
           <div id='fadeInAnimate'>
             <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, sumarize for the available</p>
 
-            <button className='button-style button-outline1 mx-auto md:mx-0 group'>
-              summarize now
-              <div className='group-hover:animate-bounceRight'>
-                <LongRightArrow />
-              </div>
+            <button className='button-style button-outline1 mx-auto md:mx-0 group flex items-center md:block'>
+              <a className='' href='#summarizer'>
+                Summarize Now
+                <span className='hidden md:block group-hover:animate-bounceRight'>
+                  <LongRightArrow />
+                </span>
+              </a>
             </button>
           </div>
 
@@ -265,6 +268,3 @@ function HomePage() {
 }
 
 export default HomePage
-
-
-// ! since you figured out the error you should try it out later

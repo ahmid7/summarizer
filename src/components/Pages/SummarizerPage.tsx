@@ -48,7 +48,7 @@ function SummarizerPage() {
 
     console.log(data)
   }
-  // ! so what i think is that i need to add a new effect and let the dependency be the scrollProgress and use matchmMedia
+
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
