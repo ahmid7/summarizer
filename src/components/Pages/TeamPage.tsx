@@ -35,7 +35,7 @@ function TeamPage() {
   const teamMemberContainer = React.useRef(null)
   const teamMembers = gsap.utils.selector(teamMemberContainer) 
 
-  const [text, setText] = React.useState('')
+  const [text, setText] = React.useState('The Team')
 
   function updateText(value: string) {
     setText(value)
@@ -76,11 +76,11 @@ function TeamPage() {
       matchMedia.add("(min-width: 768px)", () => {
         const tl = gsap.timeline()
 
-        // if(text !== "The Team") {
-        //   tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
-        // } else {
-        //   tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
-        // }
+        if(text !== "The Team") {
+          tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
+        } else {
+          tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
+        }
       })
     }, teamPageRef)
     return () => ctx.revert()
@@ -108,7 +108,11 @@ function TeamPage() {
 
 
 
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden relative' ref={ teamMemberContainer }>
+            <div 
+              className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' 
+              ref={ teamMemberContainer }
+              onMouseLeave= { () => updateText("The Team") }
+            >
               {
                 TeamMembersData.map( memberDetails => {
                   return(
@@ -126,8 +130,6 @@ function TeamPage() {
                   )
                 })
               }
-
-              <p className={`hidden md:block absolute font-six-caps md:text-[20.38vw] width-full tracking-[5vw] opacity-[0.6] overflow-hidden ${ text === 'Funbi' ? "left-0" : text === 'Bola' ? 'left-1/2 -translate-x-1/2' : 'right-0'}`}><span>{ text }</span></p>
             </div>
           </div>
         </div>

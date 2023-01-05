@@ -58,7 +58,6 @@ function HomePage() {
         setTimeout(() => {setIsMenuOpened(false)}, 800) 
       }
 
-      // * there should be an easier way for targetting multiple target in observer instead of creating new observer each time
       Observer.create({
         target: "#navLink",
         type: "touch, pointer",
@@ -218,16 +217,14 @@ function HomePage() {
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
         <div className='hidden md:block' >
-          {/* <NavBar
-            page='home'
-          /> */}
+          
         </div>
 
         <div className='px-[4.444vw] py-5 md:h-[74vh]'>
-          <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Sumarization <br/> at your fingertips.</h2>
+          <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
 
           <div id='fadeInAnimate'>
-            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, sumarize for the available</p>
+            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>
 
             <button className='button-style button-outline1 mx-auto md:mx-0 group flex items-center md:block'>
               <a className='' href='#summarizer'>

@@ -33,7 +33,7 @@ function TeamReachOutPage() {
             },
             yPercent: 0,
             opacity: 1,
-            duration: 0.6,
+            duration: 0.5,
             stagger: 0.3,
           }
         )
@@ -53,8 +53,6 @@ function TeamReachOutPage() {
             ease: "back.out"
           }
         )
-        
-        
 
         gsap.fromTo(stayInTouchRef.current, {
             marginTop: '-10rem'
@@ -85,6 +83,8 @@ function TeamReachOutPage() {
 
       mm.add("(min-width: 768px)", () => {
         const headerText = new SplitType('#reachOutHeader', { types: "words" })
+        const detailWordGsap = gsap.utils.selector(".detailWordGsap")
+        
         if(animationState) {
           gsap.fromTo(headerText.words, {
               yPercent: 100,
@@ -97,6 +97,19 @@ function TeamReachOutPage() {
               duration: 1.3
             }
           )
+
+          // gsap.fromTo()
+          gsap.fromTo(detailWordGsap(".span"), {
+            yPercent: 50,
+            opacity: 0
+          }, 
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.3,
+          }
+        )
         }
       })
     }, reachOutPage)
@@ -117,13 +130,22 @@ function TeamReachOutPage() {
           <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
             <div className='py-2 px-5 md:px-[1.75vw]'>
               <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader">It’s ok to reach out</h2>
+              {/* desktop version */}
+              <div className="mid-text hidden md:block [&_span]:inline-block detailWordGsap">
+                <span className="span">This was a project executed purely out of passion</span>
+                <span className="span">and pursuit of knowledge, any and all questions</span>
+                <span className="span">are welcome.</span>
+                <br/>
+                <br/>
+                <span className="span">Please reach out to any of the  Team members</span>
+                <span className="span">that you think can answer your questions.</span>
+              </div>
 
-              <p className='mid-text md:block hidden' id='detailSplit'>This was a project executed purely out of passion and pursuit of knowlegde, any and all questions are welcome. <br/> <br/> Please reach out to any of the  Team members that you think can answer your questions.</p>
-
+              {/* mobile version */}
               <div className="mid-text block md:hidden [&_span]:inline-block" ref={ teamReachOutTextRef }>
                 <span className="span">This was a project executed purely</span>
                 <span className="span">out of passion and pursuit of</span>
-                <span className="span">knowlegde, any and all questions</span>
+                <span className="span">knowledge, any and all questions</span>
                 <span className="span">are welcome.</span>
 
                 <br/>

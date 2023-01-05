@@ -44,6 +44,9 @@ function AboutPage() {
             fontKerning: "none",
             ease: "back.out",
             duration: 1,
+            scrollTrigger: {
+              trigger: '.headerText1Gsap'
+            }
           }
         )
 
@@ -145,12 +148,12 @@ function AboutPage() {
           immediateRender: false,
         },
         {
-          yPercent: 0,
+          yPercent: -200,
           stagger: 0.05,
           delay: 0.1,
           fontKerning: "none",
           ease: "back.out",
-          duration: 1,
+          duration: 2,
         }) 
 
         gsap.to(detailsText(".span"),{
@@ -217,7 +220,7 @@ function AboutPage() {
             <div className='px-5  py-10 md:px-[3vw]  md:py-[1vw] textContainer overflow-hidden' id='cont'>
 
               <h1 className='header-text overflow-hidden headerText1Gsap'>
-                It  really  is  not  rocket  science  how  it  works
+                <span className='md:translate-y-full'>It  really  is  not  rocket  science  how  it  works</span>
               </h1>
 
               <div className='mid-text md:hidden overflow-hidden' id='midText'>

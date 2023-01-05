@@ -196,6 +196,7 @@ input {
 }
 
 @media screen and ( min-width: 768px ) {
+
     .layout-grid {
         grid-template-columns: 11.25vw 1fr 29.97vw;
     }
@@ -234,5 +235,13 @@ input {
     .grid-layout6 {
         display: grid;
         grid-template-columns: 1fr;
+    }
+
+    .gitButtonAnimate span:nth-child(2) {
+        right: -0.5vw;
+    }
+
+    .gitButtonAnimate span:nth-child(4) {
+        left: -0.5vw;
     }
 }
