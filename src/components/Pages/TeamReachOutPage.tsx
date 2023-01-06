@@ -62,7 +62,7 @@ function TeamReachOutPage() {
               trigger: stayInTouchRef.current,
               scrub: true,
             },
-            marginTop: "5rem",
+            marginTop: "9rem",
           }
         )
       })
@@ -82,23 +82,24 @@ function TeamReachOutPage() {
       let mm = gsap.matchMedia()
 
       mm.add("(min-width: 768px)", () => {
-        const headerText = new SplitType('#reachOutHeader', { types: "words" })
+        const headerWordGsap = new SplitType("#reachOutHeader", { types:"words" })
         const detailWordGsap = gsap.utils.selector(".detailWordGsap")
+
         
         if(animationState) {
-          gsap.fromTo(headerText.words, {
-              yPercent: 100,
-            },
-            {
-              yPercent: 0,
-              stagger: 0.05,
-              delay: 0.1,
-              ease: "back.out",
-              duration: 1.3
-            }
-          )
+          gsap.fromTo(headerWordGsap.words, {
+            yPercent: 100,
+            immediateRender: false,
+          },
+          {
+            yPercent: -100,
+            stagger: 0.05,
+            delay: 0.1,
+            fontKerning: "none",
+            ease: "back.out",
+            duration: 2,
+          }) 
 
-          // gsap.fromTo()
           gsap.fromTo(detailWordGsap(".span"), {
             yPercent: 50,
             opacity: 0
@@ -106,8 +107,9 @@ function TeamReachOutPage() {
           {
             yPercent: 0,
             opacity: 1,
-            duration: 0.6,
+            duration: 0.4,
             stagger: 0.3,
+            delay: 0.8
           }
         )
         }
@@ -129,9 +131,10 @@ function TeamReachOutPage() {
         <div className='grid-template md:h-full'>
           <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
             <div className='py-2 px-5 md:px-[1.75vw]'>
-              <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader">It’s ok to reach out</h2>
+              <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader"><span className="md:translate-y-full">It’s ok to reach out</span></h2>
+
               {/* desktop version */}
-              <div className="mid-text hidden md:block [&_span]:inline-block detailWordGsap">
+              <div className="mid-text hidden md:block [&_span]:inline-block detailWordGsap md:[&_span]:opacity-0 ">
                 <span className="span">This was a project executed purely out of passion</span>
                 <span className="span">and pursuit of knowledge, any and all questions</span>
                 <span className="span">are welcome.</span>
@@ -169,8 +172,10 @@ function TeamReachOutPage() {
             <div/>
           </div>
 
-          <div className='w-full relative -z-20 uppercase py-6 bg-black text-white font-six-caps text-9xl md:text-[13.89vw] leading-none center' ref={stayInTouchRef}>
-            <p>stay in touch </p>
+          <div className='w-full relative -z-20 uppercase bg-black text-white font-six-caps text-9xl md:text-[13.89vw] leading-none center overflow-hidden ' ref={stayInTouchRef}>
+            <div className="py-6 ">
+              <p>stay in touch </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import React from 'react'
-import { gsap } from 'gsap'
-import { 
+import {
+  gsap,
   ScrollTrigger, 
   CSSRulePlugin,
-  Observer
+  Observer,
+  ScrollToPlugin
 } from 'gsap/all'
 
 import { 
@@ -14,7 +15,12 @@ import {
   TeamReachOutPage,
 } from "./components" 
 
-gsap.registerPlugin(ScrollTrigger, Observer, CSSRulePlugin)
+gsap.registerPlugin(
+  ScrollTrigger,
+  Observer, 
+  CSSRulePlugin,
+  ScrollToPlugin
+)
 
 
 export const Context = React.createContext<null | number>(null)
@@ -88,3 +94,6 @@ function App() {
 }
 
 export default App
+
+// TODO: onCLick on the arrow button update the scrollProgress value and also pass the scrollprogress function into the context
+// TODO: also add snap to the smooth scrolling

@@ -84,11 +84,11 @@ function TeamPage() {
       matchMedia.add("(min-width: 768px)", () => {
         const tl = gsap.timeline()
 
-        if(text !== "The Team") {
-          tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
-        } else {
-          tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
-        }
+        // if(text !== "The Team") {
+        //   // tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
+        // } else {
+        //   // tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
+        // }
       })
     }, teamPageRef)
     return () => ctx.revert()
@@ -110,7 +110,9 @@ function TeamPage() {
                   <span>The Team</span>
                 </span>
 
-                <span className='hidden md:flex items-center justify-center'>{ text }</span>
+                <span className='hidden md:flex items-center justify-center'>Funbi</span>
+                <span className='hidden md:flex items-center justify-center'>Bola</span>
+                <span className='hidden md:flex items-center justify-center'>Odunayo</span>
               </div>
             </h1>
 

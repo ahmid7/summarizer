@@ -45,7 +45,7 @@ function AboutPage() {
             ease: "back.out",
             duration: 1,
             scrollTrigger: {
-              trigger: '.headerText1Gsap'
+              trigger: '.headerText1'
             }
           }
         )
@@ -121,7 +121,7 @@ function AboutPage() {
     return () => ctx.revert()
     
   },[])
-
+  
   React.useEffect(() => {
 
     if(scrollProgress >= 0.41 && animationState.headerText1 === false) {
@@ -225,8 +225,8 @@ function AboutPage() {
 
               <div className='mid-text md:hidden overflow-hidden' id='midText'>
                 <p className='detailText1Gsap'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.
-                <br className='hidden md:block w-full'/>
-                <br className='hidden md:block w-full'/>
+                <br className=''/>
+                <br className=''/>
                 It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
               </div>
 

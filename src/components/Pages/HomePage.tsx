@@ -105,6 +105,7 @@ function HomePage() {
             opacity: 1,
             yPercent: 0,
             duration: 2,
+            delay: -0.6,
             ease: 'back.out',
             scrollTrigger: {
               trigger: "#fadeInAnimate",
@@ -221,7 +222,7 @@ function HomePage() {
         </div>
 
         <div className='px-[4.444vw] py-5 md:h-[74vh]'>
-          <h2 className='header-text text-center md:text-left overflow-hidden border-2' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
+          <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
 
           <div id='fadeInAnimate'>
             <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>
@@ -240,7 +241,7 @@ function HomePage() {
 
         <div className='grid grid-layout5 divide-y-2 divide-coffee-text iconsContainer'>
           <div className='bg-coffee-bean-deep flex-center'>
-            <p className='' id='logoAnimate'><Logo /></p>
+            <p id='logoAnimate'><Logo /></p>
           </div>
 
           <div className='flex items-center justify-center py-2 relative' ref={ arrowsContainer }>
