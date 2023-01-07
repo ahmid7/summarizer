@@ -41,7 +41,10 @@ function TeamPage() {
 
   const [text, setText] = React.useState('The Team')
 
-  const [memberNumber, setMemberNumber] = React.useState(0)
+  const [memberNumber, setMemberNumber] = React.useState({
+    prevState: 0,
+    currentState: 0
+  })
 
   function updateText(value: string) {
     setText(value)
@@ -90,13 +93,21 @@ function TeamPage() {
 
       matchMedia.add("(min-width: 768px)", () => {
         const tl = gsap.timeline()
-
-        let HeaderText = gsap.to('.textMove', { y: 100 * memberNumber, duration: 1.2, ease: "back.out"})
         
+        gsap.fromTo(".textMove", {
+            yPercent: -25 * memberNumber.prevState
+          }, 
+          {
+            yPercent: -25 * memberNumber.currentState,
+            duration: 1.2,
+            ease: "back.out"
+          }
+        )
       })
+
     }, teamPageRef)
     return () => ctx.revert()
-  },[text])
+  },[memberNumber])
 
   return (
     <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden'>
@@ -108,12 +119,9 @@ function TeamPage() {
 
           <div className='px-5 py-12 md:pl-[5.65vw] md:pr-[2.36vw] md:pt-[0.5vw]'>
 
-            <h1 className={`uppercase tracking-[5vw] font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none md:overflow-hidden `} id='displayText'>
+            <h1 className='uppercase tracking-[5vw] font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none overflow-hidden' id='displayText'>
               <div className='textMove'>
-                <span className='h-inherit w-full inline-block text-center'>
-                  <span>The Team</span>
-                </span>
-
+                <span className='flex items-center justify-center'>The Team</span>
                 <span className='hidden md:flex items-center justify-center'>Funbi</span>
                 <span className='hidden md:flex items-center justify-center'>Bola</span>
                 <span className='hidden md:flex items-center justify-center'>Odunayo</span>
@@ -125,14 +133,26 @@ function TeamPage() {
             <div 
               className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' 
               ref={ teamMemberContainer }
-              onMouseLeave= { () => updateText("The Team") }
+              onMouseLeave= { () => setMemberNumber({ prevState: memberNumber.currentState, currentState: 0 }) }
             >
 
               {/* //TODO: find a way to pass ref in a map function and how to access the reffed component */}
 
               <div 
                 className='teamMemberCard'
-                onMouseEnter={ () => setMemberNumber(1) }
+                id='teamMember1'
+                onMouseEnter={ () => setMemberNumber({ prevState: memberNumber.currentState, currentState: 1 }) }
+              >
+                <TeamMemberCard
+                  memberDetails= { TeamMembersData[0] }
+                  updateText={ updateText }
+                />
+              </div>
+
+              <div 
+                className='teamMemberCard'
+                id='teamMember2'
+                onMouseEnter={ () => setMemberNumber({ prevState: memberNumber.currentState, currentState: 2 }) }
               >
                 <TeamMemberCard
                   memberDetails= { TeamMembersData[1] }
@@ -142,20 +162,11 @@ function TeamPage() {
 
               <div 
                 className='teamMemberCard'
-                onMouseEnter={ () => setMemberNumber(2) }
+                id='teamMember3'
+                onMouseEnter={ () => setMemberNumber({ prevState: memberNumber.currentState, currentState: 3 }) }
               >
                 <TeamMemberCard
                   memberDetails= { TeamMembersData[2] }
-                  updateText={ updateText }
-                />
-              </div>
-
-              <div 
-                className='teamMemberCard'
-                onMouseEnter={ () => setMemberNumber(3) }
-              >
-                <TeamMemberCard
-                  memberDetails= { TeamMembersData[3] }
                   updateText={ updateText }
                 />
               </div>
