@@ -1,5 +1,8 @@
 import React from 'react'
-import { gsap } from "gsap"
+import { 
+  gsap,
+  Observer
+} from "gsap/all"
 
 import { TeamMemberCard } from '../'
 
@@ -29,12 +32,16 @@ const TeamMembersData = [
   },
 ]
 
+gsap.registerPlugin(Observer)
+
 function TeamPage() {
   const teamPageRef = React.useRef(null)
   const teamMemberContainer = React.useRef(null)
   const teamMembers = gsap.utils.selector(teamMemberContainer) 
 
   const [text, setText] = React.useState('The Team')
+
+  const [memberNumber, setMemberNumber] = React.useState(0)
 
   function updateText(value: string) {
     setText(value)
@@ -84,11 +91,8 @@ function TeamPage() {
       matchMedia.add("(min-width: 768px)", () => {
         const tl = gsap.timeline()
 
-        // if(text !== "The Team") {
-        //   // tl.fromTo(".textMove", {yPercent: 0}, {yPercent: -50, duration: 1.2, ease: "back.out"})
-        // } else {
-        //   // tl.fromTo(".textMove", {yPercent: -50, opacity: 0.2}, {yPercent: 0, opacity: 1, duration: 0.9, ease: "back.out"})
-        // }
+        let HeaderText = gsap.to('.textMove', { y: 100 * memberNumber, duration: 1.2, ease: "back.out"})
+        
       })
     }, teamPageRef)
     return () => ctx.revert()
@@ -123,23 +127,38 @@ function TeamPage() {
               ref={ teamMemberContainer }
               onMouseLeave= { () => updateText("The Team") }
             >
-              {
-                TeamMembersData.map( memberDetails => {
-                  return(
-                    <div 
-                      className='teamMemberCard'
-                      onMouseEnter={ () => updateText(memberDetails.name) }
-                      // onMouseLeave={ () => updateText('The Team') }
-                      key={ memberDetails.titleHeld }
-                    >
-                      <TeamMemberCard
-                        memberDetails= { memberDetails }
-                        updateText={ updateText }
-                      />
-                    </div>
-                  )
-                })
-              }
+
+              {/* //TODO: find a way to pass ref in a map function and how to access the reffed component */}
+
+              <div 
+                className='teamMemberCard'
+                onMouseEnter={ () => setMemberNumber(1) }
+              >
+                <TeamMemberCard
+                  memberDetails= { TeamMembersData[1] }
+                  updateText={ updateText }
+                />
+              </div>
+
+              <div 
+                className='teamMemberCard'
+                onMouseEnter={ () => setMemberNumber(2) }
+              >
+                <TeamMemberCard
+                  memberDetails= { TeamMembersData[2] }
+                  updateText={ updateText }
+                />
+              </div>
+
+              <div 
+                className='teamMemberCard'
+                onMouseEnter={ () => setMemberNumber(3) }
+              >
+                <TeamMemberCard
+                  memberDetails= { TeamMembersData[3] }
+                  updateText={ updateText }
+                />
+              </div>
             </div>
           </div>
         </div>
