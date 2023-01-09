@@ -12,14 +12,13 @@
     }
 
     *{
-        @apply scroll-smooth;
+        /* @apply scroll-smooth; */
         /* font-kerning: none; */
-        
     }
 
     body {
-        scroll-behavior: smooth;
-        @apply scroll-smooth
+        /* scroll-behavior: smooth; */
+        /* @apply scroll-smooth */
     }
 }
 
@@ -72,7 +71,7 @@ input {
 }
 
 .nav-ul {
-    @apply uppercase  flex flex-col  text-coffee-bean-lightbrown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw] 
+    @apply uppercase  flex flex-col  text-coffee-bean-brown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw] 
 }
 
 .nav-ul li {
@@ -229,12 +228,17 @@ input {
 
     .grid-layout5 {
         display: grid;
-        @apply grid-cols-1
+        @apply grid-cols-1;
     }
 
     .grid-layout6 {
         display: grid;
         grid-template-columns: 1fr;
+    }
+
+    .header-layout {
+        display: grid;
+        grid-template-rows: 26.6vh 75vh;
     }
 
     .gitButtonAnimate span:nth-child(2) {

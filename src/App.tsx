@@ -13,6 +13,7 @@ import {
   AboutPage,
   TeamPage,
   TeamReachOutPage,
+  NavBar
 } from "./components" 
 
 gsap.registerPlugin(
@@ -31,23 +32,26 @@ function App() {
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
 
+  const [prog, setProg] = React.useState(0)
+
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
 
+
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")
         
-        gsap.to(sections, {
+        let tryingShitOut = gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
           scrollTrigger: {
             trigger: sectionContainerRef.current,
-            preventOverlaps: true,
+            // preventOverlaps: true,
             pin: true,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            scrub: 1.23,
+            // invalidateOnRefresh: true,
+            // anticipatePin: 1,
+            scrub: true,
             end: () => "+=" + document.querySelector("main")?.offsetWidth,
             onUpdate: (self) => {
               setScrollProgress(self.progress)
@@ -55,19 +59,39 @@ function App() {
           }
         })
 
+        var value =  document.querySelector("#nav-trial")
+        // ! we will figure how to do this later.
+        value?.addEventListener("click", () => {
+          
+          gsap.to(sections, {
+            xPercent: -100 * 1,
+            ease: "none",
+          })
+
+          gsap.set(sections, {
+            xPercent: -100 * 1,
+            ease: "none",
+            delay: 1,
+          })
+
+        })
       })
       
-
     }, sectionContainerRef)
-
+    
     return () => ctx.revert()
-
+    
   }, [])
 
+  console.log(scrollProgress, "scrollProgress")
 
   return (
     <Context.Provider value={ scrollProgress}>
-      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
+      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text relative z-10">
+        <section className='absolute top-0 left-0 h-screen bg-white z-50 '>
+          <NavBar />
+        </section>
+
         <section className='section' id='home' >
           <HomePage /> 
         </section>

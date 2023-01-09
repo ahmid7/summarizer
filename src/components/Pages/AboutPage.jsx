@@ -1,10 +1,10 @@
 import React from 'react'
 import SplitType from 'split-type'
-import { gsap } from "gsap"
+import { gsap } from "gsap/all"
+import { ScrollToPlugin } from 'gsap/all'
 
 import { LongLeftArrow } from '../../assets/svgIcons'
 import { Context } from '../../App'
-
 
 function AboutPage() {
   const aboutContainer = React.useRef(null)
@@ -20,7 +20,6 @@ function AboutPage() {
   let detailsText2 = gsap.utils.selector(detailsText2Ref)
 
   const scrollProgress = React.useContext(Context)
-
 
   React.useLayoutEffect(() => {
     
@@ -252,7 +251,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>premuim level tool that uses AI to work. Therefore, the</span>
+                  <span className='span'>premium level tool that uses AI to work. Therefore, the</span>
                 </div>
 
                 <div>
@@ -266,14 +265,14 @@ function AboutPage() {
               
 
               <div className='mt-4 md:mt-0'>
-                <button className='button-style button-outline1 group'>
-                  <a href='#summarizer'>
+                <button className='button-style button-outline1 group' id='nav-trial'>
+                  {/* <a href='#summarizer'> */}
                     <span className='hidden md:block group-hover:animate-bounceLeft'>
                       <LongLeftArrow/>
                     </span>
 
                     Check it out 
-                  </a>
+                  {/* </a> */}
                 </button>
               </div>
 

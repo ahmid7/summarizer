@@ -193,8 +193,8 @@ function HomePage() {
     <section ref={ wrapper } className='w-screen md:h-screen overflow-y-hidden divide-coffee-text '>
       <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
-        <div className='grid-layout6 divide-x-4 divide-coffee-text'>
-          <div className=' center py-2'>
+        <div className='grid-layout6 divide-x-4 divide-coffee-text relative z-20'>
+          <div className='center py-2'>
             <SummarizerLogo/>
           </div>
 
@@ -206,7 +206,7 @@ function HomePage() {
         {
           isMenuOpened && 
           <div ref={ Linkscontainer  } className='md:hidden '>
-             <ul id='navLink' className='h-[85vh] bg-black w-full grid grid-rows-4 text-center scroll-smooth outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center [&_li]:relative [&_li]:z-10 text-xl capitalize'>
+             <ul id='navLink' className='h-[85vh] bg-black w-full grid grid-rows-4 text-center outline outline-2 outline-black text-black [&_li]:bg-white [&_li]:border-2 [&_li]:border-black [&_li]:grid [&_li]:place-content-center [&_li]:relative [&_li]:z-10 text-xl capitalize'>
               <li id='homeLink' className='li'><a href='#home'>home</a></li>
               <li className='li'><a href='#summarizer'>summarizer</a></li>
               <li className='li'><a href='#about'>about</a></li>
