@@ -13,8 +13,9 @@ function AboutPage() {
   const detailsText1Ref = React.useRef(null)
   const detailsText2Ref = React.useRef(null)
   const detailText1Mobile = React.useRef(null)
-
   const buttonToSummarizer1 = React.useRef(null)
+  const buttonToSummarizer2 = React.useRef(null)
+
 
   const [animationState, setAnimationState] = React.useState({
     headerText1: false,
@@ -25,6 +26,10 @@ function AboutPage() {
   let detailsText2 = gsap.utils.selector(detailsText2Ref)
 
   const scrollProgress = React.useContext(Context)
+
+  function scrollTO( ) {
+    gsap.to(window, { duration: 1.2, scrollTo: { y: '#summarizer', offsetY:60, autoKill:false } })
+  }
 
   React.useLayoutEffect(() => {
     
@@ -57,6 +62,7 @@ function AboutPage() {
         )
 
         const button1 = buttonToSummarizer1.current
+        const button2 = buttonToSummarizer2.current
 
         gsap.fromTo(detailsTextMobile(".span"), {
             yPercent: 100,
@@ -73,7 +79,12 @@ function AboutPage() {
         )
 
         button1.addEventListener("click", () => {
-          gsap.to(window, { duration: 0.5, scrollTo: { y:"#summarizer", offsetY: 70 ,autoKill: false }  })
+          // gsap.to(window, { duration: 0.5, scrollTo: { y:"#summarizer", offsetY: 70 ,autoKill: false }  })
+          scrollTO()
+        })
+
+        button2.addEventListener("click", () => {
+          scrollTO()
         })
 
         
@@ -406,14 +417,14 @@ function AboutPage() {
                 </div>
               </div>
 
-              <button className='mt-2 py-[1.111vw] button-style button-outline2 group'>
-                <a href='#summarizer'>
+              <button className='mt-2 py-[1.111vw] button-style button-outline2 group' ref={ buttonToSummarizer2 }>
+                {/* <a href='#summarizer'> */}
                   <span className='hidden md:block group-hover:animate-bounceLeft'>
                     <LongLeftArrow />
                   </span>
 
                   Go try it out now
-                </a>
+                {/* </a> */}
 
               </button>
             </div>
