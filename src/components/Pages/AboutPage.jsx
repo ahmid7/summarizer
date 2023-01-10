@@ -27,8 +27,8 @@ function AboutPage() {
 
   const scrollProgress = React.useContext(Context)
 
-  function scrollTO( ) {
-    gsap.to(window, { duration: 1.2, scrollTo: { y: '#summarizer', offsetY:60, autoKill:false } })
+  function scrollTO(offsetY) {
+    gsap.to(window, { duration: 1.2, scrollTo: { y: '#summarizer', offsetY:offsetY, autoKill:false } })
   }
 
   React.useLayoutEffect(() => {
@@ -73,18 +73,16 @@ function AboutPage() {
               scrub: true,
             },
             yPercent: 0,
-            // stagger: 0.3,
             duration: 0.3,
           }
         )
 
         button1.addEventListener("click", () => {
-          // gsap.to(window, { duration: 0.5, scrollTo: { y:"#summarizer", offsetY: 70 ,autoKill: false }  })
-          scrollTO()
+          scrollTO(60)
         })
 
         button2.addEventListener("click", () => {
-          scrollTO()
+          scrollTO(65)
         })
 
         
