@@ -1,15 +1,18 @@
 import React from 'react'
 import SplitType from 'split-type'
 import { gsap } from "gsap/all"
-import { ScrollToPlugin } from 'gsap/all'
+import { Observer } from 'gsap/all'
 
 import { LongLeftArrow } from '../../assets/svgIcons'
 import { Context } from '../../App'
+
+gsap.registerPlugin(Observer)
 
 function AboutPage() {
   const aboutContainer = React.useRef(null)
   const detailsText1Ref = React.useRef(null)
   const detailsText2Ref = React.useRef(null)
+  const detailText1Mobile = React.useRef(null)
 
   const [animationState, setAnimationState] = React.useState({
     headerText1: false,
@@ -29,8 +32,9 @@ function AboutPage() {
       mm.add("(max-width:767px)", () => {
         const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
         const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
-        const detailsText1 = new SplitType('.detailText1Gsap', { types: 'words' })
         const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
+
+        const detailsTextMobile = gsap.utils.selector(detailText1Mobile)
 
         gsap.fromTo(headerText1.words, {
             yPercent: 100,
@@ -44,24 +48,23 @@ function AboutPage() {
             ease: "back.out",
             duration: 1,
             scrollTrigger: {
-              trigger: '.headerText1'
+              trigger: '.headerText1Gsap',
+              scrub: true,
             }
           }
         )
 
-        gsap.fromTo(detailsText1.words,{
+        gsap.fromTo(detailsTextMobile(".span"), {
             yPercent: 100,
-            immediateRender: false
           }, 
           {
-            yPercent: 0,
-            stagger: 0.02,
-            duration: 1,
-            yoyo: true,
-            ease: "power2.out",
             scrollTrigger: {
-              trigger: detailsText1.words,
-            }
+              trigger: detailText1Mobile.current,
+              scrub: true,
+            },
+            yPercent: 0,
+            // stagger: 0.3,
+            duration: 0.3,
           }
         )
 
@@ -114,6 +117,18 @@ function AboutPage() {
         )
 
       })
+
+    mm.add("(min-width:768px)", () => {
+      Observer.create({
+        target: "aboutButton1",
+        type: "touch",
+        onPress: () => {
+          // gsap.to(window, { duration: 0.5, ease: "power4.out", scrollTo: { y:"#summarizer", offsetY: 10 } })
+          console.log('this works')
+        }
+      })
+    })
+
     }, aboutContainer)
 
 
@@ -222,13 +237,65 @@ function AboutPage() {
                 <span className='md:translate-y-full'>It  really  is  not  rocket  science  how  it  works</span>
               </h1>
 
-              <div className='mid-text md:hidden overflow-hidden' id='midText'>
-                <p className='detailText1Gsap'> Trained by machine learning, text summarizer uses the concept of abstractive summarization to summarize a book, an article, or a research paper.
-                <br className=''/>
-                <br className=''/>
-                It uses NLP to create acute sentences and generates a summary in which the main idea remains intact. It is a premuim level tool that uses AI to work. Therefore, the summary produced by this tool has been checked to be accurate. </p>
+              {/* mobile  */}
+              <div className='mid-text block md:hidden [&_span]:block [&_div]:overflow-hidden text-justify' ref={ detailText1Mobile }>
+                <div>
+                  <span className='span'>Trained by machine learning, text</span>
+                </div>
+
+                <div>
+                  <span className='span'>summarizer uses the concept of</span>
+                </div>
+
+                <div>
+                  <span className='span'>abstractive summarization to</span> 
+                </div>
+
+                <div>
+                  <span className='span'>summarize a book, an article, or a</span> 
+                </div>
+
+                <div>
+                  <span className='span'>research paper</span> 
+                </div>
+
+                <br/>
+
+                <div>
+                  <span className='span'>It uses NLP to create acute</span> 
+                </div>
+
+                <div>
+                  <span className='span'>sentences and generates a </span> 
+                </div>
+
+                <div>
+                  <span className='span'>summary in which the main idea</span> 
+                </div>
+
+                <div>
+                  <span className='span'>remains intact. It is a premium</span> 
+                </div>
+
+                <div>
+                  <span className='span'>level tool that uses AI to work.</span> 
+                </div>
+
+                <div>
+                  <span className='span'>Therefore, the summary produced</span> 
+                </div>
+
+                <div>
+                  <span className='span'>by this tool has been checked to</span> 
+                </div>
+
+                <div>
+                  <span className='span'>be accurate.</span> 
+                </div>
               </div>
 
+
+              {/* desktop */}
               <div className='hidden md:block [&_div]:overflow-hidden [&_span]:inline-block mid-text [&_span]:translate-y-full' ref={ detailsText1Ref }>
                 <div>
                   <span className='span'>Trained by machine learning, text summarizer uses the</span>
@@ -237,11 +304,13 @@ function AboutPage() {
                 <div>
                   <span className='span'>concept of abstractive summarization to summarize a</span>
                 </div>
+
                 <div>
                   <span className='span'>book, an article, or a research paper.</span>
                 </div>
 
                 <br/>
+
                 <div>
                   <span className='span'>It uses NLP to create acute sentences and generates a</span>
                 </div>
@@ -265,7 +334,8 @@ function AboutPage() {
               
 
               <div className='mt-4 md:mt-0'>
-                <button className='button-style button-outline1 group' id='nav-trial'>
+                {/* TODO: fix the link to either using scrollto or progress */}
+                <button className='button-style button-outline1 group' id='abboutButton1'>
                   {/* <a href='#summarizer'> */}
                     <span className='hidden md:block group-hover:animate-bounceLeft'>
                       <LongLeftArrow/>
