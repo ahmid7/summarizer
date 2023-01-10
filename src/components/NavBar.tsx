@@ -8,6 +8,7 @@ type NavBar = {
 
 function NavBar({ logo, page }: NavBar) {
   const scrollProgress = React.useContext(Context)
+  console.log(scrollProgress)
 
   return (
     <nav className=' divide-black hidden md:grid  md:w-[11.60vw] header-layout'>

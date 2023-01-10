@@ -20,11 +20,13 @@ function SummarizerPage() {
     setTextInput(e.target.value)
   } 
 
-  function handlePaste(e) {
-    setTextInput(e.clipboardData.getData('text'))
+  function handlePaste(e:any) {
+    const textValue = textInput
+    setTextInput('')
+    setTextInput(textValue + e.clipboardData.getData('text'))
   }
 
-  function onChange(e) {
+  function onChange(e:any) {
     setTextInput(e.target.value)
   }
 
