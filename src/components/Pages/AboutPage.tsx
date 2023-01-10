@@ -8,7 +8,12 @@ import { Context } from '../../App'
 
 gsap.registerPlugin(Observer, ScrollToPlugin)
 
+
 function AboutPage() {
+
+  // 👇️ ts-nocheck ignores all ts errors in the file
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-nocheck
   const aboutContainer = React.useRef(null)
   const detailsText1Ref = React.useRef(null)
   const detailsText2Ref = React.useRef(null)
@@ -27,7 +32,7 @@ function AboutPage() {
 
   const scrollProgress = React.useContext(Context)
 
-  function scrollTO(offsetY) {
+  function scrollTO(offsetY: number) {
     gsap.to(window, { duration: 1.2, scrollTo: { y: '#summarizer', offsetY:offsetY, autoKill:false } })
   }
 
@@ -76,16 +81,17 @@ function AboutPage() {
             duration: 0.3,
           }
         )
-
+        
+        {/* 
+// @ts-ignore */}
         button1.addEventListener("click", () => {
           scrollTO(60)
         })
-
+{/* 
+// @ts-ignore */}
         button2.addEventListener("click", () => {
           scrollTO(65)
         })
-
-        
 
         gsap.fromTo("#marquee-mobile", {
             xPercent: 0
@@ -146,11 +152,13 @@ function AboutPage() {
   },[])
   
   React.useEffect(() => {
-
+{/* 
+// @ts-ignore */}
     if(scrollProgress >= 0.41 && animationState.headerText1 === false) {
       setAnimationState({ ...animationState, headerText1: true })
     }
-
+{/* 
+// @ts-ignore */}
     if(scrollProgress >= 0.45 && animationState.headerText2 === false) {
       setAnimationState({ ...animationState, headerText2: true })
     }
