@@ -20,13 +20,13 @@ function SummarizerPage() {
     setTextInput(e.target.value)
   } 
 
-  function handlePaste(e:any) {
+  function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
     const textValue = textInput
     setTextInput('')
     setTextInput(textValue + e.clipboardData.getData('text'))
   }
 
-  function onChange(e:any) {
+  function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
   }
 
