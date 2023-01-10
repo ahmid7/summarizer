@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
   gsap,
   ScrollTrigger, 
@@ -23,7 +24,6 @@ gsap.registerPlugin(
   ScrollToPlugin
 )
 
-
 export const Context = React.createContext<null | number>(null)
 
 function App() {
@@ -31,8 +31,6 @@ function App() {
   const sectionContainerRef = React.useRef(null);
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
-
-  const [prog, setProg] = React.useState(0)
 
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,6 +50,7 @@ function App() {
             // invalidateOnRefresh: true,
             // anticipatePin: 1,
             scrub: true,
+            snap: 1/ (sections.length - 1),
             end: () => "+=" + document.querySelector("main")?.offsetWidth,
             onUpdate: (self) => {
               setScrollProgress(self.progress)
@@ -87,8 +86,8 @@ function App() {
 
   return (
     <Context.Provider value={ scrollProgress}>
-      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text relative z-10">
-        <section className='absolute top-0 left-0 h-screen bg-white z-50 '>
+      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
+        <section className='fixed top-0 left-0 h-screen z-50'>
           <NavBar />
         </section>
 

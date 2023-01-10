@@ -191,9 +191,9 @@ function HomePage() {
 
   return (
     <section ref={ wrapper } className='w-screen md:h-screen overflow-y-hidden divide-coffee-text '>
-      <header className={`fixed top-0 z-50 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
+      <header className={`fixed top-0 z-20 md:z-0 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
-        <div className='grid-layout6 divide-x-4 divide-coffee-text relative z-20'>
+        <div className='grid-layout6 divide-x-4 divide-coffee-text'>
           <div className='center py-2'>
             <SummarizerLogo/>
           </div>
