@@ -1,18 +1,20 @@
 import React from 'react'
 import SplitType from 'split-type'
 import { gsap } from "gsap/all"
-import { Observer } from 'gsap/all'
+import { Observer,ScrollToPlugin } from 'gsap/all'
 
 import { LongLeftArrow } from '../../assets/svgIcons'
 import { Context } from '../../App'
 
-gsap.registerPlugin(Observer)
+gsap.registerPlugin(Observer, ScrollToPlugin)
 
 function AboutPage() {
   const aboutContainer = React.useRef(null)
   const detailsText1Ref = React.useRef(null)
   const detailsText2Ref = React.useRef(null)
   const detailText1Mobile = React.useRef(null)
+
+  const buttonToSummarizer1 = React.useRef(null)
 
   const [animationState, setAnimationState] = React.useState({
     headerText1: false,
@@ -54,6 +56,8 @@ function AboutPage() {
           }
         )
 
+        const button1 = buttonToSummarizer1.current
+
         gsap.fromTo(detailsTextMobile(".span"), {
             yPercent: 100,
           }, 
@@ -67,6 +71,12 @@ function AboutPage() {
             duration: 0.3,
           }
         )
+
+        button1.addEventListener("click", () => {
+          gsap.to(window, { duration: 0.5, scrollTo: { y:"#summarizer", offsetY: 70 ,autoKill: false }  })
+        })
+
+        
 
         gsap.fromTo("#marquee-mobile", {
             xPercent: 0
@@ -115,19 +125,9 @@ function AboutPage() {
             }
           }
         )
+        
 
-      })
-
-    mm.add("(min-width:768px)", () => {
-      Observer.create({
-        target: "aboutButton1",
-        type: "touch",
-        onPress: () => {
-          // gsap.to(window, { duration: 0.5, ease: "power4.out", scrollTo: { y:"#summarizer", offsetY: 10 } })
-          console.log('this works')
-        }
-      })
-    })
+      }) 
 
     }, aboutContainer)
 
@@ -335,7 +335,7 @@ function AboutPage() {
 
               <div className='mt-4 md:mt-0'>
                 {/* TODO: fix the link to either using scrollto or progress */}
-                <button className='button-style button-outline1 group' id='abboutButton1'>
+                <button className='button-style button-outline1 group' id='aboutButton1' ref={ buttonToSummarizer1 }>
                   {/* <a href='#summarizer'> */}
                     <span className='hidden md:block group-hover:animate-bounceLeft'>
                       <LongLeftArrow/>
