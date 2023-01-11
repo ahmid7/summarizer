@@ -1,14 +1,40 @@
 import React from 'react'
+import { 
+  gsap, 
+  ScrollToPlugin,
+  CSSPlugin
+} from "gsap/all"
+
+
+
 import { Context } from '../App'
 
-type NavBar = {
-  logo?: boolean;
-  page?: string;
-}
+gsap.registerPlugin(ScrollToPlugin, CSSPlugin)
 
-function NavBar({ logo, page }: NavBar) {
+
+
+function NavBar() {
   const scrollProgress = React.useContext(Context)
-  console.log(scrollProgress)
+
+  const homeRef = React.useRef(null)
+  const summarizerRef = React.useRef(null)
+  const aboutRef = React.useRef(null)
+  const teamRef = React.useRef(null)
+
+  const handleScrollTo = (id:string) => {
+    const targetElement = document.getElementById(id)
+    const container = document.getElementById("#app")
+    const elementRect = targetElement?.getBoundingClientRect()
+    const absoluteElementPosition = elementRect?.left! + container?.scrollLeft!;
+
+    gsap.to(container, {
+      scrollLeft:absoluteElementPosition,
+      duration: 1,
+      ease: 'power3.inOut'
+    })
+  }
+  React.useEffect(() => {
+  },[])
 
   return (
     <nav className=' divide-black hidden md:grid  md:w-[11.60vw] header-layout'>
@@ -17,10 +43,10 @@ function NavBar({ logo, page }: NavBar) {
       </header> 
 
       <ul className='nav-ul bg-white outline outline-4 outline-coffee-text'>
-        <li><a href='#home' className={ page === 'home' ? 'active-link' : '' }>home</a></li>
-        <li><a href='#summarizer' className={ page === 'summarizer' ? 'active-link' : '' }>summarizer</a></li>
-        <li><a href='#about' className={ page === 'about' ? 'active-link' : '' }>about</a></li>
-        <li><a href='#team' className={ page === 'team' ? 'active-link' : '' }>team</a></li>
+        <li ref={ homeRef } onClick={ () => { handleScrollTo("#summarizer") } }>home</li>
+        <li ref= { summarizerRef }><a href='#summarizer' className=''>summarizer</a></li>
+        <li ref= { aboutRef }><a href='#about' className=''>about</a></li>
+        <li ref= { teamRef }><a href='#team' className=''>team</a></li>
       </ul>
     </nav>
   )

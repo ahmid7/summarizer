@@ -40,15 +40,15 @@ function App() {
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")
         
-        let tryingShitOut = gsap.to(sections, {
+        gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
           scrollTrigger: {
             trigger: sectionContainerRef.current,
-            // preventOverlaps: true,
+            preventOverlaps: true,
             pin: true,
-            // invalidateOnRefresh: true,
-            // anticipatePin: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
             scrub: true,
             snap: 1/ (sections.length - 1),
             end: () => "+=" + document.querySelector("main")?.offsetWidth,
@@ -56,23 +56,6 @@ function App() {
               setScrollProgress(self.progress)
             }
           }
-        })
-
-        var value =  document.querySelector("#nav-trial")
-        // ! we will figure how to do this later.
-        value?.addEventListener("click", () => {
-          
-          gsap.to(sections, {
-            xPercent: -100 * 1,
-            ease: "none",
-          })
-
-          gsap.set(sections, {
-            xPercent: -100 * 1,
-            ease: "none",
-            delay: 1,
-          })
-
         })
       })
       
@@ -84,7 +67,7 @@ function App() {
 
   return (
     <Context.Provider value={ scrollProgress}>
-      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text">
+      <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text w-[600%]" id='app'>
         <section className='fixed top-0 left-0 h-screen z-50'>
           <NavBar />
         </section>
