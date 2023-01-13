@@ -21,19 +21,25 @@ function NavBar() {
   const aboutRef = React.useRef(null)
   const teamRef = React.useRef(null)
 
-  const handleScrollTo = (id:string) => {
-    const targetElement = document.getElementById(id)
-    const container = document.getElementById("#app")
-    const elementRect = targetElement?.getBoundingClientRect()
-    const absoluteElementPosition = elementRect?.left! + container?.scrollLeft!;
-
-    gsap.to(container, {
-      scrollLeft:absoluteElementPosition,
-      duration: 1,
-      ease: 'power3.inOut'
-    })
-  }
   React.useEffect(() => {
+    const handleScrollTo = (id:string) => {
+      const targetElement = document.getElementById(id)
+      const container = document.getElementById("#app")
+      const elementRect = targetElement?.getBoundingClientRect()
+      const absoluteElementPosition = elementRect?.left! + container?.scrollLeft!;
+      console.log(container, "container"),
+      console.log(elementRect, "elementRect"),
+      console.log(absoluteElementPosition, "absoluteElementPosition")
+      console.log(targetElement, "targetElement")
+  
+      gsap.to(container, {
+        scrollLeft:absoluteElementPosition,
+        duration: 1,
+        ease: 'power3.inOut'
+      })
+    }
+    // TODO: im thinking scrollTrigger.labelTOscroll might work for this but i dont know either to add the event listener in the app or here 
+    
   },[])
 
   return (
@@ -43,7 +49,7 @@ function NavBar() {
       </header> 
 
       <ul className='nav-ul bg-white outline outline-4 outline-coffee-text'>
-        <li ref={ homeRef } onClick={ () => { handleScrollTo("#summarizer") } }>home</li>
+        <li ref={ homeRef } id="homeLink">home</li>
         <li ref= { summarizerRef }><a href='#summarizer' className=''>summarizer</a></li>
         <li ref= { aboutRef }><a href='#about' className=''>about</a></li>
         <li ref= { teamRef }><a href='#team' className=''>team</a></li>

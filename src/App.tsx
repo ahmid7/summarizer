@@ -16,6 +16,9 @@ import {
   TeamReachOutPage,
   NavBar
 } from "./components" 
+import Trial from './components/Trial'
+import { TimelineMax } from 'gsap'
+
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -32,6 +35,8 @@ function App() {
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
 
+  const [ scroll, setScroll ] = React.useState(0)
+
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
@@ -40,9 +45,10 @@ function App() {
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")
         
-        gsap.to(sections, {
+        let tween = gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
+          id: 'whatever',
           scrollTrigger: {
             trigger: sectionContainerRef.current,
             preventOverlaps: true,
@@ -65,10 +71,16 @@ function App() {
     
   }, [])
 
+  function handleButtonClick() {
+    // console.log(ScrollTrigger.getById('whatever')?.progress)
+    gsap.to("#app", { duration: 2, scrollTo: { y: "#summarizer" } })
+  }
+
+
   return (
     <Context.Provider value={ scrollProgress}>
       <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text w-[600%]" id='app'>
-        <section className='fixed top-0 left-0 h-screen z-50'>
+        <section className='fixed top-0 left-0 h-screen z-50' onClick={ handleButtonClick }>
           <NavBar />
         </section>
 
