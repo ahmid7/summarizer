@@ -16,10 +16,6 @@ function SummarizerPage() {
 
   const [textInput, setTextInput] = React.useState('')
 
-  function onChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setTextInput(e.target.value)
-  } 
-
   function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
     const textValue = textInput
     setTextInput('')

@@ -35,12 +35,9 @@ function App() {
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
 
-  const [ scroll, setScroll ] = React.useState(0)
-
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
-
 
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")

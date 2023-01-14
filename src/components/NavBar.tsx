@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react'
 import { 
   gsap, 
@@ -6,40 +8,29 @@ import {
 } from "gsap/all"
 
 
-
 import { Context } from '../App'
 
-gsap.registerPlugin(ScrollToPlugin, CSSPlugin)
-
-
+gsap.registerPlugin(ScrollToPlugin)
 
 function NavBar() {
   const scrollProgress = React.useContext(Context)
 
-  const homeRef = React.useRef(null)
-  const summarizerRef = React.useRef(null)
-  const aboutRef = React.useRef(null)
-  const teamRef = React.useRef(null)
-
   React.useEffect(() => {
-    const handleScrollTo = (id:string) => {
-      const targetElement = document.getElementById(id)
-      const container = document.getElementById("#app")
-      const elementRect = targetElement?.getBoundingClientRect()
-      const absoluteElementPosition = elementRect?.left! + container?.scrollLeft!;
-      console.log(container, "container"),
-      console.log(elementRect, "elementRect"),
-      console.log(absoluteElementPosition, "absoluteElementPosition")
-      console.log(targetElement, "targetElement")
-  
-      gsap.to(container, {
-        scrollLeft:absoluteElementPosition,
-        duration: 1,
-        ease: 'power3.inOut'
+    const links = document.querySelectorAll(".links")
+
+    links.forEach( link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault()
+        const id = link.querySelector("a")?.getAttribute("href")?.split("#")[1]
+
+        gsap.to(window, {
+          scrollTo: (
+            document.getElementById(id)?.offsetLeft
+          )
+        })
       })
-    }
-    // TODO: im thinking scrollTrigger.labelTOscroll might work for this but i dont know either to add the event listener in the app or here 
-    
+    })
+
   },[])
 
   return (
@@ -49,10 +40,10 @@ function NavBar() {
       </header> 
 
       <ul className='nav-ul bg-white outline outline-4 outline-coffee-text'>
-        <li ref={ homeRef } id="homeLink">home</li>
-        <li ref= { summarizerRef }><a href='#summarizer' className=''>summarizer</a></li>
-        <li ref= { aboutRef }><a href='#about' className=''>about</a></li>
-        <li ref= { teamRef }><a href='#team' className=''>team</a></li>
+        <li className='links'><a href='#home'>home</a></li>
+        <li className='links'><a href='#summarizer'>summarizer</a></li>
+        <li className='links'><a href='#about'>about</a></li>
+        <li className='links'><a href='#team'>team</a></li>
       </ul>
     </nav>
   )
