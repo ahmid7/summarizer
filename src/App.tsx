@@ -16,9 +16,6 @@ import {
   TeamReachOutPage,
   NavBar
 } from "./components" 
-import Trial from './components/Trial'
-import { TimelineMax } from 'gsap'
-
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -42,10 +39,9 @@ function App() {
       mm.add("(min-width:768px)", () => {
         const sections = gsap.utils.toArray(".section")
         
-        let tween = gsap.to(sections, {
+        gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
-          id: 'whatever',
           scrollTrigger: {
             trigger: sectionContainerRef.current,
             preventOverlaps: true,
@@ -72,7 +68,7 @@ function App() {
   return (
     <Context.Provider value={ scrollProgress}>
       <main ref={ sectionContainerRef }  className="wrapper md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[600%]" id='app'>
-        <section className='fixed top-0 left-0 h-screen z-50'>
+        <section className='hidden md:block md:fixed top-0 left-0 h-screen z-50'>
           <NavBar />
         </section>
 

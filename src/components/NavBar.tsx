@@ -23,6 +23,8 @@ function NavBar() {
         e.preventDefault()
         const id = link.querySelector("a")?.getAttribute("href")?.split("#")[1]
 
+        console.log(id)
+
         gsap.to(window, {
           scrollTo: (
             document.getElementById(id)?.offsetLeft
