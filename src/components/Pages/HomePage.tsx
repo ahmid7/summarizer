@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { gsap,Observer } from "gsap/all"
 import SplitType from "split-type"
@@ -95,6 +96,30 @@ function HomePage() {
       )
 
       mm.add("(min-width: 768px)", () => {
+ 
+        const links = document.querySelectorAll(".links")
+
+        links.forEach( ( link, index ) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault()
+            const id = link.querySelector("a")?.getAttribute("href")?.split("#")[1]
+
+            const secId = e.target.getAttribute("href")
+
+            console.log(id, "link")
+            console.log(secId, "secId")
+            console.log(document.getElementById(id).offsetLeft)
+            console.log(document.querySelector(".article").offsetWidth)
+
+            gsap.to(window, {
+              scrollTo:( 
+                document.getElementById(id).offsetLeft * ( document.querySelector(".article").offsetWidth / ( document.querySelector(".article").offsetWidth - window.innerWidth ) ) 
+              ),
+            })
+
+            // console.log( document.getElementById(id).offsetLeft )
+          })
+        })
 
         tl.fromTo("#fadeInAnimate", 
           {
@@ -217,9 +242,14 @@ function HomePage() {
       </header>
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
-        <div className='hidden md:block' >
-          
-        </div>
+        <nav className='hidden md:block ' >
+          <ul className='h-[73vh] nav-ul'>
+            <li className='links'><a href="#home">Home</a></li>
+            <li className='links'><a href="#summarizer">Summarizer</a></li>
+            <li className='links'><a href="#about">About</a></li>
+            <li className='links'><a href="#team">Team</a></li>
+          </ul>
+        </nav>
 
         <div className='px-[4.444vw] py-5 md:h-[74vh]'>
           <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>

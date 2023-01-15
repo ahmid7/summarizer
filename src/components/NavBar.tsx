@@ -43,7 +43,7 @@ function NavBar() {
   },[])
 
   return (
-    <nav className=' divide-black hidden md:grid  md:w-[11.60vw] header-layout'>
+    <nav className=' divide-black hidden md:grid  md:w-[11.60vw]'>
       <header className={`font-poppins text-[2.65vw] pt-[1.94vw] text-center ${ scrollProgress! >= 0.24 ? "bg-white visible transition-all duration-200 outline outline-4 outline-black" : "bg-transparent invisible" }`}> 
         SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span>
       </header> 

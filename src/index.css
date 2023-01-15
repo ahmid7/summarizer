@@ -71,9 +71,9 @@ input {
 }
 
 .nav-ul {
-    @apply uppercase  flex flex-col  text-coffee-bean-brown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw] relative z-50
+    @apply uppercase  flex flex-col  text-coffee-bean-brown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw]
 }
-
+ 
 .nav-ul li {
     @apply cursor-pointer
 }
@@ -241,10 +241,10 @@ input {
         grid-template-columns: 1fr;
     }
 
-    .header-layout {
+    /* .header-layout {
         display: grid;
         grid-template-rows: 27.2vh 75vh;
-    }
+    } */
 
     .gitButtonAnimate span:nth-child(2) {
         right: -0.5vw;

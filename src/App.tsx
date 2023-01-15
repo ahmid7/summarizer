@@ -68,9 +68,9 @@ function App() {
       <main ref={ main }>
         <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
 
-          <section className='hidden md:block md:fixed top-0 left-0 h-screen z-50'>
+          {/* <section className='hidden md:block md:fixed top-0 left-0 h-screen z-50'>
             <NavBar />
-          </section>
+          </section> */}
 
           <section className='section' id='home' >
             <HomePage /> 
