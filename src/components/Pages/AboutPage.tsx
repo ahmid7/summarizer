@@ -40,7 +40,7 @@ function AboutPage() {
     
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
-      
+
       mm.add("(max-width:767px)", () => {
         const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
         const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
@@ -143,6 +143,10 @@ function AboutPage() {
         
 
       }) 
+
+      mm.add("(min-width:768px)", () => {
+        // const links = document.querySelectorAll("")
+      })
 
     }, aboutContainer)
 
@@ -351,15 +355,14 @@ function AboutPage() {
               
 
               <div className='mt-4 md:mt-0'>
-                {/* TODO: fix the link to either using scrollto or progress */}
                 <button className='button-style button-outline1 group' id='aboutButton1' ref={ buttonToSummarizer1 }>
-                  {/* <a href='#summarizer'> */}
+                  <a href='#summarizer'>
                     <span className='hidden md:block group-hover:animate-bounceLeft'>
                       <LongLeftArrow/>
                     </span>
 
                     Check it out 
-                  {/* </a> */}
+                  </a>
                 </button>
               </div>
 
@@ -424,13 +427,13 @@ function AboutPage() {
               </div>
 
               <button className='mt-2 py-[1.111vw] button-style button-outline2 group' ref={ buttonToSummarizer2 }>
-                {/* <a href='#summarizer'> */}
+                <a href='#summarizer'>
                   <span className='hidden md:block group-hover:animate-bounceLeft'>
                     <LongLeftArrow />
                   </span>
 
                   Go try it out now
-                {/* </a> */}
+                </a>
 
               </button>
             </div>

@@ -35,20 +35,20 @@ function NavBar() {
             document.getElementById(id).offsetLeft * ( document.querySelector(".article").offsetWidth / ( document.querySelector(".article").offsetWidth - window.innerWidth ) ) 
           ),
         })
-
-        // console.log( document.getElementById(id).offsetLeft )
       })
     })
 
   },[])
 
   return (
-    <nav className=' divide-black hidden md:grid  md:w-[11.60vw]'>
-      <header className={`font-poppins text-[2.65vw] pt-[1.94vw] text-center ${ scrollProgress! >= 0.24 ? "bg-white visible transition-all duration-200 outline outline-4 outline-black" : "bg-transparent invisible" }`}> 
-        SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span>
+    <nav className='h-[100vh] hidden md:grid'>
+      <header className={`font-poppins md:h-[27vh] xl:h-[27vh]  text-[2.65vw] text-center flex justify-center items-center pb-[3vw]  ${ scrollProgress! >= 0.24 ? "" :" " }`}> 
+        <span>SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span></span>
       </header> 
 
-      <ul className='nav-ul bg-white outline outline-4 outline-coffee-text'>
+      {/* w-[11.60vw] */}
+
+      <ul className='nav-ul bg-white outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text'>
         <li className='links'><a href='#home'>home</a></li>
         <li className='links'><a href='#summarizer'>summarizer</a></li>
         <li className='links'><a href='#about'>about</a></li>

@@ -54,6 +54,27 @@ function App() {
             }
           }
         })
+
+        // 
+        const buttonLinks = document.querySelectorAll('.button-style')
+
+        buttonLinks.forEach(buttonLink => {
+          buttonLink.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            {/* // @ts-ignore */}
+
+            const id = buttonLink.querySelector("a")?.getAttribute("href")?.split("#")[1]
+
+            gsap.to(window, {
+              scrollTo: (
+                /* 
+                // @ts-ignore */
+                document.getElementById(id).offsetLeft * ( document.querySelector(".article").offsetWidth / ( document.querySelector(".article").offsetWidth - window.innerWidth ) ) 
+              )
+            })
+          })
+        })
       })
       
     }, main)
@@ -67,10 +88,6 @@ function App() {
     <Context.Provider value={ scrollProgress}>
       <main ref={ main }>
         <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
-
-          {/* <section className='hidden md:block md:fixed top-0 left-0 h-screen z-50'>
-            <NavBar />
-          </section> */}
 
           <section className='section' id='home' >
             <HomePage /> 

@@ -7,7 +7,6 @@ import {
   PasteIcon,
   RightIndicator 
 } from '../../assets/svgIcons'
-
 import { Context } from '../../App'
 
 
@@ -78,11 +77,8 @@ function SummarizerPage() {
   return (
     <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
-        <div className='gsap-navigate md:h-screen'>
-          {/* <NavBar 
-            logo={ true } 
-            page='summarizer'
-          /> */}
+        <div className=''>
+          <NavBar />
         </div>
 
         <div className=' md:pt-4 text-white grid-template2'>
