@@ -49,8 +49,6 @@ function HomePage() {
           stagger: 0.1,
           yoyo: true,
           ease: "bounce"
-          //* decide between bounce and back!
-          // ease:"bounce({ strength: 0.9, endAtStart: true  })"
         }
       )
 

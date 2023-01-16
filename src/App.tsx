@@ -51,6 +51,7 @@ function App() {
             end: () => "+=" + document.querySelector("article")?.offsetWidth,
             onUpdate: (self) => {
               setScrollProgress(self.progress)
+              console.log(self.progress)
             }
           }
         })
@@ -61,8 +62,6 @@ function App() {
         buttonLinks.forEach(buttonLink => {
           buttonLink.addEventListener("click", (e) => {
             e.preventDefault()
-
-            {/* // @ts-ignore */}
 
             const id = buttonLink.querySelector("a")?.getAttribute("href")?.split("#")[1]
 

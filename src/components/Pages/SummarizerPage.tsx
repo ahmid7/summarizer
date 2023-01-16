@@ -49,6 +49,8 @@ function SummarizerPage() {
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
+    
+
     gsap.fromTo(pointerArrow(".arrows"), 
       {
         xPercent: 0,
@@ -67,6 +69,8 @@ function SummarizerPage() {
         }
       }
     )
+
+    
     }, summarizerContainer)
     
     return () => ctx.revert()
