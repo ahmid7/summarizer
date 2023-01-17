@@ -23,13 +23,6 @@ function NavBar() {
         e.preventDefault()
         const id = link.querySelector("a")?.getAttribute("href")?.split("#")[1]
 
-        const secId = e.target.getAttribute("href")
-
-        console.log(id, "link")
-        console.log(secId, "secId")
-        console.log(document.getElementById(id).offsetLeft)
-        console.log(document.querySelector(".article").offsetWidth)
-
         gsap.to(window, {
           scrollTo:( 
             document.getElementById(id).offsetLeft * ( document.querySelector(".article").offsetWidth / ( document.querySelector(".article").offsetWidth - window.innerWidth ) ) 

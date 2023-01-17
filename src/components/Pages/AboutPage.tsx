@@ -144,10 +144,6 @@ function AboutPage() {
 
       }) 
 
-      mm.add("(min-width:768px)", () => {
-        // const links = document.querySelectorAll("")
-      })
-
     }, aboutContainer)
 
 

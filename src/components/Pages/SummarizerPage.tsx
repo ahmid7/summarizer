@@ -1,5 +1,7 @@
 import React from 'react'
 import { gsap } from 'gsap'
+import axios from "axios"
+import { useQuery } from 'react-query'
 
 import { NavBar } from '..'
 import { 
@@ -11,7 +13,19 @@ import { Context } from '../../App'
 
 
 function SummarizerPage() {
-  const scrollProgress = React.useContext(Context)
+  const { 
+    isLoading, 
+    isError, 
+    data, 
+    error,
+    refetch
+  } = useQuery(
+    'summarize', 
+    summarizeData,
+    {
+      enabled: false,
+    }
+  )
 
   const [textInput, setTextInput] = React.useState('')
 
@@ -23,6 +37,13 @@ function SummarizerPage() {
 
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
+  } 
+
+  // dont think it needs to take it an id...
+  function summarizeData() {
+    return  axios.post('https://hf.space/embed/Funbi/Summarize/+/api/predict/', {
+      "data": [textInput]
+    })
   }
 
   const pointersArrowsContainer = React.useRef(null)
@@ -31,51 +52,35 @@ function SummarizerPage() {
 
   const pointerArrow = gsap.utils.selector(pointersArrowsContainer)
 
-  const summarizeText = async () => {
-    const response = await fetch("https://hf.space/embed/Funbi/Summarize/+/api/predict/", {
-      method: "POST",
-      body: JSON.stringify({ textInput }),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      // mode: "no-cors"
-    })
-
-    const data = await response.json()
-
-    console.log(data)
-  }
-
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-    
-
-    gsap.fromTo(pointerArrow(".arrows"), 
-      {
-        xPercent: 0,
-        autoAlpha: 0
-      },
-      {
-        autoAlpha: 1,
-        xPercent: 20,
-        stagger: 0.05,
-        duration: 1.5,
-        yoyo: true,
-        // ease: 'bounce',
-        repeat: -1,
-        scrollTrigger: {
-          trigger: summarizerContainer.current,
+      gsap.fromTo(pointerArrow(".arrows"), 
+        {
+          xPercent: 0,
+          autoAlpha: 0
+        },
+        {
+          autoAlpha: 1,
+          xPercent: 20,
+          stagger: 0.05,
+          duration: 1.5,
+          yoyo: true,
+          // ease: 'bounce',
+          repeat: -1,
+          scrollTrigger: {
+            trigger: summarizerContainer.current,
+          }
         }
-      }
-    )
+      )
 
-    
     }, summarizerContainer)
     
     return () => ctx.revert()
   },[])
 
+
+  console.log(data)
 
 
   return (
@@ -131,7 +136,7 @@ function SummarizerPage() {
 
               <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
-                <span onClick={ summarizeText } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
+                <span onClick={ refetch } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
               </p>
             </div>
 

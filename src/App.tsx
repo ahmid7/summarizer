@@ -1,4 +1,9 @@
 import React from 'react'
+import { 
+  useQuery,
+  QueryClient,
+  QueryClientProvider
+} from 'react-query'
 
 import {
   gsap,
@@ -14,7 +19,6 @@ import {
   AboutPage,
   TeamPage,
   TeamReachOutPage,
-  NavBar
 } from "./components" 
 
 gsap.registerPlugin(
@@ -25,6 +29,8 @@ gsap.registerPlugin(
 )
 
 export const Context = React.createContext<null | number>(null)
+
+const queryClient = new QueryClient()
 
 function App() {
 
@@ -51,7 +57,6 @@ function App() {
             end: () => "+=" + document.querySelector("article")?.offsetWidth,
             onUpdate: (self) => {
               setScrollProgress(self.progress)
-              console.log(self.progress)
             }
           }
         })
@@ -84,36 +89,35 @@ function App() {
 
 
   return (
-    <Context.Provider value={ scrollProgress}>
-      <main ref={ main }>
-        <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
+    <QueryClientProvider client={ queryClient }>
+      <Context.Provider value={ scrollProgress}>
+        <main ref={ main }>
+          <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
 
-          <section className='section' id='home' >
-            <HomePage /> 
-          </section>
+            <section className='section' id='home' >
+              <HomePage /> 
+            </section>
 
-          <section className='section' id="summarizer">
-            <SummarizerPage />
-          </section>  
+            <section className='section' id="summarizer">
+              <SummarizerPage />
+            </section>  
 
-          <section className='section' id="about">
-            <AboutPage /> 
-          </section>  
+            <section className='section' id="about">
+              <AboutPage /> 
+            </section>  
 
-          <section className='section' id="team">
-            <TeamPage/> 
-          </section>
+            <section className='section' id="team">
+              <TeamPage/> 
+            </section>
 
-          <section className='section'>
-            <TeamReachOutPage/>
-          </section>
-        </article>
-      </main>
-    </Context.Provider>
+            <section className='section'>
+              <TeamReachOutPage/>
+            </section>
+          </article>
+        </main>
+      </Context.Provider> 
+    </QueryClientProvider>
   )
 }
 
 export default App
-
-// TODO: onCLick on the arrow button update the scrollProgress value and also pass the scrollprogress function into the context
-// TODO: also add snap to the smooth scrolling
