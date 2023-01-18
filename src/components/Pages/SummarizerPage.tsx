@@ -28,8 +28,6 @@ function SummarizerPage() {
     }
   )
 
-  let summarizedText = data?.data.data
-
   const [ summarizedInfo, setSummarizedInfo ] = React.useState({
     wordLength: 0,
     sentenceLength: 0,
@@ -125,7 +123,7 @@ function SummarizerPage() {
   return (
     <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
-        <div className=''>
+        <div className='w-inherit'>
           <NavBar />
         </div>
 
@@ -175,7 +173,6 @@ function SummarizerPage() {
 
               <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
-                {/*  */}
                 <span onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
               </p>
             </div>

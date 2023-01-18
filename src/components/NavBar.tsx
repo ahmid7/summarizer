@@ -34,12 +34,12 @@ function NavBar() {
   },[])
 
   return (
-    <nav className={` h-[100vh] hidden bg-white md:grid ${ scrollProgress > 0.25 ? "" : "" } `}>
+    <nav className={` h-[100vh] bg-white outline outline-4 outline-black hidden md:grid ${ scrollProgress > 0.25 ? "" : "" } `}>
       <header className={`font-poppins md:h-[27vh] xl:h-[27vh]  text-[2.65vw] text-center flex justify-center items-center pb-[3vw]  ${ scrollProgress! > 0.25 ? "" :" " }`}> 
         <span>SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span></span>
       </header> 
 
-      <ul className='nav-ul bg-white outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text'>
+      <ul className='nav-ul outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text'>
         <li className='links'><a href='#home'>home</a></li>
         <li className='links'><a href='#summarizer'>summarizer</a></li>
         <li className='links'><a href='#about'>about</a></li>

@@ -61,14 +61,16 @@ function App() {
           }
         })
 
-        gsap.to("#nav-container", {
-          display:"block",
+        const nav = document.querySelector(".sticky-nav")
+
+        gsap.to("#fixed-nav", {
+          display:'block',
           scrollTrigger: {
-            trigger: main.current,
+            trigger: "#summarizer",
             containerAnimation: scrollTween,
-            start: "left top",
-            toggleActions: "play none none reverse",
+            start: "left left",
             markers: true,
+            toggleActions: "play none none reset",
           }
         })
 
@@ -110,7 +112,7 @@ function App() {
               <HomePage /> 
             </section>
 
-            <div className='fixed z-50 hidden' id='nav-container'>
+            <div className='fixed z-50 hidden w-[11.25vw]' id='fixed-nav'>
               <NavBar />
             </div>
 
@@ -137,3 +139,7 @@ function App() {
 }
 
 export default App
+
+
+// TODO: so pin it using scrollTrigger let the trigger element be the summarizer page 
+// TODO: all i need to do to the width is fix the width 
