@@ -10,10 +10,6 @@ gsap.registerPlugin(Observer, ScrollToPlugin)
 
 
 function AboutPage() {
-
-  // 👇️ ts-nocheck ignores all ts errors in the file
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-nocheck
   const aboutContainer = React.useRef(null)
   const detailsText1Ref = React.useRef(null)
   const detailsText2Ref = React.useRef(null)
