@@ -2,6 +2,7 @@ import React from 'react'
 import { gsap } from 'gsap'
 import axios from "axios"
 import { useQuery } from 'react-query'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 import { NavBar } from '..'
 import { 
@@ -9,16 +10,16 @@ import {
   PasteIcon,
   RightIndicator 
 } from '../../assets/svgIcons'
-import { Context } from '../../App'
-
 
 function SummarizerPage() {
+  // handle server side state request
   const { 
     isLoading, 
     isError, 
     data, 
     error,
-    refetch
+    refetch,
+    isFetching,
   } = useQuery(
     'summarize', 
     summarizeData,
@@ -27,34 +28,65 @@ function SummarizerPage() {
     }
   )
 
-  const [textInput, setTextInput] = React.useState('')
+  let summarizedText = data?.data.data
 
+  const [ summarizedInfo, setSummarizedInfo ] = React.useState({
+    wordLength: 0,
+    sentenceLength: 0,
+    summarizedText: ''
+  })
+
+  // TODO: still pending but i think i should remove the localstorage part
+  // the user text input state
+  const [textInput, setTextInput] = React.useState(JSON.parse(localStorage.getItem('text')) || '')
+
+  // handle user paste 
   function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
     const textValue = textInput
     setTextInput('')
     setTextInput(textValue + e.clipboardData.getData('text'))
   }
 
+  // handle user inputting text
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
   } 
 
-  // dont think it needs to take it an id...
+  // api request 
   function summarizeData() {
     return  axios.post('https://hf.space/embed/Funbi/Summarize/+/api/predict/', {
       "data": [textInput]
     })
   }
 
+  // handle user click on the summarize button
+  function handleSummarize() {
+    localStorage.setItem('text', JSON.stringify(textInput))
+    refetch()
+  }
+
+  // handle reset generated data on user click
+  function clearResult() {
+    setSummarizedInfo({
+      wordLength: 0,
+      sentenceLength: 0,
+      summarizedText: ''
+    })
+  }
+
+
+  // pointer arrow container ref
   const pointersArrowsContainer = React.useRef(null)
 
+  // summerizerPage component ref
   const summarizerContainer = React.useRef(null)
 
   const pointerArrow = gsap.utils.selector(pointersArrowsContainer)
 
+  // handle gsap animation
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-
+      // arrow animation
       gsap.fromTo(pointerArrow(".arrows"), 
         {
           xPercent: 0,
@@ -79,9 +111,16 @@ function SummarizerPage() {
     return () => ctx.revert()
   },[])
 
-
-  console.log(data)
-
+  // handle data change when the server side state manager return the data.
+  React.useEffect(() => {
+    if (data) {
+      setSummarizedInfo({
+        wordLength: data.data.data.toString().length,
+        sentenceLength: data.data.data.toString().split('.').length - 1,
+        summarizedText: data.data.data
+      })
+    }
+  },[data])
 
   return (
     <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
@@ -116,7 +155,7 @@ function SummarizerPage() {
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
-                <textarea className='w-full text-black outline-none border-none overflow-x-scroll resize-none min-h-[330px]' 
+                <textarea className='w-full text-black outline-none border-none overflow-scroll resize-none min-h-[330px] leading-relaxed' 
                   value={textInput} 
                   onChange={ onChange } 
                   onPaste={ handlePaste }
@@ -136,18 +175,37 @@ function SummarizerPage() {
 
               <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
-                <span onClick={ refetch } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
+                {/*  */}
+                <span onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
               </p>
             </div>
 
-            <div className='outline outline-2 outline-coffee-text text-xs md:text-[0.9vw] relative'>
-              <div className='absolute bottom-2 w-full text-black'>
+            <div className='outline outline-2 outline-coffee-text relative'>
 
-                <div className='flex-between px-4'>
-                  <p>0 sentences &#183; 0 words</p>
+              <div className='absolute bottom-2 w-full text-black '>
+
+                <div className='min-h-[350px] px-[1.74vw] pt-7 pb-4  leading-relaxed'>
+                  <SkeletonTheme baseColor='#000000' highlightColor='#fafa32'>
+                    { summarizedInfo.summarizedText || <Skeleton count={ 20 } /> }
+                  </SkeletonTheme>
+                  {/* {
+                    isFetching === true && 
+                    <Skeleton count={ 6 }/>
+                  }
+
+                  {
+                    data?.data.data && !isFetching &&
+                    <div className='text-black'>
+                      <p className='text-coffee-bean-brown'>{ data?.data.data }</p>
+                    </div>
+                  } */}
+                </div>
+
+                <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
+                  <p>{`${ summarizedInfo.sentenceLength } sentences`} &#183; {`${ summarizedInfo.wordLength } words`}</p>
                   
                   <p className='flex items-center gap-x-2'>
-                    <span className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
+                    <span onClick={ clearResult }  className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
                     <span className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer'>share</span>
                   </p>
                 </div>
@@ -179,6 +237,12 @@ function SummarizerPage() {
 export default SummarizerPage
 
 
-// * 
+// DONE: split the array returned based on the dot.
+// TODO: onclick share let them be able to share 
+// TODO: fix the nav link for home page and make the fixed nav links 
+// TODO: onClick if data fetching is taking for more than six seconds display a pop up that let the user know that the netwrok is bad
+// TODO: fix the share button, though i dont know which platform i want them to be able to share to
+// TODO: collect the resources from bola today
 
- // 
+
+// TODO: create the nav bar at the app page and then use scrolltrigger, start event should be when the summerizer is a

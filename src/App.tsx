@@ -1,6 +1,5 @@
 import React from 'react'
 import { 
-  useQuery,
   QueryClient,
   QueryClientProvider
 } from 'react-query'
@@ -19,6 +18,7 @@ import {
   AboutPage,
   TeamPage,
   TeamReachOutPage,
+  NavBar
 } from "./components" 
 
 gsap.registerPlugin(
@@ -61,7 +61,19 @@ function App() {
           }
         })
 
-        // 
+        gsap.to("#nav-container", {
+          display:"block",
+          scrollTrigger: {
+            trigger: main.current,
+            containerAnimation: scrollTween,
+            start: "left top",
+            toggleActions: "play none none reverse",
+            markers: true,
+          }
+        })
+
+
+        // handle scrollTo a section when button is clicked
         const buttonLinks = document.querySelectorAll('.button-style')
 
         buttonLinks.forEach(buttonLink => {
@@ -97,6 +109,10 @@ function App() {
             <section className='section' id='home' >
               <HomePage /> 
             </section>
+
+            <div className='fixed z-50 hidden' id='nav-container'>
+              <NavBar />
+            </div>
 
             <section className='section' id="summarizer">
               <SummarizerPage />

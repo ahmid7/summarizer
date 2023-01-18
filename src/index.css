@@ -71,12 +71,14 @@ input {
 }
 
 .nav-ul {
-    @apply uppercase  flex flex-col  text-coffee-bean-brown  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw]
+    @apply uppercase  flex flex-col  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw]
 }
  
 .nav-ul li {
-    @apply cursor-pointer
+    @apply cursor-pointer hover:text-[#bd6049] transition-all
 }
+
+
 
 .border-line {
     outline: 2px solid blue;

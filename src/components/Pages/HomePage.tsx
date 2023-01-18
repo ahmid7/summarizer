@@ -232,9 +232,9 @@ function HomePage() {
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
         <nav className='hidden md:block ' >
-          <ul className='h-[73vh] nav-ul'>
-            <li className='links'><a href="#home">Home</a></li>
-            <li className='links'><a href="#summarizer">Summarizer</a></li>
+          <ul className='h-[73vh] nav-ul text-coffee-bean-brown'>
+            <li className='links text-[#bd6049]'><a href="#home">Home</a></li>
+            <li className='links '><a href="#summarizer">Summarizer</a></li>
             <li className='links'><a href="#about">About</a></li>
             <li className='links'><a href="#team">Team</a></li>
           </ul>
@@ -247,7 +247,7 @@ function HomePage() {
             <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>
 
             <button className='button-style button-outline1 mx-auto md:mx-0 group flex items-center md:block'>
-              <a className='' href='#summarizer'>
+              <a href='#summarizer'>
                 Summarize Now
                 <span className='hidden md:block group-hover:animate-bounceRight'>
                   <LongRightArrow />

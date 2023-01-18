@@ -34,7 +34,7 @@ function NavBar() {
   },[])
 
   return (
-    <nav className={` h-[100vh] hidden md:grid ${ scrollProgress > 0.25 ? "" : "" } `}>
+    <nav className={` h-[100vh] hidden bg-white md:grid ${ scrollProgress > 0.25 ? "" : "" } `}>
       <header className={`font-poppins md:h-[27vh] xl:h-[27vh]  text-[2.65vw] text-center flex justify-center items-center pb-[3vw]  ${ scrollProgress! > 0.25 ? "" :" " }`}> 
         <span>SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span></span>
       </header> 
