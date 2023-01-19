@@ -43,14 +43,15 @@ function NavBar() {
 
     linkArray.splice(indexOfLink, 1)
 
-    const links = document.querySelectorAll(`.${link}`)
-
-    linkArray.forEach( link => {
-      const links = document.querySelectorAll(`.${link}`)
-      links.forEach( link => {
+    
+    linkArray.forEach( removeLinksClass => {
+      const removeLinkClassArray = document.querySelectorAll(`.${removeLinksClass}`)
+      removeLinkClassArray.forEach( link => {
         link?.classList.remove("active-link")
       })
     })
+
+    const links = document.querySelectorAll(`.${link}`)
 
     links.forEach( link => {
       link?.classList.add("active-link")
@@ -62,9 +63,9 @@ function NavBar() {
     // TODO: didnt use gsap here because gsap seems to be interfering with the styling hover
     if( scrollProgress < 0.50) {
       setLinkColor("summarizer-active")
-    } else if( scrollProgress >= 0.50 && scrollProgress < 0.75) {
+    } else if( scrollProgress >= 0.50 && scrollProgress < 0.74) {
       setLinkColor("about-active")
-    } else if( scrollProgress >= 0.75 ) {
+    } else if( scrollProgress >= 0.74 ) {
       setLinkColor("team-active")
     }
 

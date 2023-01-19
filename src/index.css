@@ -68,7 +68,7 @@ input {
 }
 
 .active-link {
-    @apply bg-green-900 text-blue-900
+    @apply text-[#bd6049]
 }
 
 .nav-ul {
