@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { 
   QueryClient,
@@ -73,20 +74,32 @@ function App() {
         })
 
         // animation that handle the active links
-        const activeLinksArray = ["summarizer-active", "about-active", "team-active"]
+        // const activeLinksArray = ["summarizer-active", "about-active"]
+        // const hoverLinksArray = ["summarizer-active", "about-active", "team-active"]
 
-        activeLinksArray.forEach(( activeLink, index ) => {
-          gsap.to(`.${activeLink}`, {
-            color: "#bd6049",
-            duration: 0.2,
-            scrollTrigger: {
-              trigger: `#${activeLink.split("-")[0]}`,
-              containerAnimation: scrollTween,
-              start: "left left",
-              toggleActions: "play reset play reset",
-            }
-          })
-        })
+        // activeLinksArray.forEach(( activeLink, index ) => {
+        //   gsap.to(`.${activeLink}`, {
+        //     color: "#9B4C38",
+        //     duration: 0.2,
+        //     scrollTrigger: {
+        //       trigger: `#${activeLink.split("-")[0]}`,
+        //       containerAnimation: scrollTween,
+        //       start: "left left",
+        //       toggleActions: "play reset play reset",
+        //     }
+        //   })
+        // })
+
+        // gsap.to('.team-active', {
+        //   color: "#9B4C38",
+        //   duration: 0.2,
+        //   scrollTrigger: {
+        //     trigger: "#team",
+        //     containerAnimation: scrollTween,
+        //     start: "left left",
+        //     toggleActions: "play reset play reset"
+        //   }
+        // })
 
 
         // handle scrollTo a section when button is clicked
@@ -143,7 +156,7 @@ function App() {
               <TeamPage/> 
             </section>
 
-            <section className='section'>
+            <section className='section teamPage'>
               <TeamReachOutPage/>
             </section>
           </article>
@@ -154,6 +167,3 @@ function App() {
 }
 
 export default App
-
-
-// TODO: i dont think the link should be when the trigger reach the left section 

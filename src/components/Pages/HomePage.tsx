@@ -232,8 +232,8 @@ function HomePage() {
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
         <nav className='hidden md:block ' >
-          <ul className='h-[73vh] nav-ul text-coffee-bean-brown'>
-            <li className='links text-[#bd6049]'><a href="#home">Home</a></li>
+          <ul className='h-[73vh] nav-ul text-[#a0786e]'>
+            <li className='links text-coffee-bean-brown'><a href="#home">Home</a></li>
             <li className='links '><a href="#summarizer">Summarizer</a></li>
             <li className='links'><a href="#about">About</a></li>
             <li className='links'><a href="#team">Team</a></li>

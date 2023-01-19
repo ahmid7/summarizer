@@ -33,7 +33,24 @@ function NavBar() {
       })
     })
 
+    // TODO: we might have to figure out a better way to this
+    // links.forEach( ( link, index ) => {
+    //   link.addEventListener("mouseenter", (e) => {
+    //     gsap.to('')
+    //   })
+    // })
+
   },[])
+
+
+  React.useLayoutEffect( () => {
+    console.log( scrollProgress )
+    // animation that handle the active links
+    if( scrollProgress >= 0.25) {
+      document.querySelector(".summarizer-active")?.classList.add("active-link")
+      console.log( document.querySelector(".summarizer-active")?.classList )
+    }
+  },[scrollProgress])
 
   return (
     <nav className={` h-[100vh] bg-white outline outline-4 outline-black hidden md:grid ${ scrollProgress > 0.25 ? "" : "" } `}>
@@ -41,7 +58,7 @@ function NavBar() {
         <span>SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span></span>
       </header> 
 
-      <ul className='nav-ul outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text text-coffee-bean-brown'>
+      <ul className='nav-ul outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text text-[#a0786e]'>
         <li className='links'><a href='#home'>home</a></li>
         <li className='links summarizer-active'><a href='#summarizer'>summarizer</a></li>
         <li className='links about-active'><a href='#about'>about</a></li>
