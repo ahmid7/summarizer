@@ -36,11 +36,9 @@ function SummarizerPage() {
     summarizedText: ''
   })
 
-  // TODO: still pending but i think i should remove the localstorage part
   // the user text input state
   /* 
                 // @ts-ignore */
-  // TODO: as it turns out might have to remove the localstorage right here.
   const [textInput, setTextInput] = React.useState(JSON.parse(localStorage.getItem('text')) || '')
 
   // handle user paste 
