@@ -38,12 +38,46 @@ function AboutPage() {
       let mm = gsap.matchMedia()
 
       mm.add("(max-width:767px)", () => {
+        // split texts into words
         const headerText1 = new SplitType('.headerText1Gsap', { types: 'words' })  
         const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
         const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
 
+        // gsap
         const detailsTextMobile = gsap.utils.selector(detailText1Mobile)
 
+
+        const button1 = buttonToSummarizer1.current
+        const button2 = buttonToSummarizer2.current
+        
+        {/* 
+// @ts-ignore */}
+        button1.addEventListener("click", () => {
+          scrollTO(60)
+        })
+{/* 
+// @ts-ignore */}
+        button2.addEventListener("click", () => {
+          scrollTO(65)
+        })
+
+        // animating the marquee mobile
+        gsap.fromTo("#marquee-mobile", {
+            xPercent: 0
+          }, 
+          { 
+            xPercent: -100, 
+            duration: 50, 
+            ease: "none", 
+            scrollTrigger: { 
+              trigger: ".marqueeContainer", 
+              end: "+=2000px", 
+              scrub: 1 
+            }
+          }
+        )
+
+        // animate the first headerText mobile
         gsap.fromTo(headerText1.words, {
             yPercent: 100,
             immediateRender: false,
@@ -62,49 +96,7 @@ function AboutPage() {
           }
         )
 
-        const button1 = buttonToSummarizer1.current
-        const button2 = buttonToSummarizer2.current
-
-        gsap.fromTo(detailsTextMobile(".span"), {
-            yPercent: 100,
-          }, 
-          {
-            scrollTrigger: {
-              trigger: detailText1Mobile.current,
-              scrub: true,
-            },
-            yPercent: 0,
-            duration: 0.3,
-          }
-        )
-        
-        {/* 
-// @ts-ignore */}
-        button1.addEventListener("click", () => {
-          scrollTO(60)
-        })
-{/* 
-// @ts-ignore */}
-        button2.addEventListener("click", () => {
-          scrollTO(65)
-        })
-
-        gsap.fromTo("#marquee-mobile", {
-            xPercent: 0
-          }, 
-          { 
-            xPercent: -100, 
-            duration: 50, 
-            ease: "none", 
-            scrollTrigger: { 
-              trigger: ".marqueeContainer", 
-              start: "center 50%", 
-              end: "+=2000px", 
-              scrub: 1 
-            }
-          }
-        )
-
+        // animate the secongd HeaderText Mobile
         gsap.fromTo(headerText2.words, {
             yPercent: 100,
             immediateRender: false,
@@ -118,8 +110,22 @@ function AboutPage() {
               trigger: '.headerText2Gsap',
             }
           }
-       )
-
+        )
+        
+        // animate the first detailsTextAnimation
+        gsap.fromTo(detailsTextMobile(".span"), {
+            yPercent: 100,
+          }, 
+          {
+            scrollTrigger: {
+              trigger: detailText1Mobile.current,
+            },
+            yPercent: 0,
+            duration: 2,
+          }
+        )
+        
+        // animate the second DetailsText Mobile
         gsap.fromTo(detailsText2.words,{
             yPercent: 50,
             immediateRender: false
@@ -136,7 +142,6 @@ function AboutPage() {
             }
           }
         )
-        
 
       }) 
 
@@ -239,7 +244,7 @@ function AboutPage() {
     <section className='md:h-screen overflow-y-hidden' ref={ aboutContainer }>
       <div className='layout-grid2 md:divide-x-4 divide-black'>
         <div className='hidden md:block h-screen'>
-          
+          {/* fixed nav  */}
         </div>
 
         <div className='layout-grid3  md:h-screen divide-y-[0.2778vw] md:divide-y-0 divide-x-[0.2778vw] divide-black'>
@@ -376,7 +381,7 @@ function AboutPage() {
 
           <div className='grid grid-rows-2 !divide-y-[0.2778vw] divide-black'>
             <div className='px-5 py-5 md:px-[1.74vw] md:pb-0 md:pt-[2.08vw] '>
-              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] headerText2Gsap'>How does it work though ?</h3>
+              <h3 className='uppercase font-six-caps tracking-[0.125em] text-[38px] md:text-[3vw] headerText2Gsap overflow-hidden'>How does it work though ?</h3>
 
               <div className='tracking-wider py-3 text-justify leading-normal md:hidden [&_span]:text-coffee-bean-brown details2TextContainer'>
                 <p id='detailsText2'>
@@ -390,6 +395,7 @@ function AboutPage() {
                 </p>
               </div>
 
+              {/* desktop */}
               <div className='tracking-wider leading-normal py-3 text-justify hidden md:block [&_em]:text-coffee-bean-brown [&_span]:inline-block [&_span]:translate-y-full [&_div]:overflow-hidden md:leading-relaxed' ref={ detailsText2Ref }>
                 <div>
                   <span className='span'>All you really have to do is put in your desired long text</span>

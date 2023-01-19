@@ -66,7 +66,7 @@ function TeamPage() {
             },
             yPercent: 0,
             stagger: 0.1,
-            duration: 1.2,
+            duration: 1.5,
             yoyo:true,
             ease: "back.out"
           }
@@ -128,15 +128,11 @@ function TeamPage() {
               </div>
             </h1>
 
-
-
             <div 
               className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' 
               ref={ teamMemberContainer }
               onMouseLeave= { () => setMemberNumber({ prevState: memberNumber.currentState, currentState: 0 }) }
             >
-
-              {/* //TODO: find a way to pass ref in a map function and how to access the reffed component */}
 
               <div 
                 className='teamMemberCard'
