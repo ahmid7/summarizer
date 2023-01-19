@@ -39,7 +39,7 @@ function SummarizerPage() {
   // the user text input state
   /* 
                 // @ts-ignore */
-  const [textInput, setTextInput] = React.useState(JSON.parse(localStorage.getItem('text')) || '')
+  const [textInput, setTextInput] = React.useState('')
 
   // handle user paste 
   function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
@@ -48,10 +48,20 @@ function SummarizerPage() {
     setTextInput(textValue + e.clipboardData.getData('text'))
   }
 
+  function handlePasteButton(e:any) {
+    navigator.clipboard.readText()
+      .then( ( clipText ) =>  {  
+        const textValue = textInput
+        setTextInput('')
+        setTextInput( textValue + clipText )
+      })
+  }
+
   // handle user inputting text
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
   } 
+
 
   // api request 
   function summarizeData() {
@@ -62,7 +72,6 @@ function SummarizerPage() {
 
   // handle user click on the summarize button
   function handleSummarize() {
-    localStorage.setItem('text', JSON.stringify(textInput))
     refetch()
   }
 
@@ -167,7 +176,7 @@ function SummarizerPage() {
               </div>
 
               <div className={`absolute px-5 md:px-[20px] cursor-pointer py-4 md:py-5 text-xs md:text-[0.9vw] bg-[#CFCFCF] text-black left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 ${textInput.length < 1 ? 'block' : 'hidden'}`}>
-                <div className='center pb-2'>
+                <div className='center pb-2' onClick={ handlePasteButton }>
                   <PasteIcon/>
                 </div>
 
