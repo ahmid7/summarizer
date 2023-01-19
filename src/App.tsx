@@ -77,7 +77,7 @@ function App() {
 
         activeLinksArray.forEach(( activeLink, index ) => {
           gsap.to(`.${activeLink}`, {
-            color: "green",
+            color: "#bd6049",
             duration: 0.2,
             scrollTrigger: {
               trigger: `#${activeLink.split("-")[0]}`,
@@ -87,22 +87,6 @@ function App() {
             }
           })
         })
-
-        // //TODO: find a better way to do this. 
-        // const summerizerActive = document.querySelector(".summarizer-active")
-
-        // gsap.set(summerizerActive, {
-        //   color: "#bd6049",
-        //   duration: 0.6,
-        //   scrollTrigger: {
-        //     trigger: "#summarizer",
-        //     containerAnimation: scrollTween,
-        //     start: "left left",
-        //     toggleActions: "play none none reset",
-        //     markers: true,
-        //   }
-        // })
-        
 
 
         // handle scrollTo a section when button is clicked
