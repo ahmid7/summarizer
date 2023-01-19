@@ -61,18 +61,48 @@ function App() {
           }
         })
 
-        const nav = document.querySelector(".sticky-nav")
-
+        // animation that handle the fixed navbar
         gsap.to("#fixed-nav", {
           display:'block',
           scrollTrigger: {
             trigger: "#summarizer",
             containerAnimation: scrollTween,
             start: "left left",
-            markers: true,
             toggleActions: "play none none reset",
           }
         })
+
+        // animation that handle the active links
+        const activeLinksArray = ["summarizer-active", "about-active", "team-active"]
+
+        activeLinksArray.forEach(( activeLink, index ) => {
+          gsap.to(`.${activeLink}`, {
+            color: "green",
+            duration: 0.6,
+            scrollTrigger: {
+              trigger: `#${activeLink.split("-")[0]}`,
+              containerAnimation: scrollTween,
+              start: "left left",
+              toggleActions: "play reset play reset",
+            }
+          })
+        })
+
+        // //TODO: find a better way to do this. 
+        // const summerizerActive = document.querySelector(".summarizer-active")
+
+        // gsap.set(summerizerActive, {
+        //   color: "#bd6049",
+        //   duration: 0.6,
+        //   scrollTrigger: {
+        //     trigger: "#summarizer",
+        //     containerAnimation: scrollTween,
+        //     start: "left left",
+        //     toggleActions: "play none none reset",
+        //     markers: true,
+        //   }
+        // })
+        
 
 
         // handle scrollTo a section when button is clicked
@@ -93,6 +123,7 @@ function App() {
             })
           })
         })
+        
       })
       
     }, main)
@@ -112,7 +143,7 @@ function App() {
               <HomePage /> 
             </section>
 
-            <div className='fixed z-50 hidden w-[11.25vw]' id='fixed-nav'>
+            <div className='fixed z-50 hidden w-[11.30vw] left-[0.036vw]' id='fixed-nav'>
               <NavBar />
             </div>
 
@@ -141,5 +172,4 @@ function App() {
 export default App
 
 
-// TODO: so pin it using scrollTrigger let the trigger element be the summarizer page 
-// TODO: all i need to do to the width is fix the width 
+// TODO: when you leave make it reset, when you stop make it paused 

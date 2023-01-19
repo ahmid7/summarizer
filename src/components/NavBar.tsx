@@ -16,8 +16,10 @@ function NavBar() {
   const scrollProgress = React.useContext(Context)
 
   React.useEffect(() => {
+    // get all the links
     const links = document.querySelectorAll(".links")
-
+   
+    // map through it and add an event Listener and scroll to a particular link when clicked
     links.forEach( ( link, index ) => {
       link.addEventListener("click", (e) => {
         e.preventDefault()
@@ -39,11 +41,11 @@ function NavBar() {
         <span>SumAI<span className='text-coffee-bean-brown text-[5.56vw]'>.</span></span>
       </header> 
 
-      <ul className='nav-ul outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text'>
+      <ul className='nav-ul outline outline-4 h-[73vh] xl:h-[73vh] outline-coffee-text text-coffee-bean-brown'>
         <li className='links'><a href='#home'>home</a></li>
-        <li className='links'><a href='#summarizer'>summarizer</a></li>
-        <li className='links'><a href='#about'>about</a></li>
-        <li className='links'><a href='#team'>team</a></li>
+        <li className='links summarizer-active'><a href='#summarizer'>summarizer</a></li>
+        <li className='links about-active'><a href='#about'>about</a></li>
+        <li className='links team-active'><a href='#team'>team</a></li>
       </ul>
     </nav>
   )

@@ -259,7 +259,7 @@ function HomePage() {
         </div>
 
         <div className='grid grid-layout5 divide-y-2 divide-coffee-text iconsContainer'>
-          <div className='bg-coffee-bean-deep flex-center'>
+          <div className='bg-coffee-bean-deep flex-center '>
             <p id='logoAnimate'><Logo /></p>
           </div>
 
