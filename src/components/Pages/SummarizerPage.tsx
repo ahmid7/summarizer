@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import axios from "axios"
 import { useQuery } from 'react-query'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { NavBar } from '..'
 import { 
@@ -27,7 +28,8 @@ function SummarizerPage() {
       enabled: false,
     }
   )
-
+  
+  // summarized information include the summarized text, numbers of words and sentences length
   const [ summarizedInfo, setSummarizedInfo ] = React.useState({
     wordLength: 0,
     sentenceLength: 0,
@@ -185,20 +187,7 @@ function SummarizerPage() {
               <div className='absolute bottom-2 w-full text-black '>
 
                 <div className='min-h-[350px] px-[1.74vw] pt-7 pb-4  leading-relaxed'>
-                  <SkeletonTheme baseColor='#000000' highlightColor='#fafa32'>
-                    { summarizedInfo.summarizedText || <Skeleton count={ 20 } /> }
-                  </SkeletonTheme>
-                  {/* {
-                    isFetching === true && 
-                    <Skeleton count={ 6 }/>
-                  }
-
-                  {
-                    data?.data.data && !isFetching &&
-                    <div className='text-black'>
-                      <p className='text-coffee-bean-brown'>{ data?.data.data }</p>
-                    </div>
-                  } */}
+                    { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
                 </div>
 
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
@@ -239,10 +228,6 @@ export default SummarizerPage
 
 // DONE: split the array returned based on the dot.
 // TODO: onclick share let them be able to share 
-// TODO: fix the nav link for home page and make the fixed nav links 
-// TODO: onClick if data fetching is taking for more than six seconds display a pop up that let the user know that the netwrok is bad
+// TODO: onClick if data fetching is taking for more than six seconds display a pop up that let the user know that the network is bad
 // TODO: fix the share button, though i dont know which platform i want them to be able to share to
 // TODO: collect the resources from bola today
-
-
-// TODO: create the nav bar at the app page and then use scrolltrigger, start event should be when the summerizer is a

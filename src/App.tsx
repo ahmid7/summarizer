@@ -172,4 +172,4 @@ function App() {
 export default App
 
 
-// TODO: when you leave make it reset, when you stop make it paused 
+// TODO: i dont think the link should be when the trigger reach the left section 
