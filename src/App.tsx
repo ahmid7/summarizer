@@ -78,7 +78,7 @@ function App() {
         activeLinksArray.forEach(( activeLink, index ) => {
           gsap.to(`.${activeLink}`, {
             color: "green",
-            duration: 0.6,
+            duration: 0.2,
             scrollTrigger: {
               trigger: `#${activeLink.split("-")[0]}`,
               containerAnimation: scrollTween,
