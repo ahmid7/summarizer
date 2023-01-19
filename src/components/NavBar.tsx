@@ -88,3 +88,11 @@ function NavBar() {
 }
 
 export default NavBar
+
+// TODO: fix the title and fav icons
+
+// TODO: fix the navbar link for mobile
+
+// TODO: put comments and ask bola for the materials for it 
+
+// TODO: fix the animation loading time

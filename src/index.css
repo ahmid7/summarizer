@@ -71,6 +71,10 @@ input {
     @apply text-[#bd6049]
 }
 
+#navLink .li a{
+   @apply focus:text-coffee-bean-brown hover:text-coffee-bean-brown
+}
+
 .nav-ul {
     @apply uppercase  flex flex-col  items-center justify-around [&_li]:rotate-90 font-extrabold text-[1.389vw]
 }

@@ -216,7 +216,8 @@ function HomePage() {
             <RiMenuFoldFill/>
           </div>
         </div>
-                                                                                
+
+                                                                      {/* dude put a better className here  */}
         {
           isMenuOpened && 
           <div ref={ Linkscontainer  } className='md:hidden '>
