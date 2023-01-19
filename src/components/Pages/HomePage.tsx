@@ -5,8 +5,6 @@ import SplitType from "split-type"
 import { RiMenuFoldFill } from "react-icons/ri"
 
 
-import { NavBar } from '../'
-
 import { 
   SummarizerLogo, 
   Logo, 
@@ -17,18 +15,26 @@ import {
 gsap.registerPlugin(Observer)
 
 function HomePage() {
+
+  // hamburger state
   const [ isMenuOpened, setIsMenuOpened ] = React.useState( false )
 
+  // ref for the wrapper of the home page
   let wrapper = React.useRef(null)
 
+  // link container for mobile
   let Linkscontainer = React.useRef(null)
 
+  // use this in gsap to select element under the linksContainer  
   let links = gsap.utils.selector(Linkscontainer)
 
+  // ref for the arrows
   let arrowsContainer = React.useRef(null)
 
+  // use this in gsap to select element under the arrowsContainer
   let arrows = gsap.utils.selector(arrowsContainer)
 
+  // update menu state
   function updateMenuOpen() {
     if(isMenuOpened) {
       setTimeout(() => {setIsMenuOpened(false)}, 800)
@@ -37,7 +43,9 @@ function HomePage() {
     }
   } 
 
+
   React.useLayoutEffect(() => {
+    // handle animation based on the state of the hamburger menu
     if( isMenuOpened ) {
       let hamburgerTl = gsap.timeline()
       hamburgerTl.fromTo(links(".li"), {
@@ -73,6 +81,7 @@ function HomePage() {
   }, [isMenuOpened])
 
   React.useLayoutEffect(() => {
+
     const mySplitText = new SplitType('#textAnimation', { types: "words" }) 
 
     const ctx = gsap.context(() => {
@@ -197,7 +206,6 @@ function HomePage() {
       
     }, wrapper)
 
-
     return () => ctx.revert()
 
   },[])
@@ -217,7 +225,6 @@ function HomePage() {
           </div>
         </div>
 
-                                                                      {/* dude put a better className here  */}
         {
           isMenuOpened && 
           <div ref={ Linkscontainer  } className='md:hidden '>
