@@ -68,7 +68,7 @@ input {
 }
 
 .active-link {
-    @apply text-coffee-bean-brown
+    @apply bg-green-900 text-blue-900
 }
 
 .nav-ul {

@@ -33,23 +33,41 @@ function NavBar() {
       })
     })
 
-    // TODO: we might have to figure out a better way to this
-    // links.forEach( ( link, index ) => {
-    //   link.addEventListener("mouseenter", (e) => {
-    //     gsap.to('')
-    //   })
-    // })
-
   },[])
+
+  function setLinkColor(link: string) {
+
+    const linkArray = ["summarizer-active", "about-active", "team-active"]
+
+    const indexOfLink = linkArray.indexOf(link)
+
+    linkArray.splice(indexOfLink, 1)
+
+    const links = document.querySelectorAll(`.${link}`)
+
+    linkArray.forEach( link => {
+      const links = document.querySelectorAll(`.${link}`)
+      links.forEach( link => {
+        link?.classList.remove("active-link")
+      })
+    })
+
+    links.forEach( link => {
+      link?.classList.add("active-link")
+    })
+  }
 
 
   React.useLayoutEffect( () => {
-    console.log( scrollProgress )
-    // animation that handle the active links
-    if( scrollProgress >= 0.25) {
-      document.querySelector(".summarizer-active")?.classList.add("active-link")
-      console.log( document.querySelector(".summarizer-active")?.classList )
+    // TODO: didnt use gsap here because gsap seems to be interfering with the styling hover
+    if( scrollProgress < 0.50) {
+      setLinkColor("summarizer-active")
+    } else if( scrollProgress >= 0.50 && scrollProgress < 0.75) {
+      setLinkColor("about-active")
+    } else if( scrollProgress >= 0.75 ) {
+      setLinkColor("team-active")
     }
+
   },[scrollProgress])
 
   return (
