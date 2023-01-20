@@ -47,19 +47,19 @@ function AboutPage() {
         const detailsTextMobile = gsap.utils.selector(detailText1Mobile)
 
 
-        const button1 = buttonToSummarizer1.current
-        const button2 = buttonToSummarizer2.current
+//         const button1 = buttonToSummarizer1.current
+//         const button2 = buttonToSummarizer2.current
         
-        {/* 
-// @ts-ignore */}
-        button1.addEventListener("click", () => {
-          scrollTO(60)
-        })
-{/* 
-// @ts-ignore */}
-        button2.addEventListener("click", () => {
-          scrollTO(65)
-        })
+//         {/* 
+// // @ts-ignore */}
+//         button1.addEventListener("click", () => {
+//           scrollTO(60)
+//         })
+// {/* 
+// // @ts-ignore */}
+//         button2.addEventListener("click", () => {
+//           scrollTO(65)
+//         })
 
         // animating the marquee mobile
         gsap.fromTo("#marquee-mobile", {
@@ -367,7 +367,6 @@ function AboutPage() {
 
             <div className='flex items-center overflow-x-hidden text-[4.208vw] capitalize whitespace-nowrap marqueeContainer'>
               <div className='md:animate-textMarque' id="marquee-mobile">
-                {/* take note of what you did here and check if it works for desktop */}
                 
                 {
                   [...Array(5)].map((_, i) => (

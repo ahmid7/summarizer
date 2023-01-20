@@ -10,6 +10,14 @@
         /* scroll-behavior: smooth; */
         @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
     }
+
+    *{
+        @apply scroll-smooth
+    }
+
+    body {
+        @apply scroll-smooth
+    }
 }
 
 @font-face {
