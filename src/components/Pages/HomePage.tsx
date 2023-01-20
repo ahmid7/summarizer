@@ -169,6 +169,7 @@ function HomePage() {
             opacity: 1,
             yPercent: 0,
             zIndex: 1,
+            delay: -1,
             duration: 1.5,
             ease: 'back.out',
           }
