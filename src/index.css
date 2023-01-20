@@ -10,16 +10,11 @@
         /* scroll-behavior: smooth; */
         @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
     }
+}
 
-    *{
-        /* @apply scroll-smooth; */
-        /* font-kerning: none; */
-    }
-
-    body {
-        /* scroll-behavior: smooth; */
-        /* @apply scroll-smooth */
-    }
+@font-face {
+    font-family:"SixCaps" ;
+    src: url("./assets/fonts/SixCapsRegular.woff2");
 }
 
 input {
@@ -82,8 +77,6 @@ input {
 .nav-ul li {
     @apply cursor-pointer hover:text-[#bd6049] transition-all
 }
-
-
 
 .border-line {
     outline: 2px solid blue;
@@ -172,7 +165,6 @@ input {
     position: absolute;
     bottom: -5px;
     right: 0;
-    /* width: 104%; */
     height: 1px;
     background: white;
 }
@@ -187,7 +179,6 @@ input {
     position: absolute;
     left: -5px;
     bottom: -5px;
-    /* height: 60%; */
     width: 1px;
     background: white;
 }
@@ -247,11 +238,6 @@ input {
         display: grid;
         grid-template-columns: 1fr;
     }
-
-    /* .header-layout {
-        display: grid;
-        grid-template-rows: 27.2vh 75vh;
-    } */
 
     .gitButtonAnimate span:nth-child(2) {
         right: -0.5vw;
