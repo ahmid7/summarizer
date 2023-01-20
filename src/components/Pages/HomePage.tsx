@@ -95,7 +95,7 @@ function HomePage() {
         },
         {
           yPercent: 0,
-          stagger: 0.05,
+          stagger: 0.08,
           delay: 0.1,
           ease: "back.out",
           duration: 1.3
@@ -157,6 +157,7 @@ function HomePage() {
         )
       })
 
+      // mobile animations
       mm.add("(max-width: 767px)", () => {
         tl.fromTo("#fadeInAnimate", 
           {
