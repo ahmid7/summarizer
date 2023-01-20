@@ -140,7 +140,7 @@ function App() {
               <HomePage /> 
             </section>
 
-            <div className='fixed z-50 hidden w-[11.30vw] left-[0.036vw]' id='fixed-nav'>
+            <div className='fixed z-50 hidden w-[11.50vw] left-[0.036vw]' id='fixed-nav'>
               <NavBar />
             </div>
 

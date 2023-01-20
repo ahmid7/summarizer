@@ -119,7 +119,7 @@ function HomePage() {
           })
         })
 
-        tl.fromTo("#fadeInAnimate", 
+        tl.fromTo("#subHeader", 
           {
             opacity: 0,
             yPercent: 25,
@@ -131,10 +131,17 @@ function HomePage() {
             delay: -0.6,
             ease: 'back.out',
             scrollTrigger: {
-              trigger: "#fadeInAnimate",
+              trigger: "#subHeader",
+              markers: true,
             }
           }
         )
+
+        gsap.to('#button', {
+          opacity: 1,
+          duration: 1.2,
+          delay: 1.4,
+        })
   
         gsap.fromTo(arrows(".arrow"),
           {
@@ -159,7 +166,7 @@ function HomePage() {
 
       // mobile animations
       mm.add("(max-width: 767px)", () => {
-        tl.fromTo("#fadeInAnimate", 
+        tl.fromTo("#subHeaderWithButton", 
           {
             opacity: 0,
             yPercent: 25,
@@ -169,8 +176,8 @@ function HomePage() {
             opacity: 1,
             yPercent: 0,
             zIndex: 1,
-            delay: -1,
-            duration: 1.5,
+            delay: -0.8,
+            duration: 2.5,
             ease: 'back.out',
           }
         )
@@ -241,7 +248,9 @@ function HomePage() {
       </header>
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
-        <nav className='hidden md:block ' >
+
+        {/* nav  */}
+        <nav className='hidden md:block' >
           <ul className='h-[73vh] nav-ul text-[#a0786e]'>
             <li className='links text-coffee-bean-brown'><a href="#home">Home</a></li>
             <li className='links '><a href="#summarizer">Summarizer</a></li>
@@ -250,13 +259,17 @@ function HomePage() {
           </ul>
         </nav>
 
+
         <div className='px-[4.444vw] py-5 md:h-[74vh]'>
+          {/* header */}
           <h2 className='header-text text-center md:text-left overflow-hidden' id="textAnimation"> Pro level Summarization <br/> at your fingertips.</h2>
 
-          <div id='fadeInAnimate'>
-            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>
+          <div id='subHeaderWithButton'>
+            {/* subHeader */}
+            <p className='text-small mid-text md:pr-28 text-center md:text-justify min-w-4/5 mx-auto md:w-full' id='subHeader'>This project offers a machine learning trained tool that translates long texts the same way a really smart person would do. Check it out now, summarize for the available</p>
 
-            <button className='button-style button-outline1 mx-auto md:mx-0 group flex items-center md:block'>
+            {/* button */}
+            <button className='button-style button-outline1 mx-auto md:mx-0 group flex items-center md:block md:opacity-0' id='button'>
               <a href='#summarizer'>
                 Summarize Now
                 <span className='hidden md:block group-hover:animate-bounceRight'>
