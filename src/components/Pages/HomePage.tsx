@@ -132,7 +132,6 @@ function HomePage() {
             ease: 'back.out',
             scrollTrigger: {
               trigger: "#subHeader",
-              markers: true,
             }
           }
         )
