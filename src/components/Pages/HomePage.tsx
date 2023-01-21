@@ -248,7 +248,7 @@ function HomePage() {
 
       <div className='min-h-[87vh] md:h-[73vh] relative pt-[16vh] md:pt-0 md:divide-x-4 divide-coffee-text layout-grid'>
 
-        {/* nav  */}
+        {/* nav link for desktop */}
         <nav className='hidden md:block' >
           <ul className='h-[73vh] nav-ul text-[#a0786e]'>
             <li className='links text-coffee-bean-brown'><a href="#home">Home</a></li>

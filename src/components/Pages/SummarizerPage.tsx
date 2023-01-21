@@ -43,11 +43,12 @@ function SummarizerPage() {
 
   // handle user paste 
   function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
-    const textValue = textInput
+    let textValue = textInput
     setTextInput('')
-    setTextInput(textValue + e.clipboardData.getData('text'))
+    // setTextInput(textValue + e.clipboardData.getData('text'))
   }
 
+  // handle paste when user clicks on the paste button
   function handlePasteButton(e:any) {
     navigator.clipboard.readText()
       .then( ( clipText ) =>  {  
@@ -83,7 +84,6 @@ function SummarizerPage() {
       summarizedText: ''
     })
   }
-
 
   // pointer arrow container ref
   const pointersArrowsContainer = React.useRef(null)
@@ -127,19 +127,26 @@ function SummarizerPage() {
       setSummarizedInfo({
         wordLength: data.data.data.toString().length,
         sentenceLength: data.data.data.toString().split('.').length - 1,
-        summarizedText: data.data.data
+        summarizedText: data.data.data[0]
       })
     }
+
+    console.log(data?.data.data[0], "straight form the api")
+    console.log( summarizedInfo.summarizedText, "updatedText" )
+    console.log( summarizedInfo.wordLength, "updatedWordLength" )
   },[data])
+
 
   return (
     <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
+        {/* navbar  */}
         <div className='w-inherit'>
           <NavBar />
         </div>
 
         <div className=' md:pt-4 text-white grid-template2'>
+          {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
               <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Text Translator</h2>
@@ -149,6 +156,7 @@ function SummarizerPage() {
               <p className='md:text-[1vw] hidden md:block'> Premium level tool at your disposal</p>
             </div>
 
+            {/* github button  */}
             <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitButtonAnimate'>
               <span></span>
               <span></span>
@@ -162,13 +170,14 @@ function SummarizerPage() {
           </header>
 
           <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
+            {/* text area */}
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
                 <textarea className='w-full text-black outline-none border-none overflow-scroll resize-none min-h-[330px] leading-relaxed' 
                   value={textInput} 
                   onChange={ onChange } 
-                  onPaste={ handlePaste }
+                  // onPaste={ handlePaste }
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
                 >
                   
@@ -176,7 +185,7 @@ function SummarizerPage() {
               </div>
 
               <div className={`absolute px-5 md:px-[20px] cursor-pointer py-4 md:py-5 text-xs md:text-[0.9vw] bg-[#CFCFCF] text-black left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 ${textInput.length < 1 ? 'block' : 'hidden'}`}>
-                <div className='center pb-2' onClick={ handlePasteButton }>
+                <div className='center pb-2'>
                   <PasteIcon/>
                 </div>
 
@@ -189,13 +198,14 @@ function SummarizerPage() {
               </p>
             </div>
 
-            <div className='outline outline-2 outline-coffee-text relative'>
+            {/* summarized text */}
+            <div className='outline outline-2 outline-coffee-text relative '>  
+              <div className='min-h-[350px] px-[1.74vw] pt-7 pb-4 leading-relaxed text-coffee-text'>
+                { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
+              </div>
 
               <div className='absolute bottom-2 w-full text-black '>
 
-                <div className='min-h-[350px] px-[1.74vw] pt-7 pb-4  leading-relaxed'>
-                    { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
-                </div>
 
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
                   <p>{`${ summarizedInfo.sentenceLength } sentences`} &#183; {`${ summarizedInfo.wordLength } words`}</p>
@@ -238,3 +248,6 @@ export default SummarizerPage
 // TODO: onClick if data fetching is taking for more than six seconds display a pop up that let the user know that the network is bad
 // TODO: fix the share button, though i dont know which platform i want them to be able to share to
 // TODO: collect the resources from bola today
+
+
+// TODO: it id pasting twice
