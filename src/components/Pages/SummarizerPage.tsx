@@ -41,20 +41,11 @@ function SummarizerPage() {
                 // @ts-ignore */
   const [textInput, setTextInput] = React.useState('')
 
-  // handle user paste 
-  function handlePaste(e:React.ClipboardEvent<HTMLTextAreaElement>) {
-    let textValue = textInput
-    setTextInput('')
-    // setTextInput(textValue + e.clipboardData.getData('text'))
-  }
-
   // handle paste when user clicks on the paste button
   function handlePasteButton(e:any) {
     navigator.clipboard.readText()
       .then( ( clipText ) =>  {  
-        const textValue = textInput
-        setTextInput('')
-        setTextInput( textValue + clipText )
+        setTextInput( clipText )
       })
   }
 
@@ -62,7 +53,6 @@ function SummarizerPage() {
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
   } 
-
 
   // api request 
   function summarizeData() {
@@ -130,10 +120,6 @@ function SummarizerPage() {
         summarizedText: data.data.data[0]
       })
     }
-
-    console.log(data?.data.data[0], "straight form the api")
-    console.log( summarizedInfo.summarizedText, "updatedText" )
-    console.log( summarizedInfo.wordLength, "updatedWordLength" )
   },[data])
 
 
@@ -158,6 +144,7 @@ function SummarizerPage() {
 
             {/* github button  */}
             <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitButtonAnimate'>
+              {/* each span is for button hover animation */}
               <span></span>
               <span></span>
               <span></span>
@@ -170,28 +157,30 @@ function SummarizerPage() {
           </header>
 
           <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
-            {/* text area */}
+            {/* text area container */}
             <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
 
               <div className='min-h-[350px]'>
+                {/* text area */}
                 <textarea className='w-full text-black outline-none border-none overflow-scroll resize-none min-h-[330px] leading-relaxed' 
                   value={textInput} 
                   onChange={ onChange } 
-                  // onPaste={ handlePaste }
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
                 >
                   
                 </textarea>
               </div>
 
+              {/* paste button container */}
               <div className={`absolute px-5 md:px-[20px] cursor-pointer py-4 md:py-5 text-xs md:text-[0.9vw] bg-[#CFCFCF] text-black left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 ${textInput.length < 1 ? 'block' : 'hidden'}`}>
-                <div className='center pb-2'>
+                <div className='center pb-2' onClick={ handlePasteButton }>
                   <PasteIcon/>
                 </div>
 
                 <p>Paste Text</p>
               </div>
 
+              
               <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
                 <span onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
