@@ -220,7 +220,7 @@ function HomePage() {
 
 
   return (
-    <section ref={ wrapper } className='w-screen md:h-screen overflow-y-hidden divide-coffee-text '>
+    <section ref={ wrapper } className='w-screen md:h-screen overflow-y-hidden divide-coffee-text homeWrapper'>
       <header className={`fixed top-0 z-20 md:z-0 bg-white w-full outline outline-4 outline-coffee-text md:relative md:divide-y-4 divide-coffee-text`}>
 
         <div className='grid-layout6 divide-x-4 divide-coffee-text'>

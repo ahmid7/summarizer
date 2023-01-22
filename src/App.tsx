@@ -104,35 +104,46 @@ function App() {
   return (
       <QueryClientProvider client={ queryClient }>
         <Context.Provider value={ scrollProgress}>
-            <main ref={ main }>
-              <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
+          <main ref={ main }>
+            <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
 
-                <section className='section' id='home' >
-                  <HomePage /> 
-                </section>
+              <section className='section' id='home' >
+                <HomePage /> 
+              </section>
 
-                <div className='fixed z-50 hidden w-[11.50vw] left-[0.02vw]' id='fixed-nav'>
-                  <NavBar />
-                </div>
-                
-                <section className='section' id="summarizer">
-                  <SummarizerPage />
-                </section>  
+              <div className='fixed z-50 hidden w-[11.50vw] left-[0.02vw]' id='fixed-nav'>
+                <NavBar />
+              </div>
+              
+              <section className='section' id="summarizer">
+                <SummarizerPage />
+              </section>  
 
-                <section className='section' id="about">
-                  <AboutPage /> 
-                </section>  
+              <section className='section' id="about">
+                <AboutPage /> 
+              </section>  
 
-                <section className='section' id="team">
-                  <TeamPage/> 
-                </section>
+              <section className='section' id="team">
+                <TeamPage/> 
+              </section>
 
-                <section className='section teamPage'>
-                  <TeamReachOutPage/>
-                </section>
-              </article>
-            </main>
+              <section className='section teamPage'>
+                <TeamReachOutPage/>
+              </section>
+            </article>
+          </main>
         </Context.Provider> 
+        <Toaster 
+          toastOptions={{
+            error: {
+              duration: 3000,
+              style: {
+                background: "red",
+                color: 'white'
+              }
+            }
+          }}
+        />
       </QueryClientProvider>
   )
 }

@@ -62,16 +62,18 @@ function SummarizerPage() {
     })
   }
 
+  // error message to display when the user is offline
+  const notify = () => toast.error('no network connection')
+
   // handle user click on the summarize button
   function handleSummarize() {
-    // if(navigator.onLine) {
-    //   // toast.error('network unavailable')
-    //   console.log( "network unavailable!!!" )
-    // } else {
-    //   console.log("network available")
-    // }
-    //
-    if(textInput.length < 1) {
+    // check if the user is online or not, if no display a notification telling them no network connection
+    if(window.navigator.onLine) {
+    
+    }else {
+      if(textInput !== '') {
+        notify()
+      } 
       return null
     }
     refetch()
@@ -133,7 +135,7 @@ function SummarizerPage() {
   },[data])
 
   return (
-    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0 summerizerWrapper' ref={ summarizerContainer }>
+    <section className='min-h-screen md:h-screen w-screen overflow-y-hidden md:overflow-x-hidden mt-5 md:mt-0 summarizerWrapper' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
         {/* navbar  */}
         <div className='w-inherit'>
@@ -171,7 +173,7 @@ function SummarizerPage() {
 
               <div className='calc-height'>
                 {/* text area */}
-                <textarea className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed' 
+                <textarea className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed text-summarized' 
                   value={textInput} 
                   onChange={ onChange } 
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
