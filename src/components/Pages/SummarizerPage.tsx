@@ -188,12 +188,17 @@ function SummarizerPage() {
             </div>
 
             {/* summarized text container */}
-            <div className='outline outline-2 outline-coffee-text relative h-full summarizedText'>  
-              <div className='overflow-y-scroll max-h-[46vh] px-[1.74vw] pt-7 pb-4 leading-relaxed text-coffee-text'>
-                <div className=' border-red-900'>
-                  { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
-                </div>
+            <div className='outline outline-2 outline-coffee-text  px-[1.74vw] pt-7 pb-4 relative h-full summarizedText'> 
+
+              <div className='calc-height'>
+                <textarea 
+                  value= { summarizedInfo.summarizedText }
+                  className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                >
+                  { summarizedInfo.summarizedText }
+                </textarea>
               </div>
+
 
               <div className='absolute bottom-2 w-full text-black'>
 
