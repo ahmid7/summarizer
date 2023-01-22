@@ -124,14 +124,14 @@ function SummarizerPage() {
 
 
   return (
-    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0' ref={ summarizerContainer }>
+    <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0 summerizerWrapper' ref={ summarizerContainer }>
       <div className='layout-grid2 md:divide-x-4 md:divide-coffee-text'>
         {/* navbar  */}
         <div className='w-inherit'>
           <NavBar />
         </div>
 
-        <div className=' md:pt-4 text-white grid-template2'>
+        <div className='h-screen md:pt-4 text-white grid-template2'>
           {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
@@ -158,11 +158,11 @@ function SummarizerPage() {
 
           <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
             {/* text area container */}
-            <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative'>
+            <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative h-full'>
 
-              <div className='min-h-[350px]'>
+              <div className='calc-height'>
                 {/* text area */}
-                <textarea className='w-full text-black outline-none border-none overflow-scroll resize-none min-h-[330px] leading-relaxed' 
+                <textarea className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed' 
                   value={textInput} 
                   onChange={ onChange } 
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
@@ -187,14 +187,15 @@ function SummarizerPage() {
               </p>
             </div>
 
-            {/* summarized text */}
-            <div className='outline outline-2 outline-coffee-text relative '>  
-              <div className='min-h-[350px] px-[1.74vw] pt-7 pb-4 leading-relaxed text-coffee-text'>
-                { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
+            {/* summarized text container */}
+            <div className='outline outline-2 outline-coffee-text relative h-full summarizedText'>  
+              <div className='overflow-y-scroll max-h-[46vh] px-[1.74vw] pt-7 pb-4 leading-relaxed text-coffee-text'>
+                <div className=' border-red-900'>
+                  { summarizedInfo.summarizedText || <Skeleton count={ 10 } /> }
+                </div>
               </div>
 
-              <div className='absolute bottom-2 w-full text-black '>
-
+              <div className='absolute bottom-2 w-full text-black'>
 
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
                   <p>{`${ summarizedInfo.sentenceLength } sentences`} &#183; {`${ summarizedInfo.wordLength } words`}</p>

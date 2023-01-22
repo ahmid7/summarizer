@@ -241,7 +241,7 @@ function AboutPage() {
 
 
   return (
-    <section className='md:h-screen overflow-y-hidden' ref={ aboutContainer }>
+    <section className='md:h-screen overflow-y-hidden aboutWrapper' ref={ aboutContainer }>
       <div className='layout-grid2 md:divide-x-4 divide-black'>
         <div className='hidden md:block h-screen'>
           {/* fixed nav  */}

@@ -110,7 +110,7 @@ function TeamPage() {
   },[memberNumber])
 
   return (
-    <article ref={ teamPageRef } className='contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden'>
+    <article ref={ teamPageRef } className='teamWrapper contain md:h-screen divide-x-4 divide-black flex flex-nowrap flex-shrink-0  md:overflow-y-hidden'>
       <section>
         <div className='layout-grid2 md:divide-x-2 divide-black'>
           <div className='md:h-screen'>

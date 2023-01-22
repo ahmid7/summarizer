@@ -196,9 +196,27 @@ input {
     -webkit-animation: animateButtonSpan2 0.25s 0.5s linear forwards;
 }
 
-::-webkit-scrollbar {
+.wrapper{
+    overflow-x: hidden;
+}
+
+.summerizerWrapper, .aboutWrapper, .teamWrapper {
+    overflow-x: hidden;
+}
+
+.calc-height {
+    height: calc(100% - 2.3vw);
+}
+
+
+/* .wrapper::-webkit-scrollbar {
     display: none;
 }
+
+.section {
+    width: 100vw;
+    overflow:hidden;
+} */
 
 @media screen and ( min-width: 768px ) {
 
@@ -219,8 +237,9 @@ input {
     .grid-template2 {
         display: grid;
         row-gap: 25px;
-        grid-template-rows:6.07vw 1fr 10.5vw
+        grid-template-rows:6.07vw 1fr 10.5vw;
     }
+    /* 1fr was changed here */
 
     .layout-grid3 {
         display: grid;
@@ -242,6 +261,10 @@ input {
         @apply grid-cols-1;
     }
 
+    .height-calc {
+        height: calc(100% - 10vw)
+    }
+
     .grid-layout6 {
         display: grid;
         grid-template-columns: 1fr;
@@ -254,4 +277,5 @@ input {
     .gitButtonAnimate span:nth-child(4) {
         left: -0.5vw;
     }
+    /* .cac */
 }
