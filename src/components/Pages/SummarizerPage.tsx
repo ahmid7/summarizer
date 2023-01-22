@@ -131,7 +131,7 @@ function SummarizerPage() {
           <NavBar />
         </div>
 
-        <div className='h-screen md:pt-4 text-white grid-template2'>
+        <div className='md:h-screen md:pt-4 text-white grid-template2'>
           {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
@@ -158,7 +158,7 @@ function SummarizerPage() {
 
           <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
             {/* text area container */}
-            <div className='outline outline-2 outline-coffee-text px-[1.74vw] pt-7 pb-4 relative h-full'>
+            <div className='outline outline-2 outline-coffee-text px-[1.74vw] py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full'>
 
               <div className='calc-height'>
                 {/* text area */}
@@ -188,7 +188,7 @@ function SummarizerPage() {
             </div>
 
             {/* summarized text container */}
-            <div className='outline outline-2 outline-coffee-text  px-[1.74vw] pt-7 pb-4 relative h-full summarizedText'> 
+            <div className='outline outline-2 outline-coffee-text  px-[1.74vw] py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full summarizedText'> 
 
               <div className='calc-height'>
                 <>
@@ -257,11 +257,4 @@ function SummarizerPage() {
 export default SummarizerPage
 
 
-// DONE: split the array returned based on the dot.
-// TODO: onclick share let them be able to share 
-// TODO: onClick if data fetching is taking for more than six seconds display a pop up that let the user know that the network is bad
-// TODO: fix the share button, though i dont know which platform i want them to be able to share to
-// TODO: collect the resources from bola today
-
-
-// TODO: it id pasting twice
+// TODO: share button

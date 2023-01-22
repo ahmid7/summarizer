@@ -200,14 +200,9 @@ input {
     overflow-x: hidden;
 }
 
-.summerizerWrapper, .aboutWrapper, .teamWrapper {
-    overflow-x: hidden;
-}
-
 .calc-height {
-    height: calc(100% - 2.3vw);
-}
-
+    height: calc(100% - 8vw);
+}   
 
 /* .wrapper::-webkit-scrollbar {
     display: none;
@@ -259,11 +254,7 @@ input {
     .grid-layout5 {
         display: grid;
         @apply grid-cols-1;
-    }
-
-    .height-calc {
-        height: calc(100% - 10vw)
-    }
+    } 
 
     .grid-layout6 {
         display: grid;
@@ -277,5 +268,12 @@ input {
     .gitButtonAnimate span:nth-child(4) {
         left: -0.5vw;
     }
-    /* .cac */
+
+    .summerizerWrapper, .aboutWrapper, .teamWrapper {
+        overflow-x: hidden;
+    }
+
+    .calc-height {
+        height: calc(100% - 2.3vw);
+    } 
 }
