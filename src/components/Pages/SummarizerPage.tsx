@@ -173,7 +173,7 @@ function SummarizerPage() {
 
               <div className='calc-height'>
                 {/* text area */}
-                <textarea className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed text-summarized' 
+                <textarea className='w-full h-full text-black border-2 outline-none border-none overflow-y-scroll resize-none leading-relaxed text-summarized' 
                   value={textInput} 
                   onChange={ onChange } 
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
@@ -192,7 +192,7 @@ function SummarizerPage() {
               </div>
 
               
-              <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
+              <p className='capitalize absolute bottom-2 right-[1.8vw] text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
                 <button onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</button>
               </p>
