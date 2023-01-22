@@ -10,14 +10,14 @@
         /* scroll-behavior: smooth; */
         @apply text-[3.5vw] sm:text-[1.8vw] md:text-[1.111vw]
     }
+}
 
-    *{
-        @apply scroll-smooth
-    }
+*{
+    scroll-behavior: smooth;
+}
 
-    body {
-        @apply scroll-smooth
-    }
+body {
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -204,17 +204,24 @@ input {
     height: calc(100% - 8vw);
 }   
 
-/* .wrapper::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
 }
 
-.section {
+/* .section {
     width: 100vw;
     overflow:hidden;
 } */
 
 @media screen and ( min-width: 768px ) {
 
+    *{
+        scroll-behavior: auto;
+    }
+    
+    body {
+        scroll-behavior: auto;
+    }
     .section {
         width: 100vw;
         height: 100vh;
@@ -269,9 +276,9 @@ input {
         left: -0.5vw;
     }
 
-    .summerizerWrapper, .aboutWrapper, .teamWrapper {
+    /* .summerizerWrapper, .aboutWrapper, .teamWrapper {
         overflow-x: hidden;
-    }
+    } */
 
     .calc-height {
         height: calc(100% - 2.3vw);

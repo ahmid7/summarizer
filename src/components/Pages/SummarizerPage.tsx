@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import axios from "axios"
 import { useQuery } from 'react-query'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import toast from "react-hot-toast"
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { NavBar } from '..'
@@ -63,6 +64,16 @@ function SummarizerPage() {
 
   // handle user click on the summarize button
   function handleSummarize() {
+    // if(navigator.onLine) {
+    //   // toast.error('network unavailable')
+    //   console.log( "network unavailable!!!" )
+    // } else {
+    //   console.log("network available")
+    // }
+    //
+    if(textInput.length < 1) {
+      return null
+    }
     refetch()
   }
 
@@ -74,7 +85,6 @@ function SummarizerPage() {
       summarizedText: ''
     })
   }
-
   // pointer arrow container ref
   const pointersArrowsContainer = React.useRef(null)
 
@@ -120,14 +130,7 @@ function SummarizerPage() {
         summarizedText: data.data.data[0]
       })
     }
-
-    console.log( data?.data.data[0].toString().replaceAll('.','').split(' ').length )
-
-    // console.log(data?.data.data[0].replace(".", ''))
-
   },[data])
-
-
 
   return (
     <section className='min-h-screen md:h-screen overflow-y-hidden mt-5 md:mt-0 summerizerWrapper' ref={ summarizerContainer }>
@@ -189,7 +192,7 @@ function SummarizerPage() {
               
               <p className='capitalize absolute bottom-5 right-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
                 <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
-                <span onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</span>
+                <button onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</button>
               </p>
             </div>
 
@@ -209,18 +212,10 @@ function SummarizerPage() {
                     </textarea>
                   }
 
-                  {
-                    (isFetching && data) &&
-                    <div>
-                      <Skeleton count={ 10.5 }/>
-                    </div>
-                  }
 
                   {
                     !data && 
-                    <div>
-                      <Skeleton count={ 10.5 }/>
-                    </div>
+                    <Skeleton count={ 10.5 }/>
                   }
                 </>
               </div>

@@ -4,7 +4,7 @@ import {
   QueryClient,
   QueryClientProvider
 } from 'react-query'
-
+import { Toaster } from "react-hot-toast"
 import {
   gsap,
   ScrollTrigger, 
@@ -73,35 +73,6 @@ function App() {
           }
         })
 
-        // animation that handle the active links
-        // const activeLinksArray = ["summarizer-active", "about-active"]
-        // const hoverLinksArray = ["summarizer-active", "about-active", "team-active"]
-
-        // activeLinksArray.forEach(( activeLink, index ) => {
-        //   gsap.to(`.${activeLink}`, {
-        //     color: "#9B4C38",
-        //     duration: 0.2,
-        //     scrollTrigger: {
-        //       trigger: `#${activeLink.split("-")[0]}`,
-        //       containerAnimation: scrollTween,
-        //       start: "left left",
-        //       toggleActions: "play reset play reset",
-        //     }
-        //   })
-        // })
-
-        // gsap.to('.team-active', {
-        //   color: "#9B4C38",
-        //   duration: 0.2,
-        //   scrollTrigger: {
-        //     trigger: "#team",
-        //     containerAnimation: scrollTween,
-        //     start: "left left",
-        //     toggleActions: "play reset play reset"
-        //   }
-        // })
-
-
         // handle scrollTo a section when button is clicked
         const buttonLinks = document.querySelectorAll('.button-style')
 
@@ -131,38 +102,38 @@ function App() {
 
 
   return (
-    <QueryClientProvider client={ queryClient }>
-      <Context.Provider value={ scrollProgress}>
-        <main ref={ main }>
-          <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
+      <QueryClientProvider client={ queryClient }>
+        <Context.Provider value={ scrollProgress}>
+            <main ref={ main }>
+              <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
 
-            <section className='section' id='home' >
-              <HomePage /> 
-            </section>
+                <section className='section' id='home' >
+                  <HomePage /> 
+                </section>
 
-            <div className='fixed z-50 hidden w-[11.50vw] left-[0.02vw]' id='fixed-nav'>
-              <NavBar />
-            </div>
-            
-            <section className='section' id="summarizer">
-              <SummarizerPage />
-            </section>  
+                <div className='fixed z-50 hidden w-[11.50vw] left-[0.02vw]' id='fixed-nav'>
+                  <NavBar />
+                </div>
+                
+                <section className='section' id="summarizer">
+                  <SummarizerPage />
+                </section>  
 
-            <section className='section' id="about">
-              <AboutPage /> 
-            </section>  
+                <section className='section' id="about">
+                  <AboutPage /> 
+                </section>  
 
-            <section className='section' id="team">
-              <TeamPage/> 
-            </section>
+                <section className='section' id="team">
+                  <TeamPage/> 
+                </section>
 
-            <section className='section teamPage'>
-              <TeamReachOutPage/>
-            </section>
-          </article>
-        </main>
-      </Context.Provider> 
-    </QueryClientProvider>
+                <section className='section teamPage'>
+                  <TeamReachOutPage/>
+                </section>
+              </article>
+            </main>
+        </Context.Provider> 
+      </QueryClientProvider>
   )
 }
 
