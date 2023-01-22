@@ -115,12 +115,18 @@ function SummarizerPage() {
   React.useEffect(() => {
     if (data) {
       setSummarizedInfo({
-        wordLength: data.data.data.toString().length,
-        sentenceLength: data.data.data.toString().split('.').length - 1,
+        wordLength: data.data.data[0].toString().replaceAll('.','').split(' ').length,
+        sentenceLength: data.data.data[0].toString().split('.').length - 1,
         summarizedText: data.data.data[0]
       })
     }
+
+    console.log( data?.data.data[0].toString().replaceAll('.','').split(' ').length )
+
+    // console.log(data?.data.data[0].replace(".", ''))
+
   },[data])
+
 
 
   return (
@@ -197,6 +203,7 @@ function SummarizerPage() {
                     <textarea 
                       value= { summarizedInfo.summarizedText }
                       className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                      disabled
                     >
                       { summarizedInfo.summarizedText }
                     </textarea>
