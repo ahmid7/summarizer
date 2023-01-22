@@ -29,8 +29,6 @@ function SummarizerPage() {
     }
   )
 
-  console.table([isLoading, isError, data])
-  
   // summarized information include the summarized text, numbers of words and sentences length
   const [ summarizedInfo, setSummarizedInfo ] = React.useState({
     wordLength: 0,
