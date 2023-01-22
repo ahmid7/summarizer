@@ -28,6 +28,8 @@ function SummarizerPage() {
       enabled: false,
     }
   )
+
+  console.table([isLoading, isError, data])
   
   // summarized information include the summarized text, numbers of words and sentences length
   const [ summarizedInfo, setSummarizedInfo ] = React.useState({
@@ -191,16 +193,35 @@ function SummarizerPage() {
             <div className='outline outline-2 outline-coffee-text  px-[1.74vw] pt-7 pb-4 relative h-full summarizedText'> 
 
               <div className='calc-height'>
-                <textarea 
-                  value= { summarizedInfo.summarizedText }
-                  className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
-                >
-                  { summarizedInfo.summarizedText }
-                </textarea>
+                <>
+                  {
+                    !isFetching && data &&
+                    <textarea 
+                      value= { summarizedInfo.summarizedText }
+                      className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                    >
+                      { summarizedInfo.summarizedText }
+                    </textarea>
+                  }
+
+                  {
+                    (isFetching && data) &&
+                    <div>
+                      <Skeleton count={ 10.5 }/>
+                    </div>
+                  }
+
+                  {
+                    !data && 
+                    <div>
+                      <Skeleton count={ 10.5 }/>
+                    </div>
+                  }
+                </>
               </div>
 
 
-              <div className='absolute bottom-2 w-full text-black'>
+              <div className='absolute bottom-2 left-0 w-full text-black'>
 
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
                   <p>{`${ summarizedInfo.sentenceLength } sentences`} &#183; {`${ summarizedInfo.wordLength } words`}</p>
