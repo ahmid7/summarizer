@@ -138,7 +138,7 @@ function App() {
             error: {
               duration: 3000,
               style: {
-                background: "red",
+                background: "#9B4C38",
                 color: 'white'
               }
             }
