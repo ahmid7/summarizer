@@ -204,18 +204,9 @@ input {
     height: calc(100% - 8vw);
 }   
 
-/* ::-webkit-scrollbar {
-    display: none;
-} */
-
-/* .text-summarized::-webkit-scrollbar {
-    display: none;
-} */
-
-/* .summarizerWrapper {
-    overflow-x: hidden;
-} */
-
+.dribble-icon {
+    font-size: 20px;
+}
 
 @media screen and ( min-width: 768px ) {
 
@@ -291,11 +282,11 @@ input {
         left: -0.5vw;
     }
 
-    /* .summerizerWrapper, .aboutWrapper, .teamWrapper {
-        overflow-x: hidden;
-    } */
-
     .calc-height {
         height: calc(100% - 2.3vw);
     } 
+
+    .dribble-icon {
+        font-size: 25px;
+    }
 }

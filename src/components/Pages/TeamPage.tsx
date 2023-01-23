@@ -20,7 +20,7 @@ const TeamMembersData = [
     titleHeld: 'co-creator & Designer',
     imgSrc: '/images/bola.jpg',
     linkedInLink: '#',
-    githubLink: '#'
+    dribbleLink: '#'
   },
 
   {
@@ -92,8 +92,7 @@ function TeamPage() {
       let matchMedia = gsap.matchMedia()
 
       matchMedia.add("(min-width: 768px)", () => {
-        const tl = gsap.timeline()
-        
+      
         gsap.fromTo(".textMove", {
             yPercent: -25 * memberNumber.prevState
           }, 

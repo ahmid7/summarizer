@@ -2,15 +2,18 @@ import React from 'react'
 
 import { 
   LinkedinIcon, 
-  GithubIconLarge
+  GithubIconLarge,
 }  from '../assets/svgIcons'
+
+import { FaDribbbleSquare } from "react-icons/fa"
 
 type memberDetails = {
   imgSrc: string;
   name: string;
   linkedInLink: string;
-  githubLink: string;
+  githubLink?: string;
   titleHeld: string;
+  dribbleLink?: string
 }
 
 type TeamMemberDetails = {
@@ -24,10 +27,10 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
     name, 
     titleHeld, 
     githubLink, 
-    linkedInLink 
+    linkedInLink,
+    dribbleLink
   } = memberDetails
   
-  // onMouseEnter={ () => updateText(name) } onMouseLeave={ () => updateText('The Team') }
   return (
     <div>
       <div className=''>
@@ -43,10 +46,20 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
         <p className='text-[#999999] text-base md:text-[1.25vw] uppercase pb-1'>{ titleHeld }</p>
         
         <div className='center py-[0.5vw]'>
-          <div className='flex gap-x-2'>
-            <a href={ githubLink }>
-              <GithubIconLarge/>
-            </a>
+          <div className='flex gap-x-2 [&_a]:hover:cursor-pointer'>
+            {
+              githubLink && 
+              <a href={ githubLink }>
+                <GithubIconLarge/>
+              </a>
+            }
+
+            {
+              dribbleLink && 
+              <a href={ githubLink }>
+                <FaDribbbleSquare className='dribble-icon' />
+              </a>
+            }
 
             <a href={ linkedInLink }>
               <LinkedinIcon/>
