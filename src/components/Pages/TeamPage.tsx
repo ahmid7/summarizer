@@ -10,7 +10,7 @@ const TeamMembersData = [
   {
     name: 'Funbi',
     titleHeld: 'co-creator & data scientist',
-    imgSrc: '/images/funbi.jpg',
+    imgSrc: '/images/funbi.webp',
     linkedInLink: '#',
     githubLink: '#'
   },
@@ -18,7 +18,7 @@ const TeamMembersData = [
   {
     name: 'Bola',
     titleHeld: 'co-creator & Designer',
-    imgSrc: '/images/bola.jpg',
+    imgSrc: '/images/bola.webp',
     linkedInLink: '#',
     dribbleLink: '#'
   },
@@ -26,7 +26,7 @@ const TeamMembersData = [
   {
     name: 'Odunayo',
     titleHeld: 'web developer',
-    imgSrc: '/images/ibrahim.jpg',
+    imgSrc: '/images/odunayo.webp',
     linkedInLink: '#',
     githubLink: '#'
   },

@@ -437,7 +437,8 @@ function AboutPage() {
 
             <div className='center'>
               <img 
-                src='/images/spiral2.jpg'
+                src='/images/spiral2.webp'
+                alt='spiral'
               />
             </div>
           </div>
