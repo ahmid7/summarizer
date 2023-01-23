@@ -197,7 +197,11 @@ input {
 }
 
 .wrapper{
-    overflow-x: hidden;
+    overflow: hidden;
+}
+
+main {
+    overflow:hidden
 }
 
 .calc-height {
@@ -215,7 +219,7 @@ input {
     }
 
 
-    *::-webkit-scrollbar:not(.text-summarized) {
+    ::-webkit-scrollbar:not(.text-summarized) {
         display: none;
     }
     

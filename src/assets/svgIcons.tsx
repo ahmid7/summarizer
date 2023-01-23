@@ -1,5 +1,4 @@
 export const Logo = () => {
-    // width="343" height="270"
     return (
         <svg className="w-[300px] h-[120px] md:w-[23.81vw] md:h-[18.75vw]" viewBox="0 0 300 343" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M174.244 325.644C133.343 325.644 94.115 309.411 65.1748 280.509C36.2345 251.607 19.9486 212.4 19.894 171.5V16.944H328.594V171.5C328.54 212.4 312.253 251.607 283.313 280.509C254.373 309.411 215.145 325.644 174.244 325.644Z" stroke="#171313" stroke-width="1.6" stroke-miterlimit="10"/>
@@ -142,7 +141,7 @@ export const RightIndicator = () => {
 
 export const PasteIcon = () => {
     return (
-        <svg className="w-[25px] h-[25x] md:w-[41px] md:h-[41px]" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-[25px] h-[25x] md:w-[2.84vw] md:h-[2.848vw]" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.1667 10.5H23.8334C27.1667 10.5 27.1667 8.83337 27.1667 7.16671C27.1667 3.83337 25.5 3.83337 23.8334 3.83337H17.1667C15.5 3.83337 13.8334 3.83337 13.8334 7.16671C13.8334 10.5 15.5 10.5 17.1667 10.5Z" stroke="#413333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M27.1667 7.19995C32.7167 7.49995 35.5 9.54995 35.5 17.1666V27.1666C35.5 33.8333 33.8333 37.1666 25.5 37.1666H15.5C7.16667 37.1666 5.5 33.8333 5.5 27.1666V17.1666C5.5 9.56662 8.28333 7.49995 13.8333 7.19995" stroke="#413333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
