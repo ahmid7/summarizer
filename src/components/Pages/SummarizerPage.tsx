@@ -90,6 +90,12 @@ function SummarizerPage() {
       summarizedText: ''
     })
   }
+
+  let sampleText = "Once upon a time, there lived a small, but brave, fox named Fennel. Fennel had dreamed of exploring the world outside her small forest home for as long as she could remember, but she was scared of what she might find. One day, she worked up the courage to take the plunge and set off on a journey of self-discovery. \n\n Fennel traveled far and wide, taking in the sights and sounds of the world around her. She encountered breathtaking nature, bustling cities, and friendly creatures along the way. Everywhere she went, she was reminded of the infinite possibilities that lay ahead of her. \n\n As she journeyed, Fennel began to realize the importance of her personal growth. She found that within every experience, she was learning something new. She was gaining knowledge, insight, and courage. She was becoming stronger and wiser, and she was determined to make the most of her journey.\n\nSoon, Fennel had visited a variety of places and made many friends in the process. She had also gained valuable lessons and a newfound appreciation for the world and her place in it. Most of all, she was proud of how far she had come and the courage she had to take this journey in the first place.\n\nNow, Fennel knows that no matter what challenges she may face, she will always be able to rely on the strength she has gained from her journey. She is no longer scared of the unknown, and she is excited to continue exploring and growing.\n\nThe moral of this story is that, no matter where you are in life, there is always something new to learn and explore. Sometimes, the most rewarding experiences come from taking risks and venturing out of our comfort zones. The possibilities are endless and the potential is yours to discover."
+
+  function handleSampleText() {
+    setTextInput(sampleText)
+  }
   // pointer arrow container ref
   const pointersArrowsContainer = React.useRef(null)
 
@@ -202,7 +208,12 @@ function SummarizerPage() {
                 </p>
 
                 <div className='flex gap-x-2 items-center '>
-                  <span className='text-coffee-bean-brown'>try our sample text</span>
+                  <span 
+                    className='text-coffee-bean-brown'
+                    onClick={ handleSampleText }
+                  >
+                    try our sample text
+                  </span>
                   
                   <button 
                     onClick={ handleSummarize } 
