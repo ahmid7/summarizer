@@ -4,7 +4,9 @@ import {
   QueryClient,
   QueryClientProvider
 } from 'react-query'
-import { Toaster } from "react-hot-toast"
+import { 
+  Toaster 
+} from "react-hot-toast"
 import {
   gsap,
   ScrollTrigger, 
@@ -133,6 +135,7 @@ function App() {
             </article>
           </main>
         </Context.Provider> 
+
         <Toaster 
           toastOptions={{
             error: {

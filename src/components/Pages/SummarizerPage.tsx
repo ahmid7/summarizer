@@ -50,6 +50,10 @@ function SummarizerPage() {
       })
   }
 
+  let textInputWords = textInput.length
+  let textInputSentences = textInput.split(". ").length - 1
+  // data.data.data[0].toString().split('.').length - 1,
+
   // handle user inputting text
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
     setTextInput(e.target.value)
@@ -167,13 +171,14 @@ function SummarizerPage() {
             </button>
           </header>
 
-          <div className='mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
+          <div className=' mx-4 my-8 md:mx-[5.523vw] md:my-2 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-y-5 md:gap-x-10'>
+
             {/* text area container */}
-            <div className='outline outline-2 outline-coffee-text px-[1.74vw] py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full'>
+            <div className='outline outline-2 outline-coffee-text py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full'>
 
               <div className='calc-height'>
                 {/* text area */}
-                <textarea className='w-full h-full text-black border-2 outline-none border-none overflow-y-scroll resize-none leading-relaxed text-summarized' 
+                <textarea className='px-[1.74vw] w-full h-full text-black border-2 outline-none border-none overflow-y-scroll resize-none leading-relaxed text-summarized' 
                   value={textInput} 
                   onChange={ onChange } 
                   placeholder='Paste / write about your topic  and then click the Summarize button .You could also use the sample text button provided below.'
@@ -192,10 +197,22 @@ function SummarizerPage() {
               </div>
 
               
-              <p className='capitalize absolute bottom-2 right-[1.8vw] text-xs md:text-[0.9vw] [&_span]:cursor-pointer'>
-                <span className='text-coffee-bean-brown mr-4'>try our sample text</span> 
-                <button onClick={ handleSummarize } className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}>summarize</button>
-              </p>
+              <div className='px-[1.74vw] capitalize absolute bottom-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer flex justify-between items-center w-full'>
+                <p className='flex text-black'>
+                  <span>{`${ textInputWords } words`} &#183; {`${ textInputSentences } sentences`}</span>
+                </p>
+
+                <div className='flex gap-x-2 items-center '>
+                  <span className='text-coffee-bean-brown'>try our sample text</span>
+                  
+                  <button 
+                    onClick={ handleSummarize } 
+                    className={`px-4 py-3 ${textInput.length < 1 ? 'bg-[#CFCFCF] text-[#999999]' : 'bg-coffee-bean-brown text-white'}`}
+                  >
+                    summarize
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* summarized text container */}
@@ -224,9 +241,8 @@ function SummarizerPage() {
 
 
               <div className='absolute bottom-2 left-0 w-full text-black'>
-
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
-                  <p>{`${ summarizedInfo.sentenceLength } sentences`} &#183; {`${ summarizedInfo.wordLength } words`}</p>
+                  <p>{`${ summarizedInfo.wordLength } words`} &#183; {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
                   <p className='flex items-center gap-x-2'>
                     <span onClick={ clearResult }  className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
