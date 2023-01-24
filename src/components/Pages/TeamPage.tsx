@@ -11,16 +11,16 @@ const TeamMembersData = [
     name: 'Funbi',
     titleHeld: 'co-creator & data scientist',
     imgSrc: '/images/funbi.webp',
-    linkedInLink: '#',
-    githubLink: '#'
+    linkedInLink: 'https://linkedin.com/in/oluwafunbiadeneye',
+    githubLink: 'https://github.com/Phunbie'
   },
 
   {
     name: 'Bola',
     titleHeld: 'co-creator & Designer',
     imgSrc: '/images/bola.webp',
-    linkedInLink: '#',
-    notionLink: '#'
+    linkedInLink: 'https://linkedin.com/in/bolaolaniyan',
+    notionLink: 'https://sonofadebimpe.notion.site/Hi-I-m-Bola-e91b13349bc34e819a42509257c7432b'
   },
 
   {

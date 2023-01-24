@@ -48,19 +48,19 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
           <div className='flex gap-x-2 [&_a]:hover:cursor-pointer'>
             {
               githubLink && 
-              <a href={ githubLink }>
+              <a href={ githubLink } target="_blank">
                 <GithubIconLarge/>
               </a>
             }
 
             {
               notionLink && 
-              <a href={ githubLink }>
+              <a href={notionLink} target="_blank">
                 <SiNotion className='dribble-icon' />
               </a>
             }
 
-            <a href={ linkedInLink }>
+            <a href={ linkedInLink } target="_blank">
               <LinkedinIcon/>
             </a>
           </div>
