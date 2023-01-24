@@ -216,7 +216,7 @@ function SummarizerPage() {
             </div>
 
             {/* summarized text container */}
-            <div className='outline outline-2 outline-coffee-text  px-[1.74vw] py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full summarizedText'> 
+            <div className='outline outline-2 outline-coffee-text py-4 md:pt-7 md:pb-4 relative min-h-[400px] md:h-full summarizedText'> 
 
               <div className='calc-height'>
                 <>
@@ -224,7 +224,7 @@ function SummarizerPage() {
                     !isFetching && data &&
                     <textarea 
                       value= { summarizedInfo.summarizedText }
-                      className='w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                      className='px-[1.74vw] w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
                       disabled
                     >
                       { summarizedInfo.summarizedText }
@@ -234,7 +234,9 @@ function SummarizerPage() {
 
                   {
                     !data && 
-                    <Skeleton count={ 10.5 }/>
+                    <div className='px-[1.74vw]'>
+                      <Skeleton count={ 10.5 }/>
+                    </div>
                   }
                 </>
               </div>
