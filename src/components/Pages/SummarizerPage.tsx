@@ -51,8 +51,7 @@ function SummarizerPage() {
   }
 
   let textInputWords = textInput.length
-  let textInputSentences = textInput.split(". ").length - 1
-  // data.data.data[0].toString().split('.').length - 1,
+  let textInputSentences = textInput.split(/[\.!\?]+\s/g).filter(Boolean).length;
 
   // handle user inputting text
   function onChange(e:React.ChangeEvent<HTMLTextAreaElement>) {
