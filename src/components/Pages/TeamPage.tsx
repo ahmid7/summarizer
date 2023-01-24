@@ -20,7 +20,7 @@ const TeamMembersData = [
     titleHeld: 'co-creator & Designer',
     imgSrc: '/images/bola.webp',
     linkedInLink: '#',
-    dribbleLink: '#'
+    notionLink: '#'
   },
 
   {

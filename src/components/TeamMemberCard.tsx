@@ -1,11 +1,10 @@
 import React from 'react'
+import { SiNotion } from "react-icons/si"
 
 import { 
   LinkedinIcon, 
   GithubIconLarge,
 }  from '../assets/svgIcons'
-
-import { FaDribbbleSquare } from "react-icons/fa"
 
 type memberDetails = {
   imgSrc: string;
@@ -13,7 +12,7 @@ type memberDetails = {
   linkedInLink: string;
   githubLink?: string;
   titleHeld: string;
-  dribbleLink?: string
+  notionLink?: string
 }
 
 type TeamMemberDetails = {
@@ -28,7 +27,7 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
     titleHeld, 
     githubLink, 
     linkedInLink,
-    dribbleLink
+    notionLink
   } = memberDetails
   
   return (
@@ -55,9 +54,9 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
             }
 
             {
-              dribbleLink && 
+              notionLink && 
               <a href={ githubLink }>
-                <FaDribbbleSquare className='dribble-icon' />
+                <SiNotion className='dribble-icon' />
               </a>
             }
 
