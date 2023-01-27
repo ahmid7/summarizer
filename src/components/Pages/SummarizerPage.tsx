@@ -50,7 +50,7 @@ function SummarizerPage() {
       })
   }
 
-  let textInputWords = textInput.length
+  let textInputWords = textInput.length < 1 ? 0 : textInput.toString().match(/(\w+)/g)?.length
   let textInputSentences = textInput.split(/[\.!\?]+\s/g).filter(Boolean).length;
 
   // handle user inputting text
@@ -70,7 +70,7 @@ function SummarizerPage() {
 
   // handle user click on the summarize button
   function handleSummarize() {
-    // check if the user is online or not, if no display a notification telling them no network connection
+    // check if the user is online or not, if not, display a notification telling them no network connection
     if(window.navigator.onLine) {
     
     }else {
@@ -91,8 +91,10 @@ function SummarizerPage() {
     })
   }
 
+  // sample text for summarizer
   let sampleText = "Once upon a time, there lived a small, but brave, fox named Fennel. Fennel had dreamed of exploring the world outside her small forest home for as long as she could remember, but she was scared of what she might find. One day, she worked up the courage to take the plunge and set off on a journey of self-discovery. \n\n Fennel traveled far and wide, taking in the sights and sounds of the world around her. She encountered breathtaking nature, bustling cities, and friendly creatures along the way. Everywhere she went, she was reminded of the infinite possibilities that lay ahead of her. \n\n As she journeyed, Fennel began to realize the importance of her personal growth. She found that within every experience, she was learning something new. She was gaining knowledge, insight, and courage. She was becoming stronger and wiser, and she was determined to make the most of her journey.\n\nSoon, Fennel had visited a variety of places and made many friends in the process. She had also gained valuable lessons and a newfound appreciation for the world and her place in it. Most of all, she was proud of how far she had come and the courage she had to take this journey in the first place.\n\nNow, Fennel knows that no matter what challenges she may face, she will always be able to rely on the strength she has gained from her journey. She is no longer scared of the unknown, and she is excited to continue exploring and growing.\n\nThe moral of this story is that, no matter where you are in life, there is always something new to learn and explore. Sometimes, the most rewarding experiences come from taking risks and venturing out of our comfort zones. The possibilities are endless and the potential is yours to discover."
 
+  //set input text to sample Text
   function handleSampleText() {
     setTextInput(sampleText)
   }
@@ -136,8 +138,8 @@ function SummarizerPage() {
   React.useEffect(() => {
     if (data) {
       setSummarizedInfo({
-        wordLength: data.data.data[0].toString().replaceAll('.','').split(' ').length,
-        sentenceLength: data.data.data[0].toString().split('.').length - 1,
+        wordLength: data.data.data[0].toString().match(/(\w+)/g).length,
+        sentenceLength: data.data.data[0].toString().split(/[\.!\?]+\s/g).filter(Boolean).length,
         summarizedText: data.data.data[0]
       })
     }
@@ -155,7 +157,7 @@ function SummarizerPage() {
           {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
-              <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Text Translator</h2>
+              <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Summarizer</h2>
               
               <div className='w-[2.78vw] border-[1px] rotate-90 bg-white hidden md:block '/>
 
@@ -165,10 +167,10 @@ function SummarizerPage() {
             {/* github button  */}
             <button className='font-inter bg-white relative outline outline-2 outline-coffee-text px-2 py-3 md:p-4 text-coffee-text text-xs md:text-sm gitButtonAnimate'>
               {/* each span is for button hover animation */}
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <span className='button-line-top'></span>
+              <span className='button-line-right'></span>
+              <span className='button-line-button'></span>
+              <span className='button-line-left'></span>
               <a className='flex items-center gap-x-2' href="#">
                 <GithubIcon/>
                 <p className=''>View on Github</p>

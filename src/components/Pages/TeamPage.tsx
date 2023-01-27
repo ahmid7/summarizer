@@ -113,13 +113,14 @@ function TeamPage() {
       <section>
         <div className='layout-grid2 md:divide-x-2 divide-black'>
           <div className='md:h-screen'>
-      
+            {/* nav bar space */}
           </div>
 
           <div className='px-5 py-12 md:pl-[5.65vw] md:pr-[2.36vw] md:pt-[0.5vw]'>
 
             <h1 className='uppercase tracking-[5vw] font-six-caps text-[80px] md:h-[21.05vw] md:text-[20.83vw] opacity-[0.4] leading-none overflow-hidden' id='displayText'>
               <div className='textMove'>
+                {/* tect animated on hover */}
                 <span className='flex items-center justify-center'>The Team</span>
                 <span className='hidden md:flex items-center justify-center'>Funbi</span>
                 <span className='hidden md:flex items-center justify-center'>Bola</span>
@@ -127,6 +128,7 @@ function TeamPage() {
               </div>
             </h1>
 
+            {/* member list */}
             <div 
               className='grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-6 md:gap-x-20 md:-translate-y-36 pt-4 md:pt-0 overflow-hidden' 
               ref={ teamMemberContainer }
