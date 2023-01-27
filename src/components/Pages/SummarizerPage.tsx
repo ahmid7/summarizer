@@ -50,7 +50,7 @@ function SummarizerPage() {
       })
   }
 
-  let textInputWords = textInput.length < 1 ? 0 : textInput.toString().match(/(\w+)/g)?.length
+  let textInputWords = textInput.length < 1 ? 0 : textInput.toString().match(/(\w+)/g)?.length! - 1
   let textInputSentences = textInput.split(/[\.!\?]+\s/g).filter(Boolean).length;
 
   // handle user inputting text
@@ -89,6 +89,22 @@ function SummarizerPage() {
       sentenceLength: 0,
       summarizedText: ''
     })
+  }
+
+  // message to display if the user hasn't summarized context and they click copy text
+  const notifyCopyError = () => toast.error('no summarized text to copy')
+  
+  // message to display when the copy text is successful
+  const notifyCopySuccess = () => toast.success('text copied successfully')
+
+  // handle copy text based on if they have summarized content a data or not
+  function handleCopyText() {
+    if(summarizedInfo.summarizedText !== '') {
+      navigator.clipboard.writeText(summarizedInfo.summarizedText)
+      notifyCopySuccess()
+    }else {
+      notifyCopyError()
+    }
   }
 
   // sample text for summarizer
@@ -259,8 +275,19 @@ function SummarizerPage() {
                   <p>{`${ summarizedInfo.wordLength } words`} &#183; {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
                   <p className='flex items-center gap-x-2'>
-                    <span onClick={ clearResult }  className=' text-[#ED1818] cursor-pointer'>Clear Results</span>
-                    <span className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer'>share</span>
+                    <span 
+                      onClick={ clearResult }  
+                      className=' text-[#ED1818] cursor-pointer'
+                    >
+                      Clear Results
+                    </span>
+
+                    <span 
+                      onClick={ handleCopyText }
+                      className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer hover:bg-[#BD6049] focus:bg-[#BD6049]'
+                    >
+                      Copy Text
+                    </span>
                   </p>
                 </div>
               </div>

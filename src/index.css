@@ -112,16 +112,12 @@ input {
     @apply bg-coffee-bean-brown text-white px-7 py-3 md:px-4 md:py-3 md:p-[1.111vw] transition duration-200
 }
 
-.button-outline1:hover {
+.button-outline1:hover, .button-outline2:hover {
     @apply bg-[#BD6049]
 }
 
 .button-outline2 {
     @apply text-coffee-bean-brown transition-all duration-200
-}
-
-.button-outline2:hover {
-    @apply text-[#BD6049]
 }
 
 .gitButtonAnimate span:nth-child(1) {
