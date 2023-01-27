@@ -27,8 +27,8 @@ const TeamMembersData = [
     name: 'Odunayo',
     titleHeld: 'web developer',
     imgSrc: '/images/odunayo.webp',
-    linkedInLink: '#',
-    githubLink: '#'
+    linkedInLink: 'https://www.linkedin.com/in/ahmid-sanni-9537a6220/',
+    githubLink: 'https://github.com/ahmid7'
   },
 ]
 

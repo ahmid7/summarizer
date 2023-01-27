@@ -45,22 +45,22 @@ function TeamMemberCard({ memberDetails, updateText }: TeamMemberDetails) {
         <p className='text-[#999999] text-base md:text-[1.25vw] uppercase pb-1'>{ titleHeld }</p>
         
         <div className='center py-[0.5vw]'>
-          <div className='flex gap-x-2 [&_a]:hover:cursor-pointer'>
+          <div className='flex gap-x-2 [&_a]:hover:cursor-pointer '>
             {
               githubLink && 
-              <a href={ githubLink } target="_blank">
+              <a href={ githubLink } target="_blank" className='hover:scale-110 transition-all'>
                 <GithubIconLarge/>
               </a>
             }
 
             {
               notionLink && 
-              <a href={notionLink} target="_blank">
+              <a href={notionLink} target="_blank" className='hover:scale-110 transition-all'>
                 <SiNotion className='dribble-icon' />
               </a>
             }
 
-            <a href={ linkedInLink } target="_blank">
+            <a href={ linkedInLink } target="_blank" className='hover:scale-110 transition-all'>
               <LinkedinIcon/>
             </a>
           </div>
