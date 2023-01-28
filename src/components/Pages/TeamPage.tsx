@@ -9,7 +9,7 @@ import { TeamMemberCard } from '../'
 const TeamMembersData = [
   {
     name: 'Funbi',
-    titleHeld: 'co-creator & data scientist',
+    titleHeld: 'Co-creator & Data Scientist',
     imgSrc: '/images/funbi.webp',
     linkedInLink: 'https://linkedin.com/in/oluwafunbiadeneye',
     githubLink: 'https://github.com/Phunbie'
@@ -25,7 +25,7 @@ const TeamMembersData = [
 
   {
     name: 'Odunayo',
-    titleHeld: 'web developer',
+    titleHeld: 'Web Developer',
     imgSrc: '/images/odunayo.webp',
     linkedInLink: 'https://www.linkedin.com/in/ahmid-sanni-9537a6220/',
     githubLink: 'https://github.com/ahmid7'

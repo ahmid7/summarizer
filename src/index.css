@@ -124,12 +124,14 @@ input {
     @apply text-[#BD6049]
 }
 
+.gitButtonAnimate span{
+    @apply absolute bg-white
+}
+
 .gitButtonAnimate span:nth-child(1) {
-    position: absolute;
-    top: -0.38vw;
+    top: -5px;
     left: 0;
     height: 1px;
-    background: white;
 }
 
 .gitButtonAnimate:hover span:nth-child(1), .gitButtonAnimate:focus span:nth-child(1) {
@@ -148,11 +150,9 @@ input {
 }
 
 .gitButtonAnimate span:nth-child(2) {
-    position: absolute;
-    top: -0.38vw;
-    right: -0.38vw;
+    top: -5px;
+    right: -5px;
     width: 1px;
-    background: white;
 }
 
 .gitButtonAnimate:hover span:nth-child(2), .gitButtonAnimate:focus span:nth-child(2) {
@@ -171,11 +171,9 @@ input {
 
 
 .gitButtonAnimate span:nth-child(3) {
-    position: absolute;
-    bottom: -0.38vw;
+    bottom: -5px;
     right: 0;
     height: 1px;
-    background: white;
 }
 
 .gitButtonAnimate:hover span:nth-child(3), .gitButtonAnimate:focus span:nth-child(3) {
@@ -185,11 +183,9 @@ input {
 
 
 .gitButtonAnimate span:nth-child(4) {
-    position: absolute;
-    left: -0.38vw;
-    bottom: -0.38vw;
+    left: -5px;
+    bottom: -5px;
     width: 1px;
-    background: white;
 }
 
 .gitButtonAnimate:hover span:nth-child(4), .gitButtonAnimate:focus span:nth-child(4) {
@@ -236,6 +232,26 @@ main {
     .summarizerWrapper,.aboutWrapper,.teamWrapper,.homeWrapper,.section {
         width: 100vw;
         overflow: hidden; 
+    }
+
+    .gitButtonAnimate span:nth-child(1) {
+        top: -0.38vw;
+    }
+
+    .gitButtonAnimate span:nth-child(2) {
+        top: -0.38vw;
+        right: -0.38vw;
+    }
+
+    .gitButtonAnimate span:nth-child(3) {
+        bottom: -0.38vw;
+        right: 0;
+        height: 1px;
+    }
+
+    .gitButtonAnimate span:nth-child(4) {
+        left: -0.38vw;
+        bottom: -0.38vw;
     }
 
     .layout-grid {

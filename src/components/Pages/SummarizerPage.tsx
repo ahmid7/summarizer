@@ -1,5 +1,5 @@
 import React from 'react'
-import { gsap } from 'gsap'
+import { gsap,Observer } from 'gsap/all'
 import axios from "axios"
 import { useQuery } from 'react-query'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
@@ -12,6 +12,8 @@ import {
   PasteIcon,
   RightIndicator 
 } from '../../assets/svgIcons'
+
+gsap.registerPlugin( Observer )
 
 function SummarizerPage() {
   // handle server side state request
@@ -125,6 +127,9 @@ function SummarizerPage() {
   // handle gsap animation
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      let buttonTimeline1 = gsap.timeline()
+      let buttonTimeline2 = gsap.timeline()
+
       // arrow animation
       gsap.fromTo(pointerArrow(".arrows"), 
         {
@@ -144,7 +149,6 @@ function SummarizerPage() {
           }
         }
       )
-
     }, summarizerContainer)
     
     return () => ctx.revert()
@@ -157,6 +161,12 @@ function SummarizerPage() {
         wordLength: data.data.data[0].toString().match(/(\w+)/g).length,
         sentenceLength: data.data.data[0].toString().split(/[\.!\?]+\s/g).filter(Boolean).length,
         summarizedText: data.data.data[0]
+      })
+    } else {
+      setSummarizedInfo({
+        wordLength: 0,
+        sentenceLength: 0,
+        summarizedText: ''
       })
     }
   },[data])
@@ -173,7 +183,7 @@ function SummarizerPage() {
           {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
             <div className='flex-between'>
-              <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Summarizer</h2>
+              <h2 className='font-merriweather text-lg md:text-[1.25vw] leading-relaxed text-white'>Text Summarizer</h2>
               
               <div className='w-[2.78vw] border-[1px] rotate-90 bg-white hidden md:block '/>
 
@@ -187,7 +197,7 @@ function SummarizerPage() {
               <span className='button-line-right'></span>
               <span className='button-line-button'></span>
               <span className='button-line-left'></span>
-              <a className='flex items-center gap-x-2' href="#">
+              <a className='flex items-center gap-x-2' href="https://github.com/Phunbie" target="_blank">
                 <GithubIcon/>
                 <p className=''>View on Github</p>
               </a>
@@ -220,12 +230,12 @@ function SummarizerPage() {
               </div>
 
               
-              <div className='px-[1.74vw] capitalize absolute bottom-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer flex justify-between items-center w-full'>
-                <p className='flex text-black'>
-                  <span>{`${ textInputWords } words`} &#183; {`${ textInputSentences } sentences`}</span>
+              <div className='px-[1.74vw] absolute bottom-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer flex justify-between items-center w-full'>
+                <p className='flex  text-black'>
+                  <span className='flex gap-x-[2px] '>{`${ textInputWords } words`} <span className='text-[2vw]'>&#183;</span> {`${ textInputSentences } sentences`}</span>
                 </p>
 
-                <div className='flex gap-x-2 items-center '>
+                <div className='flex gap-x-2 items-center capitalize'>
                   <span 
                     className='text-coffee-bean-brown'
                     onClick={ handleSampleText }
@@ -272,7 +282,7 @@ function SummarizerPage() {
 
               <div className='absolute bottom-2 left-0 w-full text-black'>
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
-                  <p>{`${ summarizedInfo.wordLength } words`} &#183; {`${ summarizedInfo.sentenceLength } sentences`}</p>
+                  <p className='flex gap-x-[2px]'>{`${ summarizedInfo.wordLength } words`} <span className='text-[2vw]'>&#183;</span> {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
                   <p className='flex items-center gap-x-2'>
                     <span 
@@ -316,6 +326,3 @@ function SummarizerPage() {
 }
 
 export default SummarizerPage
-
-
-// TODO: share button
