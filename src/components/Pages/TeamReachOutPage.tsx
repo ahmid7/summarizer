@@ -25,6 +25,7 @@ function TeamReachOutPage() {
       mm.add("(max-width:767px)", () => {
         const headerSplitword = new SplitType("#reachOutHeader", { types: 'words' })
         const teamReachOutText = gsap.utils.selector(teamReachOutTextRef)
+        const secondDetailsWordMobile = gsap.utils.selector(".secondDetailsTextMobile")
 
         gsap.fromTo(teamReachOutText(".span"), {
             yPercent: 50,
@@ -41,6 +42,18 @@ function TeamReachOutPage() {
             ease:"power2.out"
           }
         )
+
+        gsap.to(secondDetailsWordMobile(".span"),{
+          y: "0%",
+          stagger: 0.2,
+          duration: 0.5,
+          delay: 1,
+          ease: "power2.easeOut",
+          scrollTrigger: {
+            trigger: '.secondDetailsTextMobile',
+            markers: true
+          }
+        })
 
         gsap.fromTo(headerSplitword.words, 
           {
@@ -94,7 +107,7 @@ function TeamReachOutPage() {
       mm.add("(min-width: 768px)", () => {
         const headerWordGsap = new SplitType("#reachOutHeader", { types:"words" })
         const detailWordGsap = gsap.utils.selector(".detailWordGsap")
-        const secondDetailsWord = gsap.utils.selector(".secondDetailsText")
+        const secondDetailsWord = gsap.utils.selector(".secondDetailsTextDesktop")
 
 
         // animate the texts when the user scroll to a particular point 
@@ -140,7 +153,7 @@ function TeamReachOutPage() {
           gsap.to(secondDetailsWord(".span"), {
             y: "0%",
             stagger: 0.2,
-            duration: 0.5,
+            duration: 0.6,
             delay: 1,
             ease: "power2.easeOut",
           })
@@ -208,7 +221,8 @@ function TeamReachOutPage() {
                 <span className="md:translate-y-full">Be a Reading Hero: <br/> share this now</span>
               </h2>
 
-              <div className="mid-text [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsText">
+              {/* desktop version */}
+              <div className="mid-text hidden md:block [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextDesktop">
 
                 <div>
                   <span className="span">
@@ -234,11 +248,32 @@ function TeamReachOutPage() {
                   </span>
                 </div>
               </div>
+
+              {/* mobile version */}
+              <div className="mid-text block md:hidden [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextMobile">
+                <div>
+                  <span className="span">Want to be the hero of your friend</span>
+                </div>
+
+                <div>
+                  <span className="span">group? Share the good news our  </span>
+                </div>
+
+                <div>
+                  <span className="span">text website and save them hours </span>
+                </div>
+
+                <div>
+                  <span className="span">of reading time!</span>
+                </div>
+
+              </div>
               
               <button className="button-style button-outline1">
                 share link now
               </button>
             </div>
+
           </div>
 
           {/* stay in touch text */}
