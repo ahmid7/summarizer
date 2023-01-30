@@ -85,11 +85,17 @@ function TeamReachOutPage() {
   // handle gsap animation for desktop devices using scrollProgress as a dependency
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+
+      const secondHeaderTextWords = new SplitType('#secondHeaderText', { types: "words" })
+
       let mm = gsap.matchMedia()
+      
 
       mm.add("(min-width: 768px)", () => {
         const headerWordGsap = new SplitType("#reachOutHeader", { types:"words" })
         const detailWordGsap = gsap.utils.selector(".detailWordGsap")
+        const secondDetailsWord = gsap.utils.selector(".secondDetailsText")
+
 
         // animate the texts when the user scroll to a particular point 
         if(animationState) {
@@ -106,6 +112,19 @@ function TeamReachOutPage() {
             duration: 2,
           }) 
 
+          gsap.fromTo(secondHeaderTextWords.words, {
+            yPercent: 100,
+            immediateRender: false,
+          },  
+          {
+            yPercent: -200,
+            stagger: 0.05,
+            delay: 0.1,
+            fontKerning: "none",
+            ease: "back.out",
+            duration: 2,
+          })
+
           gsap.fromTo(detailWordGsap(".span"), {
             yPercent: 50,
             opacity: 0
@@ -116,8 +135,15 @@ function TeamReachOutPage() {
             duration: 0.4,
             stagger: 0.3,
             delay: 0.8
-          }
-        )
+          })
+
+          gsap.to(secondDetailsWord(".span"), {
+            y: "0%",
+            stagger: 0.2,
+            duration: 0.5,
+            delay: 1,
+            ease: "power2.easeOut",
+          })
         }
       })
     }, reachOutPage)
@@ -135,7 +161,7 @@ function TeamReachOutPage() {
         </div>
 
         <div className='grid-template md:h-full'>
-          <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
+          <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-y-2 divide-black md:divide-x-2 md:divide-y-0'>
             <div className='py-2 px-5 md:px-[1.75vw]'>
               {/* header text */}
               <h2 className='header-text md:pt-[1vw] overflow-hidden' id="reachOutHeader"><span className="md:translate-y-full">It’s ok to reach out</span></h2>
@@ -178,12 +204,35 @@ function TeamReachOutPage() {
             </div>
               
             <div className="py-2 px-5 md:px-[1.75vw]">
-              <h2 className="header-text overflow-hidden pt-[1vw]">
-                <span>Be a Reading Hero: <br/> share this now</span>
+              <h2 className="header-text overflow-hidden pt-[1vw]" id="secondHeaderText">
+                <span className="md:translate-y-full">Be a Reading Hero: <br/> share this now</span>
               </h2>
 
-              <div className="mid-text">
-                Want to be the hero of your friend group? Share the good news our text summarizer website and save them hours of reading time!
+              <div className="mid-text [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsText">
+
+                <div>
+                  <span className="span">
+                    Want to be the hero of your friend group?
+                  </span>
+                </div>
+
+                <div>
+                  <span className="span">
+                    Share the good news our text summarizer 
+                  </span>
+                </div>
+
+                <div>
+                  <span className="span">
+                    website and save them hours of reading
+                  </span>
+                </div>
+
+                <div>
+                  <span className="span">
+                  time! 
+                  </span>
+                </div>
               </div>
               
               <button className="button-style button-outline1">
