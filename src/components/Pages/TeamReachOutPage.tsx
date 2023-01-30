@@ -6,15 +6,18 @@ import { Context } from "../../App"
 import { LongLeftArrow } from '../../assets/svgIcons' 
 
 function TeamReachOutPage() {
-
-  const scrollProgress:any = React.useContext(Context)
-
+  // progress of the scroll
+  const scrollProgress = React.useContext(Context)
+  // stay in touch text ref
   const stayInTouchRef = React.useRef(null)
+  // page container
   const reachOutPage = React.useRef(null)
+  // detail text container
   const teamReachOutTextRef = React.useRef(null)
-
+  // animation state
   const [animationState, setAnimationState] = React.useState(false)
 
+  // handle mobile animations
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
@@ -72,12 +75,14 @@ function TeamReachOutPage() {
     return () => ctx.revert()
   }, [])
 
+  // change the animation state at a particular scroll progress and if the animationState is false
   React.useEffect(() => {
-    if(scrollProgress >= 0.85 && !animationState ) {
+    if(scrollProgress! >= 0.85 && !animationState ) {
       setAnimationState(true)
     }
   }, [scrollProgress])
 
+  // handle gsap animation for desktop devices using scrollProgress as a dependency
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia()
@@ -86,7 +91,7 @@ function TeamReachOutPage() {
         const headerWordGsap = new SplitType("#reachOutHeader", { types:"words" })
         const detailWordGsap = gsap.utils.selector(".detailWordGsap")
 
-        
+        // animate the texts when the user scroll to a particular point 
         if(animationState) {
           gsap.fromTo(headerWordGsap.words, {
             yPercent: 100,
@@ -126,13 +131,14 @@ function TeamReachOutPage() {
     <section className='md:h-screen md:w-screen md:overflow-hidden' ref={ reachOutPage }>
       <div className="layout-grid2 md:divide-x-4 md:h-screen md:divide-coffee-text">
         <div className="hidden md:block">
-
+          {/* nav bar space */}
         </div>
 
         <div className='grid-template md:h-full'>
           <div className='bg-white grid gap-y-5 md:gap-y-0 md:grid-cols-2 divide-x-2 divide-black'>
             <div className='py-2 px-5 md:px-[1.75vw]'>
-              <h2 className='header-text pt-[2.08vw] overflow-hidden' id="reachOutHeader"><span className="md:translate-y-full">It’s ok to reach out</span></h2>
+              {/* header text */}
+              <h2 className='header-text md:pt-[1vw] overflow-hidden' id="reachOutHeader"><span className="md:translate-y-full">It’s ok to reach out</span></h2>
 
               {/* desktop version */}
               <div className="mid-text hidden md:block [&_span]:inline-block detailWordGsap md:[&_span]:opacity-0 ">
@@ -160,6 +166,7 @@ function TeamReachOutPage() {
                 <span className="span">can answer your questions.</span>
               </div>
 
+              {/* reach out button */}
               <button className='button-style button-outline2 group mt-2'>
                 <a href="#team">
                   <span className="hidden md:block group-hover:animate-bounceLeft">
@@ -170,9 +177,22 @@ function TeamReachOutPage() {
               </button>
             </div>
               
-            <div/>
+            <div className="py-2 px-5 md:px-[1.75vw]">
+              <h2 className="header-text overflow-hidden pt-[1vw]">
+                <span>Be a Reading Hero: <br/> share this now</span>
+              </h2>
+
+              <div className="mid-text">
+                Want to be the hero of your friend group? Share the good news our text summarizer website and save them hours of reading time!
+              </div>
+              
+              <button className="button-style button-outline1">
+                share link now
+              </button>
+            </div>
           </div>
 
+          {/* stay in touch text */}
           <div className='w-full relative -z-20 uppercase bg-black text-white font-six-caps text-9xl md:text-[13.89vw] leading-none center overflow-hidden ' ref={stayInTouchRef}>
             <div className="py-6 ">
               <p>stay in touch </p>

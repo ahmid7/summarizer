@@ -2,8 +2,10 @@ import React from 'react'
 import { gsap,Observer } from 'gsap/all'
 import axios from "axios"
 import { useQuery } from 'react-query'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import toast from "react-hot-toast"
+import { MdContentCopy } from "react-icons/md"
+import { GrShareOption } from "react-icons/gr"
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { NavBar } from '..'
@@ -178,7 +180,7 @@ function SummarizerPage() {
         <div className='w-inherit'>
           <NavBar />
         </div>
-
+    
         <div className='md:h-screen md:pt-4 text-white grid-template2'>
           {/* header */}
           <header className='md:mx-[5.523vw] bg-coffee-text px-4 md:px-[1.74vw] flex-between py-5'>
@@ -230,12 +232,12 @@ function SummarizerPage() {
               </div>
 
               
-              <div className='px-[1.74vw] absolute bottom-2 text-xs md:text-[0.9vw] [&_span]:cursor-pointer flex justify-between items-center w-full'>
+              <div className='px-[1.74vw] absolute bottom-2 text-xs md:text-[0.9vw] flex justify-between items-center w-full'>
                 <p className='flex  text-black'>
-                  <span className='flex gap-x-[2px] '>{`${ textInputWords } words`} <span className='text-[2vw]'>&#183;</span> {`${ textInputSentences } sentences`}</span>
+                  <span className='flex gap-x-[2px] '>{`${ textInputWords } words`} <span className='text-[2.5vw]'>&#183;</span> {`${ textInputSentences } sentences`}</span>
                 </p>
 
-                <div className='flex gap-x-2 items-center capitalize'>
+                <div className='flex gap-x-2 items-center capitalize [&_span]:cursor-pointer'>
                   <span 
                     className='text-coffee-bean-brown'
                     onClick={ handleSampleText }
@@ -282,22 +284,28 @@ function SummarizerPage() {
 
               <div className='absolute bottom-2 left-0 w-full text-black'>
                 <div className='flex-between px-4 text-xs md:text-[0.9vw]'>
-                  <p className='flex gap-x-[2px]'>{`${ summarizedInfo.wordLength } words`} <span className='text-[2vw]'>&#183;</span> {`${ summarizedInfo.sentenceLength } sentences`}</p>
+                  <p className='flex gap-x-[2px]'>{`${ summarizedInfo.wordLength } words`} <span className='text-[2.5vw]'>&#183;</span> {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
-                  <p className='flex items-center gap-x-2'>
+                  <p className='flex items-center gap-x-4 md:gap-x-3'>
+                    <span 
+                      onClick={ handleCopyText }
+                      className='text-xl md:text-[1.7vw] cursor-pointer hover:text-coffee-bean-brown focus:text-coffee-bean-brown transition-all'>
+                      <MdContentCopy />
+                    </span>
+
                     <span 
                       onClick={ clearResult }  
-                      className=' text-[#ED1818] cursor-pointer'
+                      className={` cursor-pointer text-coffee-text hover:text-coffee-bean-brown focus:text-coffee-bean-brown transition-all ${ summarizedInfo.summarizedText ? '' : '' }`}
                     >
                       Clear Results
                     </span>
 
-                    <span 
-                      onClick={ handleCopyText }
-                      className='bg-coffee-bean-brown text-white py-3 px-4 cursor-pointer hover:bg-[#BD6049] focus:bg-[#BD6049]'
+                    <span
+                      className='outline outline-2 outline-coffee-bean-brown text-black py-3 px-5 cursor-pointer hover:outline-none focus:outline-none hover:bg-[#BD6049] focus:bg-[#BD6049] hover:text-white focus:text-white transition-all'
                     >
-                      Copy Text
+                      Share
                     </span>
+
                   </p>
                 </div>
               </div>

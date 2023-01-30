@@ -249,7 +249,7 @@ function AboutPage() {
 
         <div className='layout-grid3  md:h-screen divide-y-[0.2778vw] md:divide-y-0 divide-x-[0.2778vw] divide-black'>
           <div className='layout-grid4 divide-y-[0.2778vw] divide-black'>
-            <div className='px-5  py-10 md:px-[3vw]  md:py-[1vw] textContainer overflow-hidden' id='cont'>
+            <div className='px-5 py-10 md:px-[3vw]  md:py-[1vw] textContainer overflow-hidden' id='cont'>
 
               <h1 className='header-text overflow-hidden headerText1Gsap'>
                 <span className='md:translate-y-full'>It  really  is  not  rocket  science  how  it  works</span>
