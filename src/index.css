@@ -62,8 +62,10 @@ input {
 }
 
 .modal-wrapper {
-    max-width: 450px;
-    padding: 20px 30px;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 0 30px;
+    padding: 10px 12px;
     width: 100%;
     background-color: white;
     border-radius: 10px;
@@ -355,5 +357,17 @@ main {
 
     .dribble-icon {
         font-size: 25px;
+    }
+
+    .modal-wrapper {
+        max-width: 31.35vw;
+        padding: 1.39vw 2.08vw;
+        width: 100%;
+        background-color: white;
+        border-radius: 0.70vw;
+        -webkit-border-radius: 0.70vw;
+        -moz-border-radius: 0.70vw;
+        -ms-border-radius: 0.70vw;
+        -o-border-radius: 0.70vw;
     }
 }
