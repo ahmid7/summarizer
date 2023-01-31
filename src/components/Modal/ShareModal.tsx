@@ -26,6 +26,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
   let postUrl = encodeURI(window.location.href);
   let postMessage = encodeURIComponent("Hi everyone, I just found this awesome website that summarizes any text for you. ")
   const title = encodeURIComponent(document.querySelector('title')?.textContent || 'Summarizer')
+  let message = "Hi everyone, I just found this awesome website that summarizes any text for you."
 
     const shareMedia = [
         {
@@ -38,7 +39,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             name: 'twitter',
             icon: <GrTwitter />,
             color: 'black',
-            href:  `https://twitter.com/share?url=${ postUrl }&text=${ postMessage }`
+            href:  `https://twitter.com/share?url=${ postUrl }&text=${ message }`
         },
         {
             name: 'linkedin',
@@ -60,19 +61,6 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             href:  `https://api.whatsapp.com/send?text=${ postMessage } ${ postUrl }        `
         },
     ]
-
-    function share() {
-        if(!navigator.canShare) {
-            console.log('you cannot share')
-        }else {
-            navigator.share({
-                title: `${postMessage}`,
-                url: `${postUrl}`
-            }).then(() => {
-                console.log('Thanks for sharing')
-            }).catch(console.error)
-        }
-    }
 
   return (
     <div className='modal-wrapper divide-y-2 divide-gray-200 ' ref={ showModalRef }>
@@ -96,8 +84,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
                         return (
                             <div className='' key={ media.name }>
                                 <a 
-                                    // href={ media.href }
-                                    onClick={  share} 
+                                    href={ media.href }
                                     target='_blank'
                                     style={{ color: `${ media.color }` }} 
                                     className='border-2 mediaIcon cursor-pointer border-gray-100 rounded-full h-14 w-14 text-xl flex items-center justify-center hover:border-[#bd6049] focus:border-[#bd6049]'
