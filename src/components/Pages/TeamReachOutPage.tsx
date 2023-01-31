@@ -5,7 +5,7 @@ import SplitType from "split-type"
 import { Context } from "../../App"
 import { LongLeftArrow } from '../../assets/svgIcons' 
 
-function TeamReachOutPage() {
+function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
   // progress of the scroll
   const scrollProgress = React.useContext(Context)
   // stay in touch text ref
@@ -51,7 +51,6 @@ function TeamReachOutPage() {
           ease: "power2.easeOut",
           scrollTrigger: {
             trigger: '.secondDetailsTextMobile',
-            markers: true
           }
         })
 
@@ -269,7 +268,7 @@ function TeamReachOutPage() {
 
               </div>
               
-              <button className="button-style button-outline1">
+              <button className="button-style button-outline1" onClick={ updateModal }>
                 share link now
               </button>
             </div>

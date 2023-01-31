@@ -5,3 +5,5 @@ export { default as TeamPage } from "./Pages/TeamPage"
 export { default as TeamReachOutPage } from './Pages/TeamReachOutPage'
 export { default as NavBar } from './NavBar'
 export { default as TeamMemberCard } from './TeamMemberCard'
+export { default as Modal } from "./Modal/Modal"
+export { default as ShareModal } from "./Modal/ShareModal"

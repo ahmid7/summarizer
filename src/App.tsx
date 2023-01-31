@@ -4,9 +4,7 @@ import {
   QueryClient,
   QueryClientProvider
 } from 'react-query'
-import { 
-  Toaster 
-} from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 import {
   gsap,
   ScrollTrigger, 
@@ -15,13 +13,16 @@ import {
   ScrollToPlugin
 } from 'gsap/all'
 
+
 import { 
   HomePage, 
   SummarizerPage,
   AboutPage,
   TeamPage,
   TeamReachOutPage,
-  NavBar
+  NavBar,
+  Modal,
+  ShareModal
 } from "./components" 
 
 gsap.registerPlugin(
@@ -42,6 +43,12 @@ function App() {
   const wrapper = React.useRef(null)
 
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
+
+  const [showShareModal, setShareModal] = React.useState(false)
+
+  function updateModal() {
+    setShareModal(!showShareModal)
+  }
 
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -105,7 +112,7 @@ function App() {
 
   return (
       <QueryClientProvider client={ queryClient }>
-        <Context.Provider value={ scrollProgress}>
+        <Context.Provider value={ scrollProgress }>
           <main ref={ main }>
             <article ref= { wrapper } className="wrapper article md:h-screen md:overflow-hidden flex flex-col md:flex-row flex-nowrap divide-y-4 md:divide-y-0 md:divide-x-4 divide-coffee-text md:w-[500%]">
 
@@ -118,8 +125,8 @@ function App() {
               </div>
               
               <section className='section' id="summarizer">
-                <SummarizerPage />
-              </section>  
+                <SummarizerPage updateModal={ updateModal }/>
+              </section>
 
               <section className='section' id="about">
                 <AboutPage /> 
@@ -130,8 +137,17 @@ function App() {
               </section>
 
               <section className='section teamPage'>
-                <TeamReachOutPage/>
+                <TeamReachOutPage updateModal= { updateModal }/>
               </section>
+
+              {
+                showShareModal ? 
+                (
+                  <Modal>
+                    <ShareModal updateModal={ updateModal }/>
+                  </Modal>
+                ) : null
+              } 
             </article>
           </main>
         </Context.Provider> 

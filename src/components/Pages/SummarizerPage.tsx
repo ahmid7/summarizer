@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 import Skeleton from 'react-loading-skeleton'
 import toast from "react-hot-toast"
 import { MdContentCopy } from "react-icons/md"
-import { GrShareOption } from "react-icons/gr"
+
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { NavBar } from '..'
@@ -14,10 +14,13 @@ import {
   PasteIcon,
   RightIndicator 
 } from '../../assets/svgIcons'
+import { Context } from '../../App'
 
 gsap.registerPlugin( Observer )
 
-function SummarizerPage() {
+function SummarizerPage({ updateModal } : { updateModal: () => void }) {
+  
+
   // handle server side state request
   const { 
     isLoading, 
@@ -302,6 +305,7 @@ function SummarizerPage() {
 
                     <span
                       className='outline outline-2 outline-coffee-bean-brown text-black py-3 px-5 cursor-pointer hover:outline-none focus:outline-none hover:bg-[#BD6049] focus:bg-[#BD6049] hover:text-white focus:text-white transition-all'
+                      onClick={ () => updateModal() }
                     >
                       Share
                     </span>
