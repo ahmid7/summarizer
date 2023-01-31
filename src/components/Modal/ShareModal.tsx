@@ -24,6 +24,8 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
   }, [])
 
   let postUrl = encodeURI(window.location.href);
+
+  let link = 'https://summarizer-project.vercel.app/'
   let postMessage = encodeURIComponent("Hi everyone, I just found this awesome website that summarizes any text for you. ")
   const title = encodeURIComponent(document.querySelector('title')?.textContent || 'Summarizer')
   let message = "Hi everyone, I just found this awesome website that summarizes any text for you."
@@ -33,7 +35,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             name: 'facebook',
             icon: <GrFacebookOption />,
             color: 'blue',
-            href:  `https://www.facebook.com/sharer.php?u=${ postUrl }`
+            href:  `https://www.facebook.com/sharer.php?u=${ link }`
         },
         {
             name: 'twitter',
@@ -45,7 +47,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             name: 'linkedin',
             icon: <GrLinkedin />,
             color: 'blue',
-            href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ message }`
+            href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ postMessage }`
         },
         {
             name: 'reddit',
