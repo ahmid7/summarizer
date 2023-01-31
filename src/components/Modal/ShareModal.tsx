@@ -27,51 +27,52 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
   let postMessage = encodeURIComponent("Hi everyone, I just found this awesome website that summarizes any text for you. ")
   const title = encodeURIComponent(document.querySelector('title')?.textContent || 'Summarizer')
 
-  const shareMedia = [
-    {
-        name: 'facebook',
-        icon: <GrFacebookOption />,
-        color: 'blue',
-        href:  `https://www.facebook.com/sharer.php?u=${ postUrl }`
-    },
-    {
-        name: 'twitter',
-        icon: <GrTwitter />,
-        color: 'black',
-        href:  `https://twitter.com/share?url=${ postUrl }&text=${ postMessage }`
-    },
-    {
-        name: 'linkedin',
-        icon: <GrLinkedin />,
-        color: 'blue',
-        href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ postMessage }`
-    },
-    {
-        name: 'reddit',
-        icon: <GrReddit />,
-        color: 'red',
-        href:  `https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=${postUrl}&description=${ postMessage }
-        `
-    },
-    {
-        name: 'whatsapp',
-        icon: <ImWhatsapp />,
-        color: 'green',
-        href:  `https://api.whatsapp.com/send?text=${ postMessage } ${ postUrl }        `
-    },
-]
+    const shareMedia = [
+        {
+            name: 'facebook',
+            icon: <GrFacebookOption />,
+            color: 'blue',
+            href:  `https://www.facebook.com/sharer.php?u=${ postUrl }`
+        },
+        {
+            name: 'twitter',
+            icon: <GrTwitter />,
+            color: 'black',
+            href:  `https://twitter.com/share?url=${ postUrl }&text=${ postMessage }`
+        },
+        {
+            name: 'linkedin',
+            icon: <GrLinkedin />,
+            color: 'blue',
+            href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ postMessage }`
+        },
+        {
+            name: 'reddit',
+            icon: <GrReddit />,
+            color: 'red',
+            href:  `https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=${postUrl}&description=${ postMessage }
+            `
+        },
+        {
+            name: 'whatsapp',
+            icon: <ImWhatsapp />,
+            color: 'green',
+            href:  `https://api.whatsapp.com/send?text=${ postMessage } ${ postUrl }        `
+        },
+    ]
 
-//   console.table([ postUrl, postMessage, title ])
-
-  function share(e:any) {
-    e.preventDefault()
-
-    const url = e.target
-
-    console.log(url)
-
-    // url.setAttribute("href", `https://www.facebook.com/sharer.php?u=${ postUrl }`)
-  }
+    function share() {
+        if(!navigator.canShare) {
+            console.log('you cannot share')
+        }else {
+            navigator.share({
+                title: `${postMessage}`,
+                url: `${postUrl}`
+            }).then(() => {
+                console.log('Thanks for sharing')
+            }).catch(console.error)
+        }
+    }
 
   return (
     <div className='modal-wrapper divide-y-2 divide-gray-200 ' ref={ showModalRef }>
@@ -95,7 +96,8 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
                         return (
                             <div className='' key={ media.name }>
                                 <a 
-                                    href={ media.href } 
+                                    // href={ media.href }
+                                    onClick={  share} 
                                     target='_blank'
                                     style={{ color: `${ media.color }` }} 
                                     className='border-2 mediaIcon cursor-pointer border-gray-100 rounded-full h-14 w-14 text-xl flex items-center justify-center hover:border-[#bd6049] focus:border-[#bd6049]'
