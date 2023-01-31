@@ -20,15 +20,16 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
   // handle mobile animations
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      
       let mm = gsap.matchMedia()
-
+      
       mm.add("(max-width:767px)", () => {
+        const secondHeaderTextWordsMobile = new SplitType('#secondHeaderText', { types: "words" })
         const headerSplitword = new SplitType("#reachOutHeader", { types: 'words' })
         const teamReachOutText = gsap.utils.selector(teamReachOutTextRef)
-        const secondHeaderTextWords = new SplitType('#secondHeaderText', { types: "words" })
         const secondDetailsWordMobile = gsap.utils.selector(".secondDetailsTextMobile")
-        const tl = gsap.timeline()
         
+        const tl = gsap.timeline()
         gsap.fromTo(teamReachOutText(".span"), {
             yPercent: 50,
             opacity: 0
@@ -45,45 +46,33 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
           }
         )
         
-        tl.fromTo(secondHeaderTextWords.words, 
-
+        
+        gsap.fromTo(secondHeaderTextWordsMobile.words, 
           {
-
             yPercent: 50
-
           }, 
-
           {
-
             scrollTrigger: {
-
-              trigger: "#reachOutHeader",
-
+              trigger: "#secondHeaderText",
             },
-
             yPercent: 0,
-
             duration: 1.3,
-
-            stagger: 0.05,
-
+            stagger: 0.1,
             delay: 0.1,
-
             ease: "back.out"
-
           }
-
         )
         
-        
 
-        tl.to(secondDetailsWordMobile(".span"),{
+        gsap.to(secondDetailsWordMobile(".span"),{
+          scrollTrigger: {
+            trigger: "#secondDetailsText",
+          },
           y: "0%",
           stagger: 0.2,
-          duration: 0.5,
-          delay: 1,
+          duration: 0.8,
+          delay: 1.6,
           ease: "power2.easeOut",
-            
         })
 
         gsap.fromTo(headerSplitword.words, 
@@ -130,12 +119,12 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
   React.useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-      const secondHeaderTextWords = new SplitType('#secondHeaderText', { types: "words" })
-
+      
       let mm = gsap.matchMedia()
       
-
+      
       mm.add("(min-width: 768px)", () => {
+        const secondHeaderTextWords = new SplitType('#secondHeaderText', { types: "words" })
         const headerWordGsap = new SplitType("#reachOutHeader", { types:"words" })
         const detailWordGsap = gsap.utils.selector(".detailWordGsap")
         const secondDetailsWord = gsap.utils.selector(".secondDetailsTextDesktop")
@@ -248,7 +237,7 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
             </div>
               
             <div className="py-2 px-5 md:px-[1.75vw]">
-              <h2 className="header-text overflow-hidden pt-[1vw]" id="secondHeaderText">
+              <h2 className="header-text overflow-hidden pt-[1vw] seconds" id="secondHeaderText">
                 <span className="md:translate-y-full">Be a Reading Hero: <br/> share this now</span>
               </h2>
 
