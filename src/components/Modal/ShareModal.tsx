@@ -45,7 +45,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             name: 'linkedin',
             icon: <GrLinkedin />,
             color: 'blue',
-            href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ postMessage }`
+            href:  `https://www.linkedin.com/shareArticle?url=${ postUrl }&title=${ message }`
         },
         {
             name: 'reddit',
