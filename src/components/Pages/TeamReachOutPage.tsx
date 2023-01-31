@@ -238,11 +238,11 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
               
             <div className="py-2 px-5 md:px-[1.75vw]">
               <h2 className="header-text overflow-hidden pt-[1vw] seconds" id="secondHeaderText">
-                <span className="md:translate-y-full">Be a Reading Hero: <br/> share this now</span>
+                <span className="md:translate-y-full">Be a Reading Hero: <br className="sm:hidden md:block"/> share this now</span>
               </h2>
 
               {/* desktop version */}
-              <div className="mid-text hidden md:block [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextDesktop">
+              <div className="mid-text hidden md:block [&_span]:inline-block  [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextDesktop">
 
                 <div>
                   <span className="span">
@@ -270,13 +270,13 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
               </div>
 
               {/* mobile version */}
-              <div className="mid-text block md:hidden [&_span]:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextMobile">
+              <div className="mid-text block md:hidden [&_span]:inline-block [&_div]:sm:-mt-5 text-justify [&_div]:sm:inline-block [&_div]:overflow-hidden [&_span]:translate-y-full secondDetailsTextMobile">
                 <div>
                   <span className="span">Want to be the hero of your friend</span>
                 </div>
 
                 <div>
-                  <span className="span">group? Share the good news our  </span>
+                  <span className="span sm:px-1">group? Share the good news our  </span>
                 </div>
 
                 <div>
@@ -284,7 +284,7 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
                 </div>
 
                 <div>
-                  <span className="span">of reading time!</span>
+                  <span className="span sm:px-1">of reading time!</span>
                 </div>
 
               </div>

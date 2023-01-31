@@ -247,7 +247,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>summarizer uses the concept of</span>
+                  <span className='span sm:px-1'>summarizer uses the concept of</span>
                 </div>
 
                 <div>
@@ -255,7 +255,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>summarize a book, an article, or a</span> 
+                  <span className='span sm:px-1'>summarize a book, an article, or a</span> 
                 </div>
 
                 <div>
@@ -270,7 +270,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>sentences and generates a </span> 
+                  <span className='span sm:px-1'>sentences and generates a </span> 
                 </div>
 
                 <div>
@@ -278,7 +278,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>remains intact. It is a premium</span> 
+                  <span className='span sm:px-1'>remains intact. It is a premium</span> 
                 </div>
 
                 <div>
@@ -286,11 +286,11 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>Therefore, the summary produced</span> 
+                  <span className='span sm:px-1'>Therefore, the summary produced</span> 
                 </div>
 
                 <div>
-                  <span className='span'>by this tool has been checked to</span> 
+                  <span className='span sm:px-1'>by this tool has been checked to</span> 
                 </div>
 
                 <div>
