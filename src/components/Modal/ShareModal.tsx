@@ -93,7 +93,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
                 {
                     shareMedia.map((media, index) => {
                         return (
-                            <div className='' key={ media.link }>
+                            <div className='' key={ media.name }>
                                 <a 
                                     href={ media.href } 
                                     target='_blank'
