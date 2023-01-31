@@ -43,23 +43,8 @@ function AboutPage() {
         const headerText2 = new SplitType('.headerText2Gsap', { types: 'words' })
         const detailsText2 = new SplitType('#detailsText2', { types: 'words' })
 
-        // gsap
+        // gsap selectorAll
         const detailsTextMobile = gsap.utils.selector(detailText1Mobile)
-
-
-//         const button1 = buttonToSummarizer1.current
-//         const button2 = buttonToSummarizer2.current
-        
-//         {/* 
-// // @ts-ignore */}
-//         button1.addEventListener("click", () => {
-//           scrollTO(60)
-//         })
-// {/* 
-// // @ts-ignore */}
-//         button2.addEventListener("click", () => {
-//           scrollTO(65)
-//         })
 
         // animating the marquee mobile
         gsap.fromTo("#marquee-mobile", {
@@ -256,7 +241,7 @@ function AboutPage() {
               </h1>
 
               {/* mobile  */}
-              <div className='mid-text block md:hidden [&_span]:block [&_div]:overflow-hidden text-justify' ref={ detailText1Mobile }>
+              <div className='mid-text block md:hidden [&_span]:inline-block [&_div]:sm:-mt-5 [&_div]:sm:inline-block [&_div]:overflow-hidden text-justify' ref={ detailText1Mobile }>
                 <div>
                   <span className='span'>Trained by machine learning, text</span>
                 </div>
@@ -278,6 +263,7 @@ function AboutPage() {
                 </div>
 
                 <br/>
+                <br className='hidden sm:block'/>
 
                 <div>
                   <span className='span'>It uses NLP to create acute</span> 

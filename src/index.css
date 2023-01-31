@@ -149,7 +149,7 @@ input {
 
 
 .button-style {
-    @apply mb-[0.556vw] text-[3.8vw] md:text-[1.111vw] tracking-wide fill-current
+    @apply mb-[0.556vw] text-[3.8vw] sm:text-lg md:text-[1.111vw] tracking-wide fill-current
 }
 
 .button-style a {
