@@ -25,8 +25,10 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
       mm.add("(max-width:767px)", () => {
         const headerSplitword = new SplitType("#reachOutHeader", { types: 'words' })
         const teamReachOutText = gsap.utils.selector(teamReachOutTextRef)
+        const secondHeaderTextWords = new SplitType('#secondHeaderText', { types: "words" })
         const secondDetailsWordMobile = gsap.utils.selector(".secondDetailsTextMobile")
-
+        const tl = gsap.timeline()
+        
         gsap.fromTo(teamReachOutText(".span"), {
             yPercent: 50,
             opacity: 0
@@ -42,16 +44,46 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
             ease:"power2.out"
           }
         )
+        
+        tl.fromTo(secondHeaderTextWords.words, 
 
-        gsap.to(secondDetailsWordMobile(".span"),{
+          {
+
+            yPercent: 50
+
+          }, 
+
+          {
+
+            scrollTrigger: {
+
+              trigger: "#reachOutHeader",
+
+            },
+
+            yPercent: 0,
+
+            duration: 1.3,
+
+            stagger: 0.05,
+
+            delay: 0.1,
+
+            ease: "back.out"
+
+          }
+
+        )
+        
+        
+
+        tl.to(secondDetailsWordMobile(".span"),{
           y: "0%",
           stagger: 0.2,
           duration: 0.5,
           delay: 1,
           ease: "power2.easeOut",
-          scrollTrigger: {
-            trigger: '.secondDetailsTextMobile',
-          }
+            
         })
 
         gsap.fromTo(headerSplitword.words, 
