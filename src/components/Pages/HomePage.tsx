@@ -307,3 +307,8 @@ function HomePage() {
 }
 
 export default HomePage
+
+
+// TODO: first generate only the sixfonts and merriweather caps from the google fonts
+
+//TODO: second 

@@ -10,38 +10,30 @@ import {
 import { AiOutlineCopy } from 'react-icons/ai'
 import toast from 'react-hot-toast'
 
-function ShareModal({ updateModal }: { updateModal: () => void }) {
-
-  const showModalRef = React.useRef(null)  
+function ShareModal({ updateModal }: { updateModal: () => void }) { 
 
   function handleCopyText() {
     navigator.clipboard.writeText('https://summarizer-ajkfjmsxw-ahmid7.vercel.app/')
     toast.success('Copied to clipboard')
   }
 
-  React.useEffect(() => {
-
-  }, [])
-
   let postUrl = encodeURI(window.location.href);
-
-  let link = 'https://summarizer-project.vercel.app/'
   let postMessage = encodeURIComponent("Hi everyone, I just found this awesome website that summarizes any text for you. ")
+  let postImg = 'https://i.imgur.com/X2y72kx.jpeg'
   const title = encodeURIComponent(document.querySelector('title')?.textContent || 'Summarizer')
-  let message = "Hi everyone, I just found this awesome website that summarizes any text for you."
 
     const shareMedia = [
         {
             name: 'facebook',
             icon: <GrFacebookOption />,
             color: 'blue',
-            href:  `https://www.facebook.com/sharer.php?u=${ link }`
+            href:  `https://www.facebook.com/sharer.php?u=${ postUrl }`
         },
         {
             name: 'twitter',
             icon: <GrTwitter />,
             color: 'black',
-            href:  `https://twitter.com/share?url=${ postUrl }&text=${ message }`
+            href:  `https://twitter.com/share?url=${ postUrl }&text=${ postMessage }`
         },
         {
             name: 'linkedin',
@@ -53,7 +45,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
             name: 'reddit',
             icon: <GrReddit />,
             color: 'red',
-            href:  `https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=${postUrl}&description=${ postMessage }
+            href:  `https://pinterest.com/pin/create/bookmarklet/?media=${ postImg }&url=${postUrl}&description=${ postMessage }
             `
         },
         {
@@ -65,7 +57,7 @@ function ShareModal({ updateModal }: { updateModal: () => void }) {
     ]
 
   return (
-    <div className='modal-wrapper divide-y-2 divide-gray-200 ' ref={ showModalRef }>
+    <div className='modal-wrapper divide-y-2 divide-gray-200'>
         <div className='flex justify-between items-center capitalize  font-merriweather py-2'>
             <h4 className='text-base md:text-[1.25vw]'>share modal</h4>
 
