@@ -2,7 +2,7 @@ import React from 'react'
 import { gsap,Observer } from 'gsap/all'
 import axios from "axios"
 import { useQuery } from 'react-query'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import toast from "react-hot-toast"
 import { MdContentCopy } from "react-icons/md"
 
@@ -20,7 +20,6 @@ gsap.registerPlugin( Observer )
 
 function SummarizerPage({ updateModal } : { updateModal: () => void }) {
   
-
   // handle server side state request
   const { 
     isLoading, 
@@ -276,9 +275,18 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
 
 
                   {
-                    !data && 
+                    !data && !isFetching &&
                     <div className='px-[1.74vw]'>
                       <Skeleton count={ 10.5 }/>
+                    </div>
+                  }
+
+                  {
+                    isFetching &&
+                    <div className='px-[1.74vw]'>
+                      <SkeletonTheme baseColor='#CFCFCF' highlightColor='#9B4C38'>
+                        <Skeleton count={ 10.5 }/>
+                      </SkeletonTheme>
                     </div>
                   }
                 </>
