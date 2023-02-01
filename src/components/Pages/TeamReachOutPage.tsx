@@ -54,24 +54,25 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
           {
             scrollTrigger: {
               trigger: "#secondHeaderText",
+              markers: true,
             },
             yPercent: 0,
             duration: 1.3,
             stagger: 0.1,
             delay: 0.1,
-            ease: "back.out"
+            ease: "back.out",
           }
         )
         
 
         gsap.to(secondDetailsWordMobile(".span"),{
           scrollTrigger: {
-            trigger: "#secondDetailsText",
+            trigger: "#secondHeaderText",
           },
           y: "0%",
           stagger: 0.2,
           duration: 0.8,
-          delay: 1.6,
+          delay: 1.4,
           ease: "power2.easeOut",
         })
 
