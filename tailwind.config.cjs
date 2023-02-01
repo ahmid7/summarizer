@@ -16,7 +16,7 @@ module.exports = {
         'inter': [ 'Inter', 'sans-serif'],
         'merriweather': [ 'Merriweather', 'serif' ],
         'poppins': [ 'Poppins', 'sans-serif' ],
-        'six-caps': [ 'SixCaps', 'sans-serif' ]
+        'six-caps': [ 'Six Caps', 'sans-serif' ]
       },
       keyframes: {
         arrowBounceLeft: {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import { 
   QueryClient,
@@ -13,7 +12,6 @@ import {
   ScrollToPlugin
 } from 'gsap/all'
 
-
 import { 
   HomePage, 
   SummarizerPage,
@@ -24,6 +22,7 @@ import {
   Modal,
   ShareModal
 } from "./components" 
+
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -45,6 +44,8 @@ function App() {
   const [scrollProgress, setScrollProgress] = React.useState<number>(0)
 
   const [showShareModal, setShareModal] = React.useState(false)
+
+  // const [ isFontLoaded, setIsFontLoaded ] = React.useState(false)
 
   function updateModal() {
     setShareModal(!showShareModal)
@@ -108,6 +109,7 @@ function App() {
     return () => ctx.revert()
     
   }, [])
+
 
 
   return (

@@ -17,7 +17,8 @@
     "react-icons": "^4.7.1",
     "react-loading-skeleton": "^3.1.0",
     "react-query": "^3.39.2",
-    "split-type": "^0.3.3"
+    "split-type": "^0.3.3",
+    "use-font-face-observer": "^1.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
