@@ -298,24 +298,24 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
                   <p className='flex gap-x-[2px]'>{`${ summarizedInfo.wordLength } words`} <span className='text-[2.5vw]'>&#183;</span> {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
                   <p className='flex items-center gap-x-4 md:gap-x-3'>
-                    <span 
+                    {/* <span 
                       onClick={ handleCopyText }
                       className='text-xl md:text-[1.7vw] cursor-pointer hover:text-coffee-bean-brown focus:text-coffee-bean-brown transition-all'>
                       <MdContentCopy />
-                    </span>
+                    </span> */}
 
                     <span 
                       onClick={ clearResult }  
-                      className={` cursor-pointer text-coffee-text hover:text-coffee-bean-brown focus:text-coffee-bean-brown transition-all ${ summarizedInfo.summarizedText ? '' : '' }`}
+                      className={` cursor-pointer text-coffee-bean-brown hover:text-[#BD6049] focus:text-[#BD6049] transition-all ${ summarizedInfo.summarizedText ? '' : '' }`}
                     >
                       Clear Results
                     </span>
 
                     <span
-                      className='outline outline-2 outline-coffee-bean-brown text-black py-3 px-5 cursor-pointer hover:outline-none focus:outline-none hover:bg-[#BD6049] focus:bg-[#BD6049] hover:text-white focus:text-white transition-all'
+                      className='text-white py-3 px-5 cursor-pointer bg-coffee-bean-brown hover:bg-[#BD6049] focus:bg-[#BD6049] hover:text-white focus:text-white transition-all'
                       onClick={ () => updateModal() }
                     >
-                      Share
+                      Copy
                     </span>
 
                   </p>
