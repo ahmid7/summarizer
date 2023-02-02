@@ -313,7 +313,7 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
 
                     <span
                       className='text-white py-3 px-5 cursor-pointer bg-coffee-bean-brown hover:bg-[#BD6049] focus:bg-[#BD6049] hover:text-white focus:text-white transition-all'
-                      onClick={ () => updateModal() }
+                      onClick={ handleCopyText }
                     >
                       Copy
                     </span>
