@@ -10,6 +10,7 @@ import {
   Logo, 
   RightArrow,
   LongRightArrow,
+  HamburgerIcon
 } from '../../assets/svgIcons'
 
 gsap.registerPlugin(Observer)
@@ -229,7 +230,7 @@ function HomePage() {
           </div>
 
           <div id='hamburger' className='md:hidden flex items-center justify-center text-4xl' onClick={ updateMenuOpen }>
-            <RiMenuFoldFill/>
+            <HamburgerIcon/>
           </div>
         </div>
 

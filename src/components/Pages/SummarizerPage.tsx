@@ -12,9 +12,8 @@ import { NavBar } from '..'
 import { 
   GithubIcon, 
   PasteIcon,
-  RightIndicator 
+  RightIndicator,
 } from '../../assets/svgIcons'
-import { Context } from '../../App'
 
 gsap.registerPlugin( Observer )
 
