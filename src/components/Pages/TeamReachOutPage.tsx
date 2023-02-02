@@ -54,7 +54,7 @@ function TeamReachOutPage({ updateModal }: { updateModal: () => void }) {
           {
             scrollTrigger: {
               trigger: "#secondHeaderText",
-              markers: true,  
+              // markers: true, chan 
             },
             yPercent: 0,
             duration: 1.3,
