@@ -230,7 +230,7 @@ function HomePage() {
           </div>
 
           <div id='hamburger' className='md:hidden flex items-center justify-center text-4xl' onClick={ updateMenuOpen }>
-            <HamburgerIcon/>
+            <RiMenuFoldFill/>
           </div>
         </div>
 
