@@ -265,7 +265,7 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
                     !isFetching && data &&
                     <textarea 
                       value= { summarizedInfo.summarizedText }
-                      className='px-[1.74vw] w-full h-full text-black opacity-0 outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                      className='px-[1.74vw] w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
                       disabled
                     >
                       { summarizedInfo.summarizedText }
