@@ -71,7 +71,7 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
   }
 
   // error message to display when the user is offline
-  const notify = () => toast.error('no network connection')
+  const notify = () => toast.error('no internet connection')
 
   // handle user click on the summarize button
   function handleSummarize() {
@@ -265,7 +265,7 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
                     !isFetching && data &&
                     <textarea 
                       value= { summarizedInfo.summarizedText }
-                      className='px-[1.74vw] w-full h-full text-black outline-none border-none overflow-y-scroll resize-none leading-relaxed'
+                      className='px-[1.74vw] w-full h-full black-color outline-none border-none overflow-y-scroll resize-none leading-relaxed'
                       disabled
                     >
                       { summarizedInfo.summarizedText }
@@ -297,12 +297,6 @@ function SummarizerPage({ updateModal } : { updateModal: () => void }) {
                   <p className='flex gap-x-[2px]'>{`${ summarizedInfo.wordLength } words`} <span className='text-[2.5vw]'>&#183;</span> {`${ summarizedInfo.sentenceLength } sentences`}</p>
                   
                   <p className='flex items-center gap-x-4 md:gap-x-3'>
-                    {/* <span 
-                      onClick={ handleCopyText }
-                      className='text-xl md:text-[1.7vw] cursor-pointer hover:text-coffee-bean-brown focus:text-coffee-bean-brown transition-all'>
-                      <MdContentCopy />
-                    </span> */}
-
                     <span 
                       onClick={ clearResult }  
                       className={` cursor-pointer text-coffee-bean-brown hover:text-[#BD6049] focus:text-[#BD6049] transition-all ${ summarizedInfo.summarizedText ? '' : '' }`}

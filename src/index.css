@@ -12,6 +12,10 @@
     }
 }
 
+.black-color {
+    color: black !important;
+}
+
 *{
     scroll-behavior: smooth;
 }

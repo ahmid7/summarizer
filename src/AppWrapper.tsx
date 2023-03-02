@@ -5,9 +5,9 @@ import App from './App'
 function AppWrapper() {
   const isFontLoaded = useFontFaceObserver([
 		{
-				family: "Six Caps",
-				weight: "400",
-				style: 'normal'
+			family: "Six Caps",
+			weight: "400",
+			style: 'normal'
 		}
 	])
 

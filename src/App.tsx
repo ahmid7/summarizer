@@ -45,8 +45,6 @@ function App() {
 
   const [showShareModal, setShareModal] = React.useState(false)
 
-  // const [ isFontLoaded, setIsFontLoaded ] = React.useState(false)
-
   function updateModal() {
     setShareModal(!showShareModal)
   }
