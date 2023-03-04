@@ -251,7 +251,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>abstractive summarization to</span> 
+                  <span className='span'>extractive summarization to</span> 
                 </div>
 
                 <div>
@@ -306,7 +306,7 @@ function AboutPage() {
                 </div>
 
                 <div>
-                  <span className='span'>concept of abstractive summarization to summarize a</span>
+                  <span className='span'>concept of extractive summarization to summarize a</span>
                 </div>
 
                 <div>
